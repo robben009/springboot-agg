@@ -4,7 +4,10 @@ import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.robben.common.ResponseEntityDto;
 import com.robben.common.UnifiedReply;
 import com.robben.dao.UserInfoEntityService;
@@ -64,33 +67,21 @@ public class MybatisPlusController extends UnifiedReply {
     @ApiOperation(value = "插入用户信息",notes = "插入用户信息详情")
     @GetMapping("/insertUser")
     public ResponseEntityDto insertUser(){
-        UserInfoEntity vo = new UserInfoEntity();
-        vo.setAge(1);
-        vo.setName("lalalalal");
-        vo.setCreateTime(new Date());
-        vo.setSex(false);
-        vo.setUpdateTime(new Date());
-        vo.setWorkInfo("workinfo");
+        UserInfoEntity userInfoEntity = mpUseService.createUserByCount(999);
+        userInfoEntityMapper.insert(userInfoEntity);
+        return buildSuccesResp(userInfoEntity);
+    }
 
-        //赋值一个json对象,这个对象中还有数组集合
-        DescInfoVo dv = new DescInfoVo();
-        dv.setAge(1);
-        dv.setName("name");
-        dv.setPhone(Arrays.asList("123","456"));
-        vo.setDescInfo(dv);
+    @ApiOperation(value = "分页查询用户信息")
+    @GetMapping("/page")
+    public ResponseEntityDto page(@ApiParam Long page,@ApiParam Long pageSize){
+        IPage<UserInfoEntity> pageParam = new Page<>(page,pageSize);
 
-        //赋值一个json集合对象
-        List<DescInfoVo> ld = new ArrayList<>();
-        ld.add(dv);
-        vo.setDescInfoList(ld);
+        IPage<UserInfoEntity> result = userInfoEntityService.page(pageParam);
+        IPage<UserInfoEntity> result2 = userInfoEntityService.page(pageParam,new LambdaQueryWrapper<UserInfoEntity>()
+                .gt(UserInfoEntity::getAge,50));
 
-        //赋值一个对象,对象中有list
-        DescInfoListVo descInfoListVo = new DescInfoListVo();
-        descInfoListVo.setDlist(ld);
-        vo.setDescInfoListVo(descInfoListVo);
-
-        userInfoEntityMapper.insert(vo);
-        return buildSuccesResp(vo);
+        return buildSuccesResp(JSON.toJSONString(result));
     }
 
 
@@ -111,7 +102,7 @@ public class MybatisPlusController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "根据用户名查信息")
+    @ApiOperation(value = "根据用户名查信息",notes = "增加最后sql语句的拼接")
     @GetMapping("/getUserByName")
     public ResponseEntityDto getUserByName(@ApiParam String name){
         return buildSuccesResp(userInfoEntityMapper.selectOne(new LambdaQueryWrapper<UserInfoEntity>()
