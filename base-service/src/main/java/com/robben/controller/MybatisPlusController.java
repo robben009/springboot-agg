@@ -5,8 +5,10 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.robben.common.ResponseEntityDto;
 import com.robben.common.UnifiedReply;
@@ -29,12 +31,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 对于2
- * commit 1
- * commit 2
- * commit 3
- */
 
 @Slf4j
 @Api(tags = "mybatis-Plus使用")
@@ -62,6 +58,20 @@ public class MybatisPlusController extends UnifiedReply {
         return buildSuccesResp();
     }
 
+    @ApiOperation(value = "批量插入用户信息2",notes = "使用insertBatchSomeColumn")
+    @GetMapping("/batchInsertUser2")
+    public ResponseEntityDto batchInsertUser2(){
+        userInfoEntityService.remove(Wrappers.emptyWrapper());
+
+        int count = 100;
+        List<UserInfoEntity> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            UserInfoEntity userByCount = mpUseService.createUserByCount(i);
+            list.add(userByCount);
+        }
+        userInfoEntityMapper.insertBatchSomeColumn(list);
+        return buildSuccesResp();
+    }
 
 
     @ApiOperation(value = "插入用户信息",notes = "插入用户信息详情")

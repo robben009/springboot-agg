@@ -1,11 +1,17 @@
 package com.robben.config.mybtis;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.core.injector.AbstractMethod;
+import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
+import com.baomidou.mybatisplus.core.metadata.TableInfo;
+import com.baomidou.mybatisplus.extension.injector.methods.InsertBatchSomeColumn;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -33,6 +39,21 @@ public class MybatisPlusConfig {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         return interceptor;
+    }
+
+
+    @Bean
+    public EasySqlInjector easySqlInjector() {
+        return new EasySqlInjector();
+    }
+
+    class EasySqlInjector  extends DefaultSqlInjector {
+        @Override
+        public List<AbstractMethod> getMethodList(Class<?> mapperClass) {
+            List<AbstractMethod> methodList = super.getMethodList(mapperClass);
+            methodList.add(new InsertBatchSomeColumn()); // 添加InsertBatchSomeColumn方法
+            return methodList;
+        }
     }
 
 }

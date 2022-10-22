@@ -3,7 +3,10 @@ package com.robben.dao.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.robben.entity.UserInfoEntity;
 import org.apache.ibatis.annotations.*;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
 
 /**
  * @author hjz
@@ -30,4 +33,10 @@ public interface UserInfoEntityMapper extends BaseMapper<UserInfoEntity> {
     @Delete("delete from user_info where id = #{id}")
     int delUserById(int id);
 
+    /**
+     * 批量插入（mysql）
+     * @param entityList
+     * @return
+     */
+    Integer insertBatchSomeColumn(Collection<UserInfoEntity> entityList);
 }
