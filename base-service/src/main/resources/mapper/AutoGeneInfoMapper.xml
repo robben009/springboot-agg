@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.robben.dao.AutoGeneInfoDao">
+
+    <resultMap type="com.robben.entity.AutoGeneInfoEntity" id="AutoGeneInfoResultMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="BOOLEAN"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="workInfo" column="work_info" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="table_field">
+      id, name, sex, age, work_info, create_time, update_time      
+    </sql>
+
+    <!--通过Id查询单个-->
+    <select id="getById" resultMap="AutoGeneInfoResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="table_field"/>
+        from auto_gene_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+    <!--通过实体不为空的属性作为筛选条件查询列表-->
+    <select id="listByEntity" resultMap="AutoGeneInfoResultMap" parameterType="com.robben.entity.AutoGeneInfoEntity">
+        select
+        <include refid="table_field"/>
+        from auto_gene_info
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="name != null">
+                and name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex,jdbcType=BOOLEAN}
+            </if>
+            <if test="age != null">
+                and age = #{age,jdbcType=INTEGER}
+            </if>
+            <if test="workInfo != null">
+                and work_info = #{workInfo,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <!--通过实体不为空的属性作为筛选条件查询单个-->
+    <select id="getByEntity" resultMap="AutoGeneInfoResultMap" parameterType="com.robben.entity.AutoGeneInfoEntity">
+        select
+        <include refid="table_field"/>
+        from auto_gene_info
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="name != null">
+                and name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex,jdbcType=BOOLEAN}
+            </if>
+            <if test="age != null">
+                and age = #{age,jdbcType=INTEGER}
+            </if>
+            <if test="workInfo != null">
+                and work_info = #{workInfo,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <!--通过Id列表作为筛选条件查询列表，列表长度不为0-->
+    <select id="listByIds" resultMap="AutoGeneInfoResultMap" parameterType="list">
+        select
+        <include refid="table_field"/>
+        from auto_gene_info
+        where id in
+        <foreach item="item" collection="list" separator="," open="(" close=")" index="index">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--新增实体属性不为null的列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.robben.entity.AutoGeneInfoEntity">
+        insert into auto_gene_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="workInfo != null">
+                work_info,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=BOOLEAN},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="workInfo != null">
+                #{workInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!--批量新增所有列，列表长度不能为0，且列表id统一为null或者统一不为null-->
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true" parameterType="list">
+        insert into auto_gene_info
+        (id, name, sex, age, work_info, create_time, update_time)
+        values
+        <foreach item="item" collection="list" separator="," open="" close="" index="index">
+            (#{item.id,jdbcType=INTEGER}, #{item.name,jdbcType=VARCHAR}, #{item.sex,jdbcType=BOOLEAN},
+            #{item.age,jdbcType=INTEGER}, #{item.workInfo,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+
+    <!--通过主键修改实体属性不为null的列-->
+    <update id="update" parameterType="com.robben.entity.AutoGeneInfoEntity">
+        update auto_gene_info
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=BOOLEAN},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="workInfo != null and workInfo != ''">
+                work_info = #{workInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--通过表字段修改实体属性不为null的列-->
+    <update id="updateByField">
+        update auto_gene_info
+        <set>
+            <if test="where.name == null and set.name != null and set.name != ''">
+                name = #{set.name,jdbcType=VARCHAR},
+            </if>
+            <if test="where.sex == null and set.sex != null">
+                sex = #{set.sex,jdbcType=BOOLEAN},
+            </if>
+            <if test="where.age == null and set.age != null">
+                age = #{set.age,jdbcType=INTEGER},
+            </if>
+            <if test="where.workInfo == null and set.workInfo != null and set.workInfo != ''">
+                work_info = #{set.workInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="where.createTime == null and set.createTime != null">
+                create_time = #{set.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="where.updateTime == null and set.updateTime != null">
+                update_time = #{set.updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <where>
+            <if test="where.id != null">
+                and id = #{where.id,jdbcType=INTEGER}
+            </if>
+            <if test="where.name != null">
+                and name = #{where.name,jdbcType=VARCHAR}
+            </if>
+            <if test="where.sex != null">
+                and sex = #{where.sex,jdbcType=BOOLEAN}
+            </if>
+            <if test="where.age != null">
+                and age = #{where.age,jdbcType=INTEGER}
+            </if>
+            <if test="where.workInfo != null">
+                and work_info = #{where.workInfo,jdbcType=VARCHAR}
+            </if>
+            <if test="where.createTime != null">
+                and create_time = #{where.createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="where.updateTime != null">
+                and update_time = #{where.updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </update>
+
+    <!--通过主键修改实体列表，列表长度不能为0，注意：当实体属性为null时，对应的列也会别更新为null-->
+    <update id="updateBatch" parameterType="list">
+        update auto_gene_info
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="name = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when id = #{item.id} then #{item.name}
+                </foreach>
+            </trim>
+            <trim prefix="sex = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when id = #{item.id} then #{item.sex}
+                </foreach>
+            </trim>
+            <trim prefix="age = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when id = #{item.id} then #{item.age}
+                </foreach>
+            </trim>
+            <trim prefix="work_info = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when id = #{item.id} then #{item.workInfo}
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when id = #{item.id} then #{item.createTime}
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when id = #{item.id} then #{item.updateTime}
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from auto_gene_info where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <!--通过实体非空属性删除-->
+    <delete id="deleteByEntity" parameterType="com.robben.entity.AutoGeneInfoEntity">
+        delete from auto_gene_info
+        <where>
+            <if test="name != null">
+                and name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex,jdbcType=BOOLEAN}
+            </if>
+            <if test="age != null">
+                and age = #{age,jdbcType=INTEGER}
+            </if>
+            <if test="workInfo != null">
+                and work_info = #{workInfo,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </delete>
+
+    <!--通过主键列表删除，列表长度不能为0-->
+    <delete id="deleteByIds" parameterType="list">
+        delete from auto_gene_info where id in
+        <foreach item="item" collection="list" separator="," open="(" close=")" index="index">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="countAll" resultType="int">
+        select count(id) from auto_gene_info
+    </select>
+
+    <select id="countByEntity" parameterType="com.robben.entity.AutoGeneInfoEntity" resultType="int">
+        select count(id) from auto_gene_info
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="name != null">
+                and name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex,jdbcType=BOOLEAN}
+            </if>
+            <if test="age != null">
+                and age = #{age,jdbcType=INTEGER}
+            </if>
+            <if test="workInfo != null">
+                and work_info = #{workInfo,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>

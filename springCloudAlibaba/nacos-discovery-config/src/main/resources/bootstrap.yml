@@ -1,0 +1,29 @@
+
+#springboot2.4之后,配置文件的加载发生改变。需要手动引入spring-cloud-starter-bootstrap的jar包 https://blog.csdn.net/weixin_43272781/article/details/116718747
+
+server:
+  port: 28083
+
+nacosServerHost: 212.64.18.166
+
+
+spring:
+  application:
+    name: example
+  #spring在2.6后需要加入
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  cloud:
+    nacos:
+      config:
+        server-addr: ${nacosServerHost}:30000
+      discovery:
+        server-addr: ${nacosServerHost}:30000
+
+
+
+logging:
+  level:
+    com.robben: debug
+

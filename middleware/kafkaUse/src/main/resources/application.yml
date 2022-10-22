@@ -1,0 +1,102 @@
+
+serverHost: 212.64.18.166
+
+
+server:
+  port: 28085
+
+spring:
+  kafka:
+    #注意如果连接是云服务器的kafka,需要修改config下的server.properties中的advertised.listeners=PLAINTEXT://212.64.18.166:9092
+    bootstrap-servers: ${serverHost}:9092
+    properties:
+      max:
+        poll:
+          interval:
+            ms: 600000
+      session:
+        timeout:
+          ms: 10000
+    producer:
+      # 发生错误后，消息重发的次数。
+      retries: 2
+      #当有多个消息需要被发送到同一个分区时，生产者会把它们放在同一个批次里。该参数指定了一个批次可以使用的内存大小，按照字节数计算。
+      batch-size: 16384
+      # 设置生产者内存缓冲区的大小。
+      buffer-memory: 33554432
+      # 键的序列化方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # 值的序列化方式
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # acks=0 ： 生产者在成功写入消息之前不会等待任何来自服务器的响应。
+      # acks=1 ： 只要集群的首领节点收到消息，生产者就会收到一个来自服务器成功响应。
+      # acks=all ：只有当所有参与复制的节点全部收到消息时，生产者才会收到一个来自服务器的成功响应。
+      acks: 1
+      compression-type: gzip
+#      transaction-id-prefix: tx_
+    listener:
+      # 设置批量消费
+      type: batch
+      idle-event-interval: 30000
+      concurrency: 5
+    consumer:
+      enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: latest
+      #批量消费每次最多消费多少个
+      max-poll-records: 100
+
+
+#spring:
+#  kafka:
+#    consumer:
+#      enable-auto-commit: true
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      auto-offset-reset: latest
+#      max-poll-records: 100
+#    producer:
+#      compression-type: gzip
+#    ssl:
+#      trust-store-location: file:///etc/prs/certs/kafka/kafka.client.truststore.jks
+#      trust-store-password: "***"
+#      key-store-location: file:///etc/prs/certs/kafka/kafka.client.keystore.jks
+#      key-store-password: "***"
+#      key-password: "***"
+#    bootstrap-servers: ${serverHost}:9092
+#    security:
+#      protocol: SSL
+#    properties:
+#      ssl:
+#        endpoint:
+#          identification:
+#            algorithm: ''
+#      max:
+#        poll:
+#          interval:
+#            ms: 600000
+#      session:
+#        timeout:
+#          ms: 10000
+#    listener:
+#      type: batch
+#      idle-event-interval: 30000
+#      concurrency: 5
+
+
+
+#临时处理--SASL_PLAINTEXT加密
+#  spring.kafka.bootstrap-servers = ***
+#  spring.kafka.consumer.properties.group.id = test1
+#  spring.kafka.consumer.enable-auto-commit = false
+#  spring.kafka.consumer.auto.commit.interval.ms = 1000
+#  spring.kafka.consumer.auto-offset-reset = earliest
+#  spring.kafka.consumer.properties.session.timeout.ms = 120000
+#  spring.kafka.consumer.properties.request.timeout.ms = 180000
+#  spring.kafka.consumer.key-deserializer = org.apache.kafka.common.serialization.StringDeserializer
+#  spring.kafka.consumer.value-deserializer = org.apache.kafka.common.serialization.StringDeserializer
+#  spring.kafka.listener.missing-topics-fatal = false
+#  spring.kafka.properties.sasl.mechanism = PLAIN
+#  spring.kafka.properties.security.protocol = SASL_PLAINTEXT
+#  spring.kafka.properties.sasl.jaas.config = org.apache.kafka.common.security.plain.PlainLoginModule required username="***" password="***";

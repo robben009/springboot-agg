@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: dubbo-nacos-consumer
+
+server:
+  port: 8082
+
+nacos:
+  host: 212.64.18.166
+  port: 30000
+  #设置账号密码感觉没啥用
+  username: nacos
+  password: ${nacosPwd}
+
+dubbo:
+  registry:
+    address: nacos://${nacos.host}:${nacos.port}/?username=${nacos.username}&password=${nacos.password}
+

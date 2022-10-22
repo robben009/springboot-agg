@@ -1,0 +1,28 @@
+
+
+#外部环境地址(腾讯云服务器地址)
+extraEnvHost: 212.64.18.166
+
+app:
+  id: common-project
+apollo:
+  meta: http://${extraEnvHost}:8080
+  bootstrap:
+    namespaces: application,common-mysql,common-redis
+    enabled: true
+    eagerLoad:
+      enabled: false
+
+
+spring:
+  redis:
+#    database: 6
+    host: ${extraEnvHost}
+    port: 6379
+    password: ${redis.pwd}
+    pool:
+      minIdle: 1
+      maxIdle: 10
+      maxWait: 3
+      maxActive: 8
+

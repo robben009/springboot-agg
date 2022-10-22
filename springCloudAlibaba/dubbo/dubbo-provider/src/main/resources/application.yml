@@ -1,0 +1,27 @@
+
+spring:
+  application:
+    name: dubbo-nacos-provider
+
+server:
+  port: 8081
+
+nacos:
+  server-address: 212.64.18.166
+  port: 30000
+  username: nacos
+  password: ${nacosPwd}
+
+
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+  scan:
+    base-packages: com.robben.service
+  protocol:
+    port: -1
+  registry:
+    address: nacos://${nacos.server-address}:${nacos.port}/?username=${nacos.username}&password=${nacos.password}
+
+

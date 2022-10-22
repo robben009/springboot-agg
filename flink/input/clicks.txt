@@ -1,0 +1,7 @@
+a,./home,1000
+b,./hhhh,20
+c./eeeee,100
+c./ee22eee,200
+c./tt,300
+c./bbb,400
+c./eeeee,500

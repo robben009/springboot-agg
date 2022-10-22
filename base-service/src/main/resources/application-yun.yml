@@ -1,0 +1,64 @@
+
+#设置项目名
+server:
+  servlet:
+    context-path: /base-service
+  port: 28081
+
+#外部环境地址(腾讯云服务器地址)
+extraEnvHost: 212.64.18.166
+
+app:
+  id: base-service
+apollo:
+  meta: http://${extraEnvHost}:38080
+  bootstrap:
+    namespaces: application,common-mysql,common-redis
+    enabled: true
+    eagerLoad:
+      enabled: false
+
+
+spring:
+  application:
+    name: base-service
+  #===============数据库=================
+  #spring-boot中对于@RestController或者@Controller+@ResponseBody注解的接口方法的返回值默认是Json格式，
+  #对于date类型的数据，在返回浏览器端是会被spring-boot默认的Jackson框架转换，而Jackson框架默认的时区GMT（相对于中国是少了8小时）
+  jackson:
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://${extraEnvHost}:3306/springBootDemo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&rewriteBatchedStatements=true
+    username: ${jdbc.username}
+    password: ${jdbc.pwd}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+  #本地缓存的配置
+  cache:
+    type: caffeine
+    #该配置项在com.robben.config.CaffeineCacheConfig 也可以实现配置
+#    cache-names:
+#      - userCache
+#    caffeine:
+#      spec: maximumSize=1024,refreshAfterWrite=60s
+  #===============redis==================
+  redis:
+    database: 0
+    host: ${extraEnvHost}
+    password: ${redis.pwd}
+    port: 6379
+
+
+mybatis:
+  configuration:
+    #自动转驼峰
+    mapUnderscoreToCamelCase: true
+
+link:
+  name: adasdf
+  msg: asdfasd22222
+
+#logging:
+#  level:
+#    com.robben: debug
