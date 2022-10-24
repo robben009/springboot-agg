@@ -113,6 +113,7 @@ public class FileController extends UnifiedReply {
         createCSVFile(datalist,resp);
     }
 
+    //如果本地可以下载但是线上不行请查看官网解决方法,是没安装字体库。可以直接内存修改也可以安装字体库
     @ApiOperation(value = "下载xls",notes = "依赖alibaba-easyexcel")
     @PostMapping("/downLogInfoMj")
     public void downLogInfoMj(HttpServletResponse resp) throws IOException {

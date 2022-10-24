@@ -105,12 +105,6 @@ public class MybatisPlusController extends UnifiedReply {
         return buildSuccesResp(result);
     }
 
-    @ApiOperation(value = "根据用户ID")
-    @GetMapping("/getUserById")
-    public ResponseEntityDto getUserById(@ApiParam int id){
-        return buildSuccesResp(userInfoEntityMapper.selectById(id));
-    }
-
 
     @ApiOperation(value = "根据用户名查信息",notes = "增加最后sql语句的拼接")
     @GetMapping("/getUserByName")
