@@ -61,15 +61,15 @@ public class LocalCacheController extends UnifiedReply {
     @ApiOperation("caffeine本地缓存使用")
     @GetMapping(value = "/caffeineCacheUse")
     public ResponseEntityDto<Boolean> caffeineCacheUse(@RequestParam String s){
-        return buildSuccesResp(localCacheService.getCacheValue(s,s));
+        return buildSuccesResp(localCacheService.getCacheValue(s));
     }
 
 
     @ApiOperation("caffeine本地缓存使用2")
     @GetMapping(value = "/caffeineCacheUse2")
     public ResponseEntityDto<Boolean> caffeineCacheUse2(@RequestParam String s){
-        localCacheService.getCacheValue(s,s);
-        localCacheService.getCacheValue(s,s);
+        localCacheService.getCacheValue(s);
+        localCacheService.getCacheValue(s);
 
         //获取当前的缓存服务
         Collection<String> cacheNames = caffeineCacheManager.getCacheNames();
