@@ -100,7 +100,7 @@ public class LocalCacheController extends UnifiedReply {
         }
 
         log.info("变动1");
-        log.info("变动3");
+        log.info("变动4");
 
         // 获取Cache.map中的cache
         return (Map<String, Object>) map.get("cache");
