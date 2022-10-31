@@ -98,6 +98,9 @@ public class LocalCacheController extends UnifiedReply {
             log.error("ObjToMap exp", e);
             return null;
         }
+
+        log.info("变动1");
+
         // 获取Cache.map中的cache
         return (Map<String, Object>) map.get("cache");
     }
