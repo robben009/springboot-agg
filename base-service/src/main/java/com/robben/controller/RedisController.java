@@ -11,6 +11,7 @@ import com.robben.common.UnifiedReply;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RFuture;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +100,7 @@ public class RedisController extends UnifiedReply {
 
 
 
-    @ApiOperation(value = "分布式锁的使用",notes = "同步锁的使用")
+    @ApiOperation(value = "分布式锁的使用-同步锁")
     @GetMapping(value = "/clusterLock")
     public boolean clusterLock(){
         RLock lock = redissonClient.getLock("anyLock");
@@ -110,13 +111,12 @@ public class RedisController extends UnifiedReply {
             // 2. 支持过期解锁功能,10秒钟以后自动解锁, 无需调用unlock方法手动解锁
             //lock.lock(10, TimeUnit.SECONDS);
 
-            // 3. 尝试加锁，最多等待3秒，上锁以后10秒自动解锁
+            // 3. 尝试加锁，最多等待3秒，上锁以后10秒自动解锁(该方法会阻塞)
             boolean res = lock.tryLock(3, 10, TimeUnit.SECONDS);
-            lock.tryLock(10, TimeUnit.SECONDS);
+            boolean res2 = lock.tryLock(10, TimeUnit.SECONDS);
 
-            if(res){    //成功
+            if(res){
                 // do your business
-
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -127,16 +127,16 @@ public class RedisController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "分布式锁的使用",notes = "异步锁的使用")
+    @ApiOperation(value = "分布式锁的使用-异步锁")
     @GetMapping(value = "/clusterLock2")
     public boolean clusterLock2(){
         RLock lock = redissonClient.getLock("anyLock");
         try{
-            lock.lockAsync();
-            lock.lockAsync(10, TimeUnit.SECONDS);
-            Future<Boolean> res = lock.tryLockAsync(3, 10, TimeUnit.SECONDS);
+            RFuture<Void> res = lock.lockAsync();
+            RFuture<Void> res2 = lock.lockAsync(10, TimeUnit.SECONDS);
+            Future<Boolean> res3 = lock.tryLockAsync(3, 10, TimeUnit.SECONDS);
 
-            if(res.get()){
+            if(res3.get()){
                 // do your business
             }
         } catch (InterruptedException e) {
