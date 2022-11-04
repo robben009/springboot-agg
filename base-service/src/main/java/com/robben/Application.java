@@ -1,5 +1,6 @@
 package com.robben;
 
+import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -7,6 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @ServletComponentScan
+@NacosPropertySource(dataId = "base-service", autoRefreshed = true)
 public class Application {
 
     public static void main(String[] args) {
