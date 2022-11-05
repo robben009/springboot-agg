@@ -1,5 +1,6 @@
 package com.robben.controller;
 
+import cn.hutool.core.thread.ThreadUtil;
 import com.robben.config.RedisConfig.RedisMQChannels;
 import com.robben.entity.UserInfoEntity;
 import com.robben.service.CacheService;
@@ -10,6 +11,7 @@ import com.robben.common.ResponseEntityDto;
 import com.robben.common.UnifiedReply;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RFuture;
 import org.redisson.api.RLock;
@@ -98,6 +100,48 @@ public class RedisController extends UnifiedReply {
         return "msg";
     }
 
+
+    @ApiOperation(value = "分布式锁的使用-测试阻塞")
+    @GetMapping(value = "/testTryLock")
+    public boolean testTryLock(@ApiParam String lockKey){
+        RLock lock = redissonClient.getLock("testTryLock::" + lockKey);
+        try{
+            if(lock.tryLock(3, 10, TimeUnit.MINUTES)){
+                log.info("获取到锁:{}",lockKey);
+                ThreadUtil.sleep(2 * 60 * 1000);
+                log.info("获取到锁:{} 业务逻辑处理完成",lockKey);
+            }else{
+                log.info("未获取到锁");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+        return true;
+    }
+
+
+    @ApiOperation(value = "分布式锁的使用-测试异步非阻塞")
+    @GetMapping(value = "/testTryAsyncLock")
+    public boolean testTryAsyncLock(@ApiParam String lockKey){
+        RLock lock = redissonClient.getLock("testTryAsyncLock::" + lockKey);
+        try{
+            RFuture<Boolean> booleanRFuture = lock.tryLockAsync(3, 10, TimeUnit.SECONDS);
+            if(booleanRFuture.get()){
+                log.info("获取到锁:{}",lockKey);
+                ThreadUtil.sleep(2 * 60 * 1000);
+                log.info("获取到锁:{} 业务逻辑处理完成",lockKey);
+            }else{
+                log.info("未获取到锁");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  finally {
+            lock.unlock();
+        }
+        return true;
+    }
 
 
     @ApiOperation(value = "分布式锁的使用-同步锁")
