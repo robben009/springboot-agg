@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class LengthOfLongestSubstring {
 
     public static void main(String[] args) {
-        System.out.println(getNum("abccddddjkmnb"));
+        System.out.println(getNum("abccddddjkmnbbb"));
     }
 
     public static int getNum(String s){
