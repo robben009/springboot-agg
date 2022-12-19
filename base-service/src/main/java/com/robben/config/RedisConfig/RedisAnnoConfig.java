@@ -151,7 +151,7 @@ public class RedisAnnoConfig {
     public KeyGenerator cacheKeyGenerator() {
         return (target, method, params) -> {
             StringBuilder sb = new StringBuilder();
-            sb.append(target.getClass().getName());
+            sb.append(target.getClass().getSimpleName());
             sb.append(".");
             sb.append(method.getName());
             sb.append(":");
@@ -162,6 +162,7 @@ public class RedisAnnoConfig {
             return sb.toString();
         };
     }
+
 
 
 //    @Bean
