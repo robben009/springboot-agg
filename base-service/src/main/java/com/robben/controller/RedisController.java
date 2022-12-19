@@ -85,7 +85,7 @@ public class RedisController extends UnifiedReply {
     @GetMapping(value = "/testHash")
     public String testHash(){
         redisTemplate.opsForHash().put("bigKey","k1","v1");
-        redisTemplate.opsForHash().put("bigKey","k2","v2");
+        redisTemplate.opsForHash().put("bigKey","k1","v2");
         redisTemplate.opsForHash().put("bigKey","k3","v3");
 
         //设置bigkey的过期时间
