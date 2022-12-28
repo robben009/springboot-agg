@@ -4,7 +4,6 @@ import com.robben.entity.AutoGeneInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -17,23 +16,23 @@ public interface AutoGeneInfoDao {
 
     AutoGeneInfoEntity getByEntity(AutoGeneInfoEntity autoGeneInfoEntity);
 
-    List<AutoGeneInfoEntity> listByIds(@NotEmpty List<Integer> list);
+    List<AutoGeneInfoEntity> listByIds(@NotNull List<Integer> list);
 
     int insert(@NotNull AutoGeneInfoEntity autoGeneInfoEntity);
 
-    int insertBatch(@NotEmpty List<AutoGeneInfoEntity> list);
+    int insertBatch(@NotNull List<AutoGeneInfoEntity> list);
 
     int update(@NotNull AutoGeneInfoEntity autoGeneInfoEntity);
 
     int updateByField(@NotNull @Param("where") AutoGeneInfoEntity where, @NotNull @Param("set") AutoGeneInfoEntity set);
 
-    int updateBatch(@NotEmpty List<AutoGeneInfoEntity> list);
+    int updateBatch(@NotNull List<AutoGeneInfoEntity> list);
 
     int deleteById(@NotNull Integer id);
 
     int deleteByEntity(@NotNull AutoGeneInfoEntity autoGeneInfoEntity);
 
-    int deleteByIds(@NotEmpty List<Integer> list);
+    int deleteByIds(@NotNull List<Integer> list);
 
     int countAll();
 

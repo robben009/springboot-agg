@@ -18,6 +18,7 @@
         <encoding>UTF-8</encoding>
 
         <nacos-config-v>0.2.12</nacos-config-v>
+
         <mysql-connect-java-v>8.0.31</mysql-connect-java-v>
         <druid-v>1.2.15</druid-v>
         <mybatis-plus-boot-starter-v>3.5.2</mybatis-plus-boot-starter-v>
@@ -27,7 +28,6 @@
         <json-path-v>2.7.0</json-path-v>
 
         <jruby-complete-v>9.4.0.0</jruby-complete-v>
-
         <docker-maven-plugin-v>1.2.0</docker-maven-plugin-v>
     </properties>
 
@@ -207,7 +207,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <!-- 没有该配置，devtools 不生效 -->
-                    <fork>true</fork>
                     <addResources>true</addResources>
                     <!-- 打包配置跳过测试 -->
 <!--                    <skip>true</skip>-->
