@@ -1,6 +1,6 @@
 package com.es.controller;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.es.config.ESConfig;
 import com.es.model.SearchParam;
 import com.es.service.MyService;

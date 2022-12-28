@@ -14,25 +14,33 @@
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <encoding>UTF-8</encoding>
 
-        <mysql-connect-java-v>8.0.22</mysql-connect-java-v>
-        <druid-v>1.1.17</druid-v>
-        <mybatis-plus-boot-starter-v>3.4.2</mybatis-plus-boot-starter-v>
-        <mybatis-generator-maven-plugin-v>1.4.0</mybatis-generator-maven-plugin-v>
+        <nacos-config-v>0.2.12</nacos-config-v>
+        <mysql-connect-java-v>8.0.31</mysql-connect-java-v>
+        <druid-v>1.2.15</druid-v>
+        <mybatis-plus-boot-starter-v>3.5.2</mybatis-plus-boot-starter-v>
+        <mybatis-generator-maven-plugin-v>1.4.1</mybatis-generator-maven-plugin-v>
 
-        <easyexcel-v>2.2.6</easyexcel-v>
-        <json-path-v>2.5.0</json-path-v>
+        <easyexcel-v>3.1.4</easyexcel-v>
+        <json-path-v>2.7.0</json-path-v>
 
-        <maven-invoker-v>3.0.1</maven-invoker-v>
-        <jruby-complete-v>9.2.8.0</jruby-complete-v>
+        <jruby-complete-v>9.4.0.0</jruby-complete-v>
 
         <docker-maven-plugin-v>1.2.0</docker-maven-plugin-v>
     </properties>
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>robben2</groupId>
+            <artifactId>customStarter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -130,12 +138,6 @@
         </dependency>
 
         <dependency>
-            <groupId>robben2</groupId>
-            <artifactId>customStarter</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.13.1</version>
@@ -144,7 +146,7 @@
         <dependency>
             <groupId>com.alibaba.boot</groupId>
             <artifactId>nacos-config-spring-boot-starter</artifactId>
-            <version>0.2.11</version>
+            <version>${nacos-config-v}</version>
         </dependency>
 
     </dependencies>

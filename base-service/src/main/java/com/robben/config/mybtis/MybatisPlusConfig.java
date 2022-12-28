@@ -39,18 +39,18 @@ public class MybatisPlusConfig {
     }
 
 
-    @Bean
-    public EasySqlInjector easySqlInjector() {
-        return new EasySqlInjector();
-    }
-
-    class EasySqlInjector  extends DefaultSqlInjector {
-        @Override
-        public List<AbstractMethod> getMethodList(Class<?> mapperClass) {
-            List<AbstractMethod> methodList = super.getMethodList(mapperClass);
-            methodList.add(new InsertBatchSomeColumn()); // 添加InsertBatchSomeColumn方法
-            return methodList;
-        }
-    }
+//    @Bean
+//    public EasySqlInjector easySqlInjector() {
+//        return new EasySqlInjector();
+//    }
+//
+//    class EasySqlInjector  extends DefaultSqlInjector {
+//        @Override
+//        public List<AbstractMethod> getMethodList(Class<?> mapperClass) {
+//            List<AbstractMethod> methodList = super.getMethodList(mapperClass);
+//            methodList.add(new InsertBatchSomeColumn()); // 添加InsertBatchSomeColumn方法
+//            return methodList;
+//        }
+//    }
 
 }

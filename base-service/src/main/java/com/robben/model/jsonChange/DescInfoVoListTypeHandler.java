@@ -1,6 +1,6 @@
 package com.robben.model.jsonChange;
 
-import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson2.TypeReference;
 import com.robben.entity.DescInfoVo;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.es.service;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.es.model.Person;
 import com.es.model.SearchParam;
 import lombok.extern.slf4j.Slf4j;

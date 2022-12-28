@@ -1,6 +1,6 @@
 package com.robben.service;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.robben.DemoService;
 import com.robben.vo.StudentVo;
 import org.apache.dubbo.config.annotation.DubboService;

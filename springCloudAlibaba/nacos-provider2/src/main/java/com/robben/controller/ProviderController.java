@@ -1,6 +1,6 @@
 package com.robben.controller;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.robben.model.StudentVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
