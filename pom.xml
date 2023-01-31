@@ -18,14 +18,6 @@
         <module>base-service</module>
     </modules>
 
-    <!--SpringBoot的父依赖启动 -->
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.2</version>
-        <relativePath/>
-    </parent>
-
     <name>springboot-agg</name>
     <description>Demo project for Spring Boot</description>
 
@@ -33,9 +25,17 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>3.0.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2020.0.1</version>
+                <version>2022.0.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -43,7 +43,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2021.1</version>
+                <version>2022.0.0.0-RC1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -91,8 +91,6 @@
             <version>${fastjson2-v}</version>
         </dependency>
 
-
-
         <!--guava-->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -131,12 +129,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3-v}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
     </dependencies>

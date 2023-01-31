@@ -1,6 +1,6 @@
 package com.robben;
 
-import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @ServletComponentScan
-@NacosPropertySource(dataId = "base-service", autoRefreshed = true)
+@MapperScan("com.robben.dao.mapper")
 public class Application {
 
     public static void main(String[] args) {

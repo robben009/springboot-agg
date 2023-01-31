@@ -1,9 +1,7 @@
 package com.robben.service;
 
-import com.robben.dao.mapper.UserInfoEntityMapper;
 import com.robben.entity.UserInfoEntity;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -11,25 +9,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class CacheService {
 
-    @Autowired
-    private UserInfoEntityMapper userInfoEntityMapper;
+//    @Autowired
+//    private UserInfoEntityMapper userInfoEntityMapper;
 
     //目前缓存必须带value
     @Cacheable(value = "test",keyGenerator = "cacheKeyGenerator")
     public UserInfoEntity getUserByRedis(int id) {
         log.info("~~~~~~~~handle-DB~~~~~~~~~~~~~~");
-        return userInfoEntityMapper.getUserById(id);
+//        return userInfoEntityMapper.getUserById(id);
+        return null;
     }
 
     @Cacheable(value = "UserService_getUserByRedisValue")
     public UserInfoEntity getUserByRedisValue(int id) {
-        return userInfoEntityMapper.getUserById(id);
+//        return userInfoEntityMapper.getUserById(id);
+        return null;
     }
 
 
     @Cacheable(value = "UserService_getUserByRedisTime#s#100")
     public UserInfoEntity getUserByRedisTime(int id, int id2) {
-        return userInfoEntityMapper.getUserById(id);
+//        return userInfoEntityMapper.getUserById(id);
+        return null;
     }
 
     @Cacheable(value = "UserService_getUserNull#s#100")

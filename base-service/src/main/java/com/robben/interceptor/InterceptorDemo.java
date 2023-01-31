@@ -1,18 +1,18 @@
 package com.robben.interceptor;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Nullable;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class InterceptorDemo implements HandlerInterceptor {
 
     //在接口访问前访问
-    public boolean preHandle(HttpServletRequest req, HttpServletResponse resp,Object handler)
+    public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler)
             throws Exception{
 
         resp.sendError(0,"没权限");

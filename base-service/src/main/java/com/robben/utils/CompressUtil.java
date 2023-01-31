@@ -18,6 +18,7 @@ import java.util.zip.GZIPOutputStream;
 public class CompressUtil {
     /**
      * 使用gzip压缩字符串
+     *
      * @param str 要压缩的字符串
      * @return 压缩后的字符串
      */
@@ -37,6 +38,7 @@ public class CompressUtil {
 
     /**
      * 使用gzip解压缩
+     *
      * @param compressedStr 压缩字符串
      * @return 解压后的字符串
      */

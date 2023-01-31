@@ -5,6 +5,9 @@ import com.robben.annotation.ProductTypeEnum;
 import com.robben.annotation.validParam.ValidGroup;
 import com.robben.entity.UserInfoEntity;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 

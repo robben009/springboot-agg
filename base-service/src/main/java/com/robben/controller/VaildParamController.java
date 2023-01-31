@@ -5,11 +5,11 @@ import com.robben.annotation.validParam.ValidGroup;
 import com.robben.model.ValidVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import jakarta.validation.constraints.Email;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Email;
 
 @Slf4j
 @Api(tags = "权限校验",value="一个自定义的注解用于校验权限")

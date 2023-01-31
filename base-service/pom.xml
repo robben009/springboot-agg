@@ -17,11 +17,9 @@
         <java.version>17</java.version>
         <encoding>UTF-8</encoding>
 
-        <nacos-config-v>0.2.12</nacos-config-v>
-
         <mysql-connect-java-v>8.0.31</mysql-connect-java-v>
         <druid-v>1.2.15</druid-v>
-        <mybatis-plus-boot-starter-v>3.5.2</mybatis-plus-boot-starter-v>
+        <mybatis-plus-boot-starter-v>3.5.3.1</mybatis-plus-boot-starter-v>
         <mybatis-generator-maven-plugin-v>1.4.1</mybatis-generator-maven-plugin-v>
 
         <easyexcel-v>3.1.4</easyexcel-v>
@@ -29,18 +27,27 @@
 
         <jruby-complete-v>9.4.0.0</jruby-complete-v>
         <docker-maven-plugin-v>1.2.0</docker-maven-plugin-v>
+        <redisson-v>3.13.4</redisson-v>
+        <caffeine-v>2.6.2</caffeine-v>
+        <test-v>6.13.1</test-v>
     </properties>
 
 
     <dependencies>
-
+        <!-- 自定义的jar的一些依赖 -->
         <dependency>
             <groupId>robben2</groupId>
             <artifactId>customStarter</artifactId>
             <version>1.0.0</version>
         </dependency>
 
+        <!-- cloud alibaba 依赖 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
 
+        <!-- spring的一些依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -55,23 +62,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.13.4</version>
-        </dependency>
 
-        <!-- 本地缓存 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.github.ben-manes.caffeine</groupId>
-            <artifactId>caffeine</artifactId>
-            <version>2.6.2</version>
-        </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -84,10 +79,14 @@
             <scope>true</scope>
         </dependency>
 
-        <!--spring boot对spring aop的支持组件-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
         <!--####################数据库连接配置mybatis########################-->
@@ -105,7 +104,6 @@
             <version>${druid-v}</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -113,6 +111,17 @@
         </dependency>
 
         <!-- ###################第三方框架#####################-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>${redisson-v}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>${caffeine-v}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -133,20 +142,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.13.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>nacos-config-spring-boot-starter</artifactId>
-            <version>${nacos-config-v}</version>
+            <version>${test-v}</version>
         </dependency>
 
     </dependencies>

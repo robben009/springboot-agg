@@ -11,12 +11,13 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @TableName(value = "user_info",autoResultMap = true)
-public class UserInfoEntity {
+public class UserInfoEntity implements Serializable {
     //默认不是自增,需要增加这个。也可以增加全局配置（mybatis-plus.global-config.db-config.id-type = AUTO）
     @TableId(type = IdType.AUTO)
     private Long id;
