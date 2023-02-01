@@ -1,4 +1,4 @@
-package com.robben.config.swagger;
+package com.robben.config;
 
 import cn.hutool.core.util.RandomUtil;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -13,27 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class SwaggerConfig2 {
-
-//    @Bean
-//    public Docket createRestApi() {
-//        return new Docket(DocumentationType.OAS_30)
-//                .enable(true)
-//                .apiInfo(apiInfo())
-//                .pathMapping("/")
-//                .select()
-//                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-//                .paths(PathSelectors.any())
-//                .build();
-//    }
-//
-//    private ApiInfo apiInfo() {
-//        return new ApiInfoBuilder()
-//                .title("base-service")
-//                .description("base-service接口文档")
-//                .version("1.0")
-//                .build();
-//    }
+public class SwaggerConfig {
 
     /**
      * 根据@Tag 上的排序，写入x-order

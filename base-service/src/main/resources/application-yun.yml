@@ -1,3 +1,5 @@
+#外部环境地址(云服务器地址)
+extraEnvHost: 212.64.18.166
 
 #设置项目名
 server:
@@ -5,15 +7,7 @@ server:
     context-path: /base-service
   port: 28081
 
-#外部环境地址(腾讯云服务器地址)
-extraEnvHost: 212.64.18.166
-
-#nacos:
-#  config:
-#    serverAddr: ${extraEnvHost}:38080
-#    dataId: base-service
-
-
+#spring的相关配置
 spring:
   application:
     name: base-service
@@ -37,16 +31,12 @@ spring:
 #      - userCache
 #    caffeine:
 #      spec: maximumSize=1024,refreshAfterWrite=60s
-  #===============redis==================
-#  redis:
-#    host: ${extraEnvHost}
-#    password: ${redis.pwd}
-#    port: 6379
   data:
     redis:
       host: ${extraEnvHost}
       password: ${redis.pwd}
       port: 6379
+
   cloud:
     nacos:
       config:
@@ -55,20 +45,23 @@ spring:
         file-extension: properties
       discovery:
         server-addr: ${extraEnvHost}:38080
+
   config:
     import:
       - optional:nacos:base-service
 
 
-
-mybatis:
-  configuration:
-    #自动转驼峰
-    mapUnderscoreToCamelCase: true
-
 link:
   name: adasdf
   msg: asdfasd22222
+
+
+knife4j:
+  # 开启增强配置
+  enable: true
+  # 开启生产环境屏蔽
+  production: false
+
 
 #logging:
 #  level:
