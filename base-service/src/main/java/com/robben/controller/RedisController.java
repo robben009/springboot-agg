@@ -1,17 +1,16 @@
 package com.robben.controller;
 
 import cn.hutool.core.thread.ThreadUtil;
+import com.robben.common.Contants;
+import com.robben.common.ResponseEntityDto;
+import com.robben.common.UnifiedReply;
 import com.robben.config.RedisConfig.RedisMQChannels;
 import com.robben.entity.UserInfoEntity;
 import com.robben.service.CacheService;
 import com.robben.service.LocalCacheService;
-import com.robben.common.Contants;
 import com.robben.utils.RedisUtils;
-import com.robben.common.ResponseEntityDto;
-import com.robben.common.UnifiedReply;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RFuture;
 import org.redisson.api.RLock;
@@ -26,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
-@Api(tags = "redis使用")
+@Tag(name = "redis使用")
 @RestController
 @RequestMapping("/redis")
 public class RedisController extends UnifiedReply {
@@ -51,7 +52,7 @@ public class RedisController extends UnifiedReply {
     private int testValue = 0;
 
 
-    @ApiOperation(value = "redis注解缓存",notes = "可自定义缓存失效时间和key生成器")
+    @Operation(summary = "redis注解缓存",description = "可自定义缓存失效时间和key生成器")
     @GetMapping(value = "/getUser")
     public ResponseEntityDto<UserInfoEntity> getUser(@RequestParam int id){
         cacheService.getUserByRedis(id);
@@ -61,7 +62,7 @@ public class RedisController extends UnifiedReply {
         return buildSuccesResp();
     }
 
-    @ApiOperation(value = "redis注解缓存2",notes = "可自定义缓存失效时间和key生成器")
+    @Operation(summary = "redis注解缓存2",description = "可自定义缓存失效时间和key生成器")
     @GetMapping(value = "/getUser2")
     public ResponseEntityDto<UserInfoEntity> getUser2(){
         UserInfoEntity vo = new UserInfoEntity();
@@ -72,7 +73,7 @@ public class RedisController extends UnifiedReply {
     }
 
     //接受消息的方法见com.robben.redisMsg.RCMHandler
-    @ApiOperation(value = "测试redis发布订阅消息")
+    @Operation(summary = "测试redis发布订阅消息")
     @GetMapping(value = "/sendRedisMsg")
     public String sendRedisMsg(@RequestParam String msg){
         redisUtils.convertAndSend(RedisMQChannels.redisChannelTest1,msg);
@@ -81,7 +82,7 @@ public class RedisController extends UnifiedReply {
         return msg;
     }
 
-    @ApiOperation(value = "测试hash的使用")
+    @Operation(summary = "测试hash的使用")
     @GetMapping(value = "/testHash")
     public String testHash(){
         redisTemplate.opsForHash().put("bigKey","k1","v1");
@@ -101,9 +102,9 @@ public class RedisController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "分布式锁的使用-测试阻塞")
+    @Operation(summary = "分布式锁的使用-测试阻塞")
     @GetMapping(value = "/testTryLock")
-    public boolean testTryLock(@ApiParam String lockKey){
+    public boolean testTryLock( String lockKey){
         RLock lock = redissonClient.getLock("testTryLock::" + lockKey);
         try{
             if(lock.tryLock(3, 10, TimeUnit.MINUTES)){
@@ -122,9 +123,9 @@ public class RedisController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "分布式锁的使用-测试异步非阻塞")
+    @Operation(summary = "分布式锁的使用-测试异步非阻塞")
     @GetMapping(value = "/testTryAsyncLock")
-    public boolean testTryAsyncLock(@ApiParam String lockKey){
+    public boolean testTryAsyncLock(String lockKey){
         RLock lock = redissonClient.getLock("testTryAsyncLock::" + lockKey);
         try{
             RFuture<Boolean> booleanRFuture = lock.tryLockAsync(3, 10, TimeUnit.SECONDS);
@@ -144,7 +145,7 @@ public class RedisController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "分布式锁的使用-同步锁")
+    @Operation(summary = "分布式锁的使用-同步锁")
     @GetMapping(value = "/clusterLock")
     public boolean clusterLock(){
         RLock lock = redissonClient.getLock("anyLock");
@@ -171,7 +172,7 @@ public class RedisController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "分布式锁的使用-异步锁")
+    @Operation(summary = "分布式锁的使用-异步锁")
     @GetMapping(value = "/clusterLock2")
     public boolean clusterLock2(){
         RLock lock = redissonClient.getLock("anyLock");
@@ -194,7 +195,7 @@ public class RedisController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "测试并发问题")
+    @Operation(summary = "测试并发问题")
     @GetMapping(value = "/testLock")
     public int testLock(){
         testValue = testValue + 1;

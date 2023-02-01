@@ -6,8 +6,8 @@ import com.robben.common.ResponseEntityDto;
 import com.robben.common.UnifiedReply;
 import com.robben.service.LocalCacheService;
 import com.robben.utils.guava.GuavaCacheUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,13 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-@Api(tags = "本地缓存")
+@Tag(name = "本地缓存")
 @RestController
 @RequestMapping("/localCache")
 public class LocalCacheController extends UnifiedReply {
@@ -37,7 +36,7 @@ public class LocalCacheController extends UnifiedReply {
     private LocalCacheService localCacheService;
 
 
-    @ApiOperation(value = "guava本地缓存使用")
+    @Operation(summary = "guava本地缓存使用")
     @GetMapping(value = "/guavaCacheUse")
     public String guavaCacheUse(){
         GuavaCacheUtils.setKey("aaa","bbb");
@@ -57,14 +56,14 @@ public class LocalCacheController extends UnifiedReply {
     }
 
 
-    @ApiOperation("caffeine本地缓存使用")
+    @Operation(summary = "caffeine本地缓存使用")
     @GetMapping(value = "/caffeineCacheUse")
     public ResponseEntityDto<Boolean> caffeineCacheUse(@RequestParam String s){
         return buildSuccesResp(localCacheService.getCacheValue(s));
     }
 
 
-    @ApiOperation("caffeine本地缓存使用2")
+    @Operation(summary = "caffeine本地缓存使用2")
     @GetMapping(value = "/caffeineCacheUse2")
     public ResponseEntityDto<Boolean> caffeineCacheUse2(@RequestParam String s){
         localCacheService.getCacheValue(s);

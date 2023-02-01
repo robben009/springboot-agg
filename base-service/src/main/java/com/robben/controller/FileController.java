@@ -5,7 +5,8 @@ import com.alibaba.excel.EasyExcel;
 import com.robben.model.DownloadData;
 import com.robben.common.ResponseEntityDto;
 import com.robben.common.UnifiedReply;
-import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
  * Date: 2020/8/5 19:48
  */
 @Slf4j
-@Api(tags = "文件处理")
+@Tag(name = "文件处理")
 @RestController
 @RequestMapping("/file")
 public class FileController extends UnifiedReply {
@@ -41,20 +42,18 @@ public class FileController extends UnifiedReply {
     private Resource ak;
 
 
-    @ApiOperation(value = "上传文件到nginx", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "上传文件到nginx", description = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping("/uploadFileToNginx")
-    public ResponseEntityDto<?> uploadFileToNginx(@ApiParam @RequestPart MultipartFile file) throws IOException {
+    public ResponseEntityDto<?> uploadFileToNginx(@RequestPart MultipartFile file) throws IOException {
         log.info("上传文件名字:{}",file.getOriginalFilename());
         file.transferTo(new File("/root/downFile/" + file.getOriginalFilename()));
         return buildSuccesResp();
     }
 
 
-    @ApiOperation(value = "上传文件", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "上传文件", description = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping("/uploadFile")
-    public ResponseEntityDto<?> uploadFile(@ApiParam("文件名") @RequestParam String fileName,
-                                              @ApiParam("文件描述") @RequestParam String fileDesc,
-                                              @ApiParam("文件") @RequestPart MultipartFile file) throws IOException {
+    public ResponseEntityDto<?> uploadFile(@RequestParam String fileName, @RequestParam String fileDesc, @RequestPart MultipartFile file) throws IOException {
         // 处理上传逻辑
         log.info("文件大小为:{}",file.getSize());
 
@@ -67,9 +66,9 @@ public class FileController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "下载cvs文件",notes = "根据id下载")
+    @Operation(summary = "下载cvs文件",description = "根据id下载")
     @GetMapping("/downLoadColdData")
-    public ResponseEntity<?> downLoadColdData(@ApiParam("文件名") @RequestParam String id){
+    public ResponseEntity<?> downLoadColdData(@RequestParam String id){
         log.info("下载cvs文件:{}",id);
         String path = "/root/temp/" + id + ".csv";
 
@@ -92,7 +91,7 @@ public class FileController extends UnifiedReply {
 
 
     //通过Id下载文件信息记录
-    @ApiOperation(value = "通过Id下载文件信息记录")
+    @Operation(summary = "通过Id下载文件信息记录")
     @GetMapping("/downloadFileById")
     public void downloadFileById(@RequestParam int id, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/csv;charset=UTF-8");
@@ -114,7 +113,7 @@ public class FileController extends UnifiedReply {
     }
 
     //如果本地可以下载但是线上不行请查看官网解决方法,是没安装字体库。可以直接内存修改也可以安装字体库
-    @ApiOperation(value = "下载xls",notes = "依赖alibaba-easyexcel")
+    @Operation(summary = "下载xls",description = "依赖alibaba-easyexcel")
     @PostMapping("/downLogInfoMj")
     public void downLogInfoMj(HttpServletResponse resp) throws IOException {
         String fileName = URLEncoder.encode("测试", "UTF-8").replaceAll("\\+", "%20");
@@ -127,7 +126,7 @@ public class FileController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "自定义目录文件上传保存",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "自定义目录文件上传保存",description = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping("uploadSelf")
     public ResponseEntityDto<?> uploadSelf(@RequestPart MultipartFile file,@RequestParam String filePath) {
         if (!FileUtil.isDirectory(filePath)) {
@@ -144,7 +143,7 @@ public class FileController extends UnifiedReply {
     }
 
 
-    @ApiOperation("获取自定义路径下文件列表")
+    @Operation(summary = "获取自定义路径下文件列表")
     @GetMapping("/catalogFiles")
     public ResponseEntityDto<?> catalogFiles(@RequestParam String filePath) {
         // 获取压缩包中所有模块的信息
@@ -154,7 +153,7 @@ public class FileController extends UnifiedReply {
     }
 
 
-    @ApiOperation("自定义下载文件")
+    @Operation(summary = "自定义下载文件")
     @GetMapping("/downSelf")
     public ResponseEntity<?> downSelf(@RequestParam String filePath) {
         //根据路径 api返回文件
@@ -174,7 +173,7 @@ public class FileController extends UnifiedReply {
     }
 
 
-    @ApiOperation("获取配置文件信息")
+    @Operation(summary = "获取配置文件信息")
     @GetMapping("/getResourcesFile")
     public String downSelf() {
         Resource resource = new ClassPathResource("static/aaa.txt");

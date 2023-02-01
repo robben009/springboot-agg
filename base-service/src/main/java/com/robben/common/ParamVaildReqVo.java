@@ -1,9 +1,9 @@
 package com.robben.common;
 
-import com.robben.annotation.validParam.EnumValidAnnotation;
 import com.robben.annotation.ProductTypeEnum;
+import com.robben.annotation.validParam.EnumValidAnnotation;
 import com.robben.model.valid.ParamValidAdd;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -33,14 +33,14 @@ import javax.validation.constraints.NotNull;
 public class ParamVaildReqVo {
 
     @NotNull(message = "年龄不能为空",groups = ParamValidAdd.class)
-    @ApiModelProperty(value = "年龄")
+    @Schema(description = "年龄")
     private Integer age;
 
-    @ApiModelProperty(value = "名字")
+    @Schema(description = "名字")
     private String name;
 
     @EnumValidAnnotation(message = "商品类型输入错误",target = ProductTypeEnum.class )
-    @ApiModelProperty(value = "类型")
+    @Schema(description = "类型")
     private String type;
 
 

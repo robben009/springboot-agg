@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(tags = "用户服务", value="用户服务2")
+@Tag(name = "用户服务", value="用户服务2")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
-    @ApiOperation("创建表")
+    @Operation("创建表")
     @GetMapping("/createTable")
     public boolean createTable() {
         userMapper.createTable();
@@ -33,7 +33,7 @@ public class UserController {
     }
 
 
-    @ApiOperation("存储用户")
+    @Operation("存储用户")
     @GetMapping("/add")
     public boolean add() {
         UserEntity u = new UserEntity();

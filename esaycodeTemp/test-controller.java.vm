@@ -33,7 +33,7 @@ import java.util.List;
 #tableComment("表控制层")
 
 @Slf4j
-@Api(tags = "$tableInfo.comment")
+@Tag(name = "$tableInfo.comment")
 @RestController
 @RequestMapping("$!tool.firstLowerCase($!tableInfo.name)")
 public class $!{tableName} {
@@ -50,7 +50,7 @@ public class $!{tableName} {
      * @param $!entityName 查询实体
      * @return 所有数据
      */
-    @ApiOperation(value = "分页查询所有数据")
+    @Operation(summary = "分页查询所有数据")
     @GetMapping
     public IPage<$!tableInfo.name>  selectAll(Page<$!tableInfo.name> page, $!tableInfo.name $!entityName) {
         return this.$!{serviceName}.page(page, new QueryWrapper<>($!entityName));
@@ -62,7 +62,7 @@ public class $!{tableName} {
      * @param id 主键
      * @return 单条数据
      */
-    @ApiOperation(value = "通过主键查询单条数据")
+    @Operation(summary = "通过主键查询单条数据")
     @GetMapping("{id}")
     public $!tableInfo.name selectOne(@PathVariable Serializable id) {
         return this.$!{serviceName}.getById(id);
@@ -74,7 +74,7 @@ public class $!{tableName} {
      * @param $!entityName 实体对象
      * @return 新增结果
      */
-    @ApiOperation(value = "新增数据")
+    @Operation(summary = "新增数据")
     @PostMapping
     public boolean insert(@RequestBody $!tableInfo.name $!entityName) {
         return this.$!{serviceName}.save($!entityName);
@@ -86,7 +86,7 @@ public class $!{tableName} {
      * @param $!entityName 实体对象
      * @return 修改结果
      */
-    @ApiOperation(value = "修改数据")
+    @Operation(summary = "修改数据")
     @PutMapping
     public boolean update(@RequestBody $!tableInfo.name $!entityName) {
         return this.$!{serviceName}.updateById($!entityName);
@@ -98,7 +98,7 @@ public class $!{tableName} {
      * @param idList 主键结合
      * @return 删除结果
      */
-    @ApiOperation(value = "删除数据")
+    @Operation(summary = "删除数据")
     @DeleteMapping
     public boolean delete(@RequestParam("idList") List<Long> idList) {
         return this.$!{serviceName}.removeByIds(idList);

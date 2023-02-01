@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@Api(tags = "sentinel的api")
+@Tag(name = "sentinel的api")
 @RestController
 @RequestMapping("/sentinelController")
 public class SentinelController {
 
     //测速控制台的话,需要放到服务上的才能测试看的
-    @ApiOperation(value = "静态配置-测试限流")
+    @Operation(summary = "静态配置-测试限流")
     @SentinelResource(value = "getAppValue", blockHandler = "exceptionBlockHandler", fallback = "exceptionFallbackHandler")
     @PostMapping(value = "/getAppValue")
     public String getAppValue() {
@@ -25,7 +25,7 @@ public class SentinelController {
 
 
     //动态配置规则
-    @ApiOperation(value = "动态配置规则-测试限流")
+    @Operation(summary = "动态配置规则-测试限流")
     @SentinelResource(value = "getAppValue2", blockHandler = "exceptionBlockHandler", fallback = "exceptionFallbackHandler")
     @PostMapping(value = "/getAppValue2")
     public String getAppValue2() {

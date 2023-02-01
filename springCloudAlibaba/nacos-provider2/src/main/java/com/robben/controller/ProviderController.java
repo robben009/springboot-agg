@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Api(tags = "nacosProvider2提供接口")
+@Tag(name = "nacosProvider2提供接口")
 @RestController
 @RequestMapping("/nprovider")
 public class ProviderController {
@@ -17,7 +17,7 @@ public class ProviderController {
     @Value("${server.port}")
     private String serverPort;
 
-    @ApiOperation(value = "提供对外服务2", notes = "测试提供对外服务2")
+    @Operation(summary = "提供对外服务2", notes = "测试提供对外服务2")
     @PostMapping(value = "/myHandle")
     public StudentVo myHandle(@RequestBody StudentVo studentVo) {
         log.info("np2获取了参数:{}", JSON.toJSONString(studentVo));
@@ -27,7 +27,7 @@ public class ProviderController {
         return studentVo;
     }
 
-    @ApiOperation(value = "网关调用", notes = "网关调用服务")
+    @Operation(summary = "网关调用", notes = "网关调用服务")
     @GetMapping(value = "/gateWayGetData")
     public StudentVo gateWayGetData() {
         log.info("nacos-provider2网关调用！！！！！");

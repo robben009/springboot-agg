@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.robben.model.jsonChange.DescInfoVoListTypeHandler;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -50,12 +50,12 @@ public class UserInfoEntity implements Serializable {
     @TableField(typeHandler = FastjsonTypeHandler.class)
     private DescInfoListVo descInfoListVo;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")  //前后到后台的时间格式的转换(作为对象入参的时候传唤)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")      ///后台到前台的时间格式的转换
     private Date createTime;
 
-    @ApiModelProperty(value = "更新时间")
+    @Schema(description = "更新时间")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date updateTime;

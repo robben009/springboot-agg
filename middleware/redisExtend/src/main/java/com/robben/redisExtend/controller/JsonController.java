@@ -17,7 +17,7 @@ import java.util.Arrays;
 
 
 @Slf4j
-@Api(tags = "redis使用")
+@Tag(name = "redis使用")
 @RestController
 @RequestMapping("/json")
 public class JsonController {
@@ -28,7 +28,7 @@ public class JsonController {
     @Autowired
     private Jedis jedis;
 
-    @ApiOperation(value = "redisJSON的使用")
+    @Operation(summary = "redisJSON的使用")
     @GetMapping(value = "/useRedisJSON")
     public int useRedisJSON(){
         long stime = SystemClock.now();
@@ -58,7 +58,7 @@ public class JsonController {
     }
 
 
-//    @ApiOperation(value = "redisJSON的使用2")
+//    @Operation(summary = "redisJSON的使用2")
 //    @GetMapping(value = "/useRedisJSON2")
 //    public int useRedisJSON2(){
 //        long stime = SystemClock.now();

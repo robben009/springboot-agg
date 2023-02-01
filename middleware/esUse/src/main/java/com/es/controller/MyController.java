@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
-@Api(tags = "ElasticSearch")
+@Tag(name = "ElasticSearch")
 @RestController
 @RequestMapping("/es")
 public class MyController {
@@ -46,7 +46,7 @@ public class MyController {
     private ESConfig eSConfig;
 
     @PostMapping("/search1")
-    @ApiOperation("根据id查询ES对应的数据")
+    @Operation("根据id查询ES对应的数据")
     public void searchMatch(String key, String value) throws Exception {
         SearchRequest searchRequest = new SearchRequest("indexName");
 
@@ -67,7 +67,7 @@ public class MyController {
 
 
     @PostMapping("/search")
-    @ApiOperation("根据id查询ES对应的数据")
+    @Operation("根据id查询ES对应的数据")
     public JSONObject getDataById(@RequestBody SearchParam param) throws IOException {
         GetRequest getRequest = new GetRequest("indexName","id");
         GetResponse response = eSConfig.getClient().get(getRequest,RequestOptions.DEFAULT);
@@ -76,7 +76,7 @@ public class MyController {
     }
 
     @PostMapping("/add")
-    @ApiOperation("往ES里插入数据")
+    @Operation("往ES里插入数据")
     public ResponseEntity add(@RequestBody SearchParam param) throws IOException {
         IndexRequest request = new IndexRequest("index_name").id("id").source("param");
         IndexResponse response = eSConfig.getClient().index(request, RequestOptions.DEFAULT);
@@ -84,7 +84,7 @@ public class MyController {
     }
 
     @PostMapping("/update")
-    @ApiOperation("根据id更新文档内容")
+    @Operation("根据id更新文档内容")
     public ResponseEntity update(@RequestBody SearchParam param) throws IOException {
         UpdateRequest request = new UpdateRequest("indexName","id").doc("doc");
         UpdateResponse response = eSConfig.getClient().update(request,RequestOptions.DEFAULT);
@@ -93,7 +93,7 @@ public class MyController {
     }
 
     @PostMapping("/delete")
-    @ApiOperation("根据id更新文档内容")
+    @Operation("根据id更新文档内容")
     public ResponseEntity delete(@RequestBody SearchParam param) throws IOException {
         DeleteRequest request = new DeleteRequest("indexName","id");
         DeleteResponse response = eSConfig.getClient().delete(request, RequestOptions.DEFAULT);

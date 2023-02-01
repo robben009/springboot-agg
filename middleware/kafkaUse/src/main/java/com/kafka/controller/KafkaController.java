@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.Collection;
 
-@Api(tags = "生产者发送")
+@Tag(name = "生产者发送")
 @Slf4j
 @RestController
 public class KafkaController {
@@ -34,7 +34,7 @@ public class KafkaController {
     // "num.partitions=3\n" +
     // "auto.create.topics.enable=true\n" +
     // "default.replication.factor=3\n"
-    @ApiOperation("手动创建topic")
+    @Operation("手动创建topic")
     @GetMapping("/createTopic")
     public String createTopic(@ApiParam(name = "topicName") String topicName) {
         NewTopic newTopic = new NewTopic(topicName, 1, (short) 1);
@@ -46,7 +46,7 @@ public class KafkaController {
     }
 
 
-    @ApiOperation(value = "简单发送")
+    @Operation(summary = "简单发送")
     @GetMapping("/send")
     public String send(@ApiParam(name = "topicName") String topicName,
                        @ApiParam(name = "msg") String msg) {
@@ -55,7 +55,7 @@ public class KafkaController {
     }
 
 
-    @ApiOperation("简单发送2")
+    @Operation("简单发送2")
     @GetMapping("/send2")
     public String send2(@ApiParam(name = "topicName") String topicName,
                         @ApiParam(name = "msg") String msg) {
@@ -67,7 +67,7 @@ public class KafkaController {
     }
 
 
-    @ApiOperation("发送有回执")
+    @Operation("发送有回执")
     @GetMapping("/sendAck")
     public String sendAck(@ApiParam(name = "topicName") String topicName,
                           @ApiParam(name = "msg") String msg) {
@@ -98,7 +98,7 @@ public class KafkaController {
      * @param msg
      * @return
      */
-    @ApiOperation("事务正常发送")
+    @Operation("事务正常发送")
     @GetMapping("/transactionSend")
     @Transactional
     public String transactionSend(@ApiParam(name = "topicName") String topicName,
@@ -111,7 +111,7 @@ public class KafkaController {
         return "success";
     }
 
-    @ApiOperation("事务异常发送-模板方法")
+    @Operation("事务异常发送-模板方法")
     @GetMapping("/transactionSend2")
     public void transactionSend2(@ApiParam(name = "topicName") String topicName,
                                  @ApiParam(name = "msg") String msg){
@@ -122,7 +122,7 @@ public class KafkaController {
     }
 
     //注解方式如果是同时操作数据库的可能会失效,参考https://blog.csdn.net/feg545/article/details/113742434
-    @ApiOperation("事务异常发送-注解")
+    @Operation("事务异常发送-注解")
     @GetMapping("/transactionSend3")
     @Transactional
     public void transactionSend3(@ApiParam(name = "topicName") String topicName,

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(tags = "订单服务", value="订单服务")
+@Tag(name = "订单服务", value="订单服务")
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -26,7 +26,7 @@ public class OrderController {
     private OrderMapper orderMapper;
 
 
-    @ApiOperation("存储订单")
+    @Operation("存储订单")
     @GetMapping("/add")
     public boolean add() {
         MyOrderEntity u = new MyOrderEntity();

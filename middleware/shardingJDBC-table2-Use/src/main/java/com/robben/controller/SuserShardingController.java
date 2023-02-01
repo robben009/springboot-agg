@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Author: robben
  * Date: 2021/12/2 10:04
  */
-@Api(tags = "分表用户服务", value="用户服务2")
+@Tag(name = "分表用户服务", value="用户服务2")
 @RestController
 @RequestMapping("/feature2")
 public class SuserShardingController {
@@ -25,7 +25,7 @@ public class SuserShardingController {
     private SuserShardingMapper suserShardingMapper;
 
 
-    @ApiOperation("分表存储用户")
+    @Operation("分表存储用户")
     @GetMapping("/user/save")
     public String save() {
         for (int i = 0; i <2 ; i++) {
@@ -38,7 +38,7 @@ public class SuserShardingController {
     }
 
 
-    @ApiOperation("分表获取用户")
+    @Operation("分表获取用户")
     @GetMapping("/user/get")
     public SuserShardingEntity get(@RequestParam Long id) {
         SuserShardingEntity user =  suserShardingMapper.selectById(id);

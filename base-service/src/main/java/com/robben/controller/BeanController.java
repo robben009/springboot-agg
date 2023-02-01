@@ -2,7 +2,8 @@ package com.robben.controller;
 
 import com.robben.starter.HelloService;
 import com.robben.utils.OtherUtils;
-import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-@Api(tags = "bean的api")
+@Tag(name = "bean的api")
 @RestController
 @RequestMapping("/outapi")
 public class BeanController {
@@ -28,20 +29,15 @@ public class BeanController {
     private HelloService helloService;
 
 
-    @ApiOperation(value = "测试自定义的start")
+    @Operation(summary = "测试自定义的start")
     @PostMapping("startTest")
-    public String startTest(@ApiParam(name = "name",value = "value") String msg) {
+    public String startTest(String msg) {
         helloService.say();
         return "success";
     }
 
 
-    @ApiOperation(value = "测试修改注入bean的字段值")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "benaName",value="要修改的bean",required = true),
-            @ApiImplicitParam(name = "beanField",value="要修改的beanField",required = true),
-            @ApiImplicitParam(name = "beanFieldValue",value="要修改的beanFieldValue",required = true),
-    })
+    @Operation(summary = "测试修改注入bean的字段值")
     @PostMapping("updateBeanField")
     public Map<String,String> updateBeanField(String benaName, String beanField, String beanFieldValue) {
         log.info("测试修改注入bean的字段值_benaName:{},beanField:{},beanFieldValue:{}",benaName,beanField,beanFieldValue);

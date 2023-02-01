@@ -1,38 +1,73 @@
 package com.robben.config.swagger;
 
-import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
-import io.swagger.annotations.ApiOperation;
+import cn.hutool.core.util.RandomUtil;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import org.springdoc.core.customizers.GlobalOpenApiCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
+
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
-@EnableKnife4j
 public class SwaggerConfig2 {
 
+//    @Bean
+//    public Docket createRestApi() {
+//        return new Docket(DocumentationType.OAS_30)
+//                .enable(true)
+//                .apiInfo(apiInfo())
+//                .pathMapping("/")
+//                .select()
+//                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+//                .paths(PathSelectors.any())
+//                .build();
+//    }
+//
+//    private ApiInfo apiInfo() {
+//        return new ApiInfoBuilder()
+//                .title("base-service")
+//                .description("base-service接口文档")
+//                .version("1.0")
+//                .build();
+//    }
+
+    /**
+     * 根据@Tag 上的排序，写入x-order
+     *
+     * @return the global open api customizer
+     */
     @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.OAS_30)
-                .enable(true)
-                .apiInfo(apiInfo())
-                .pathMapping("/")
-                .select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                .paths(PathSelectors.any())
-                .build();
+    public GlobalOpenApiCustomizer orderGlobalOpenApiCustomizer() {
+        return openApi -> {
+            if (openApi.getTags()!=null){
+                openApi.getTags().forEach(tag -> {
+                    Map<String,Object> map=new HashMap<>();
+                    map.put("x-order", RandomUtil.randomInt(0,100));
+                    tag.setExtensions(map);
+                });
+            }
+            if(openApi.getPaths()!=null){
+                openApi.addExtension("x-test123","333");
+                openApi.getPaths().addExtension("x-abb",RandomUtil.randomInt(1,100));
+            }
+
+        };
     }
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("base-service")
-                .description("base-service接口文档")
-                .version("1.0")
-                .build();
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("base-service")
+                        .version("1.0")
+                        .description("base-service接口文档")
+                        .termsOfService("http://doc.xiaominfo.com")
+                        .license(new License().name("Apache 2.0").url("http://doc.xiaominfo.com")));
     }
 
 }

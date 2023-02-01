@@ -11,13 +11,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.robben.common.ResponseEntityDto;
 import com.robben.common.UnifiedReply;
-import com.robben.dao.mapper.UserInfoMapper;
 import com.robben.dao.service.UserInfoService;
 import com.robben.entity.UserInfoEntity;
 import com.robben.service.MpUseService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +25,7 @@ import java.util.List;
 
 
 @Slf4j
-@Api(tags = "mybatis-Plus使用")
+@Tag(name = "mybatis-Plus使用")
 @RestController
 @RequestMapping("/mybatisPlus")
 public class MybatisPlusController extends UnifiedReply {
@@ -39,7 +37,7 @@ public class MybatisPlusController extends UnifiedReply {
 //    private UserInfoMapper userInfoMapper;
 
 
-    @ApiOperation(value = "批量插入用户信息")
+    @Operation(summary = "批量插入用户信息")
     @GetMapping("/batchInsertUser")
     public ResponseEntityDto batchInsertUser(){
         int count = 100;
@@ -53,7 +51,7 @@ public class MybatisPlusController extends UnifiedReply {
         return buildSuccesResp();
     }
 
-    @ApiOperation(value = "批量插入用户信息2",notes = "使用insertBatchSomeColumn")
+    @Operation(summary = "批量插入用户信息2",description = "使用insertBatchSomeColumn")
     @GetMapping("/batchInsertUser2")
     public ResponseEntityDto batchInsertUser2(){
         userInfoService.remove(Wrappers.emptyWrapper());
@@ -69,7 +67,7 @@ public class MybatisPlusController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "插入用户信息",notes = "插入用户信息详情")
+    @Operation(summary = "插入用户信息",description = "插入用户信息详情")
     @GetMapping("/insertUser")
     public ResponseEntityDto insertUser(){
         UserInfoEntity userInfoEntity = mpUseService.createUserByCount(999);
@@ -77,9 +75,9 @@ public class MybatisPlusController extends UnifiedReply {
         return buildSuccesResp(userInfoEntity);
     }
 
-    @ApiOperation(value = "分页查询用户信息")
+    @Operation(summary = "分页查询用户信息")
     @GetMapping("/page")
-    public ResponseEntityDto page(@ApiParam Long page,@ApiParam Long pageSize){
+    public ResponseEntityDto page( Long page, Long pageSize){
         IPage<UserInfoEntity> pageParam = new Page<>(page,pageSize);
 
         IPage<UserInfoEntity> result = userInfoService.page(pageParam);
@@ -90,7 +88,7 @@ public class MybatisPlusController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "更新用户信息",notes = "更新用户信息,增加了时间字段的转换、JSON格式数据的使用")
+    @Operation(summary = "更新用户信息",description = "更新用户信息,增加了时间字段的转换、JSON格式数据的使用")
     @PostMapping("/updateUser")
     public ResponseEntityDto updateUser(@RequestBody UserInfoEntity vo){
         boolean result = userInfoService.updateById(vo);
@@ -101,15 +99,15 @@ public class MybatisPlusController extends UnifiedReply {
     }
 
 
-    @ApiOperation(value = "根据用户名查信息",notes = "增加最后sql语句的拼接")
+    @Operation(summary = "根据用户名查信息",description = "增加最后sql语句的拼接")
     @GetMapping("/getUserByName")
-    public ResponseEntityDto getUserByName(@ApiParam String name){
+    public ResponseEntityDto getUserByName( String name){
         return buildSuccesResp(userInfoService.getOne(new LambdaQueryWrapper<UserInfoEntity>()
                 .eq(UserInfoEntity::getName,name).apply(" limt 1")));
     }
 
 
-    @ApiOperation(value = "执行任何sql")
+    @Operation(summary = "执行任何sql")
     @PostMapping("/handleSql")
     public ResponseEntityDto handleSql(@RequestParam String sqlStr){
 //        userInfoService.handleSql(sqlStr);

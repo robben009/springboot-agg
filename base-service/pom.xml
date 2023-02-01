@@ -34,6 +34,12 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
         <!-- 自定义的jar的一些依赖 -->
         <dependency>
             <groupId>robben2</groupId>
@@ -140,12 +146,18 @@
             <artifactId>json-path</artifactId>
             <version>${json-path-v}</version>
         </dependency>
-
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${test-v}</version>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+            <scope>compile</scope>
         </dependency>
+
+        <!--        <dependency>-->
+<!--            <groupId>org.testng</groupId>-->
+<!--            <artifactId>testng</artifactId>-->
+<!--            <version>${test-v}</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 

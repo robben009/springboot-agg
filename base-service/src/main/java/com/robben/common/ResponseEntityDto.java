@@ -1,8 +1,6 @@
 package com.robben.common;
 
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
 
@@ -14,15 +12,15 @@ import java.io.Serializable;
  */
 @Data
 @ToString(callSuper = true)
-@ApiModel(description= "返回统一体")
+@Schema(description= "返回统一体")
 public class ResponseEntityDto<T> implements Serializable {
 	private static final long serialVersionUID = -720807478055084231L;
 
-	@ApiModelProperty(value = "20000 标识请求成功")
+	@Schema(description = "标识请求成功",defaultValue = "1",title = "注解id-title")
 	private Integer code;
-	@ApiModelProperty(value = "code!=20000情况下的错误说明")
+	@Schema(description = "code!=20000情况下的错误说明")
 	private String message;
-	@ApiModelProperty(value = "返回数据")
+	@Schema(description = "返回数据")
 	private T data;
 
 	public ResponseEntityDto(){

@@ -4,12 +4,12 @@ import com.alibaba.fastjson2.JSONObject;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
-import com.robben.service.CacheService;
-import com.robben.utils.RedisUtils;
 import com.robben.common.ResponseEntityDto;
 import com.robben.common.UnifiedReply;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import com.robben.service.CacheService;
+import com.robben.utils.RedisUtils;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@Api(tags = "注解使用")
+@Tag(name = "注解使用")
 @RestController
 @RequestMapping("/anno")
 public class AnnoController extends UnifiedReply {
@@ -29,7 +29,7 @@ public class AnnoController extends UnifiedReply {
     @Autowired
     private Configuration configuration;
 
-    @ApiOperation(value = "postConstruct使用",notes = "postConstruct使用")
+    @Operation(summary = "postConstruct使用")
     @GetMapping(value = "/use")
     public ResponseEntityDto use(){
         String a = "{\n" +

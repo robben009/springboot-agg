@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@Api(tags = "redis使用")
+@Tag(name = "redis使用")
 @RestController
 @RequestMapping("/bf")
 public class BFController {
@@ -22,7 +22,7 @@ public class BFController {
     @Autowired
     private RedissonClient redissonClient;
 
-    @ApiOperation(value = "布隆过滤器的使用")
+    @Operation(summary = "布隆过滤器的使用")
     @GetMapping(value = "/userBF")
     public int userBF(){
         RBloomFilter<String> bloomFilter = redissonClient.getBloomFilter("phoneList");

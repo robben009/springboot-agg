@@ -51,7 +51,6 @@
     </dependencyManagement>
 
     <properties>
-        <knife4j-v>3.0.3</knife4j-v>
         <lombok-v>1.18.24</lombok-v>
         <fastjson2-v>2.0.21</fastjson2-v>
         <guava-v>31.1-jre</guava-v>
@@ -66,18 +65,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
-            <version>${knife4j-v}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>mapstruct</artifactId>
-                    <groupId>org.mapstruct</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

@@ -1,19 +1,19 @@
 package com.robben.model.req;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
-@ApiModel
+@Schema
 public class UploadFil2Req {
 
-    @ApiModelProperty("文件名")
+    @Schema(name = "文件名")
     String fileName;
-    @ApiModelProperty("文件描述")
+    @Schema(name = "文件描述")
     String fileDesc;
-    @ApiModelProperty("文件")
+    @Schema(name = "文件")
     MultipartFile file;
 
 }

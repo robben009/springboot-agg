@@ -1,10 +1,9 @@
 package com.robben.model;
 
-import com.robben.annotation.validParam.EnumValidAnnotation;
 import com.robben.annotation.ProductTypeEnum;
+import com.robben.annotation.validParam.EnumValidAnnotation;
 import com.robben.annotation.validParam.ValidGroup;
 import com.robben.entity.UserInfoEntity;
-import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -12,7 +11,8 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.List;
 
 
@@ -58,13 +58,11 @@ public class ValidVo {
     private String level;
 
     @EnumValidAnnotation(message = "商品类型输入错误",target = ProductTypeEnum.class )
-    @ApiModelProperty(value = "类型")
     private String type;
 
     //分组有个弊端,其他的不能校验,所以其分组必须继承默认的分组,才能保持实现功能
     @Null(groups = ValidGroup.noParam.class, message = "param必须为空")
     @NotNull(groups = ValidGroup.param.class, message = "param不能为空")
-    @ApiModelProperty(value = "类型")
     private String param;
 
     @NotEmpty(message = "list不能为空")

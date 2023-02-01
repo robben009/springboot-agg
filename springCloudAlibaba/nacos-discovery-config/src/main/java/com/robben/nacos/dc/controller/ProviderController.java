@@ -9,7 +9,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Api(tags = "对外接口")
+@Tag(name = "对外接口")
 @RestController
 @RequestMapping("/nprovider")
 @RefreshScope
@@ -19,13 +19,13 @@ public class ProviderController {
     private String testValue;
 
 
-    @ApiOperation(value = "获取配置项的值")
+    @Operation(summary = "获取配置项的值")
     @PostMapping(value = "/getConfigValue")
     public String getConfigValue() {
         return testValue;
     }
 
-    @ApiOperation(value = "提供对外服务", notes = "测试提供对外服务")
+    @Operation(summary = "提供对外服务", notes = "测试提供对外服务")
     @PostMapping(value = "/myHandle")
     public StudentVo myHandle(@RequestBody StudentVo studentVo) {
         studentVo.setName("provider:" + testValue);
@@ -33,7 +33,7 @@ public class ProviderController {
         return studentVo;
     }
 
-    @ApiOperation(value = "网关调用", notes = "网关调用服务")
+    @Operation(summary = "网关调用", notes = "网关调用服务")
     @GetMapping(value = "/gateWayGetData")
     public StudentVo gateWayGetData() {
         log.info("nacos-provider网关调用！！！！！");

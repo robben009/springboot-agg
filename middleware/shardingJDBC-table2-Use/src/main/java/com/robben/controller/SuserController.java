@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Author: robben
  * Date: 2021/12/2 10:04
  */
-@Api(tags = "用户服务", value="用户服务2")
+@Tag(name = "用户服务", value="用户服务2")
 @RestController
 @RequestMapping("/feature1")
 public class SuserController {
@@ -25,7 +25,7 @@ public class SuserController {
     private SuserMapper userMapper;
 
 
-    @ApiOperation("存储用户")
+    @Operation("存储用户")
     @GetMapping("/user/save")
     public String save() {
         for (int i = 0; i <2 ; i++) {
@@ -37,7 +37,7 @@ public class SuserController {
     }
 
 
-    @ApiOperation("获取用户")
+    @Operation("获取用户")
     @GetMapping("/user/get")
     public SuserEntity get(@RequestParam Long id) {
         SuserEntity user =  userMapper.selectById(id);
