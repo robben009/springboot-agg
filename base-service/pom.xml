@@ -214,22 +214,23 @@
     <build>
         <finalName>base-service</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <!-- 没有该配置，devtools 不生效 -->
-                    <addResources>true</addResources>
-                    <!-- 打包配置跳过测试 -->
-<!--                    <skip>true</skip>-->
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; 没有该配置，devtools 不生效 &ndash;&gt;-->
+<!--                    <addResources>true</addResources>-->
+<!--                    &lt;!&ndash; 打包配置跳过测试 &ndash;&gt;-->
+<!--&lt;!&ndash;                    <skip>true</skip>&ndash;&gt;-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>

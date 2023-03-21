@@ -3,11 +3,16 @@ package com.robben.controller;
 import com.robben.common.ParamVaildReqVo;
 import com.robben.common.ResponseEntityDto;
 import com.robben.common.UnifiedReply;
+import com.robben.entity.UserInfoEntity;
 import com.robben.model.req.UploadFil2Req;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,11 +21,23 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/swg")
 public class SwaggerController extends UnifiedReply {
-    /**
-     * name 指定参数名
-     * value 指定参数的文档名 可以直接只写value文档名,参数的名称默认会自动填写
-     * @ApiParam("id2")默认填值是参数的文档名称
-     */
+
+
+    @Operation(summary = "普通body请求+Param+Header+Path")
+    @Parameters({
+            @Parameter(name = "id",description = "文件id",in = ParameterIn.PATH),
+            @Parameter(name = "token",description = "请求token",required = true,in = ParameterIn.HEADER),
+            @Parameter(name = "name",description = "文件名称",required = true,in=ParameterIn.QUERY)
+    })
+    @PostMapping("/bodyParamHeaderPath/{id}")
+    public String bodyParamHeaderPath(@PathVariable("id") String id,
+                                      @RequestHeader("token") String token,
+                                      @RequestParam("name") String name,
+                                      @RequestBody UserInfoEntity userInfoEntity){
+        return "1234";
+    }
+
+
     @Operation(summary = "hello2")
     @PostMapping("hello2")
     public String hello2( Integer id, String name, Integer age) {

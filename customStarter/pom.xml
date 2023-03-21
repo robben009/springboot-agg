@@ -14,10 +14,7 @@
     <artifactId>customStarter</artifactId>
     <version>1.0.0</version>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+
 
     <dependencies>
         <!--添加 Starter 的自动化配置类-->

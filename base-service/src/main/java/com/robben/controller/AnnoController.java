@@ -32,11 +32,14 @@ public class AnnoController extends UnifiedReply {
     @Operation(summary = "postConstruct使用")
     @GetMapping(value = "/use")
     public ResponseEntityDto use(){
-        String a = "{\n" +
-                "      \"name\" : \"john\",\n" +
-                "      \"gender\" : \"male\"\n" +
-                "   }";
-        JSONObject d = JSONObject.parseObject(a);
+        String jsonText = """
+            {
+              "name": "john",
+              "gender": male,
+            }
+            """;
+
+        JSONObject d = JSONObject.parseObject(jsonText);
 
         ReadContext ctx = JsonPath.using(configuration).parse(d);
 //        ReadContext ctx = JsonPath.parse(d);

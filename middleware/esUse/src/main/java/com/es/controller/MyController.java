@@ -24,13 +24,8 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/es")
 public class MyController {
-
     @Autowired
     private MyService service;
-    @Autowired
-    private ElasticsearchRestTemplate elasticsearchTemplate;
-    @Autowired
-    private RestHighLevelClient rClient;
     @Autowired
     private ESConfig eSConfig;
 
@@ -76,6 +71,8 @@ public class MyController {
     @Operation("根据id更新文档内容")
     public ResponseEntity update(@RequestBody SearchParam param) throws IOException {
         UpdateRequest request = new UpdateRequest("indexName","id").doc("doc");
+        RestHighLevelClient client = eSConfig.getClient();
+
         UpdateResponse response = eSConfig.getClient().update(request,RequestOptions.DEFAULT);
 
         return service.update(param);

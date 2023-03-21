@@ -1,6 +1,8 @@
 package com.robben.nacos.dc.controller;
 
 import com.robben.nacos.dc.model.StudentVo;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -23,7 +25,7 @@ public class ProviderController {
         return testValue;
     }
 
-    @Operation(summary = "提供对外服务", notes = "测试提供对外服务")
+    @Operation(summary = "提供对外服务", description = "测试提供对外服务")
     @PostMapping(value = "/myHandle")
     public StudentVo myHandle(@RequestBody StudentVo studentVo) {
         studentVo.setName("provider:" + testValue);
@@ -31,7 +33,7 @@ public class ProviderController {
         return studentVo;
     }
 
-    @Operation(summary = "网关调用", notes = "网关调用服务")
+    @Operation(summary = "网关调用", description = "网关调用服务")
     @GetMapping(value = "/gateWayGetData")
     public StudentVo gateWayGetData() {
         log.info("nacos-provider网关调用！！！！！");

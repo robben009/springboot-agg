@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <artifactId>middleware</artifactId>
+        <artifactId>hjz</artifactId>
         <groupId>com.robben</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -12,10 +12,7 @@
 
     <artifactId>shardingJDBC-table3-Use</artifactId>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+
 
     <dependencies>
         <dependency>
