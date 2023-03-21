@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.robben.common.ResponseEntityDto;
 import com.robben.common.UnifiedReply;
+import com.robben.dao.mapper.UserInfoMapper;
 import com.robben.dao.service.UserInfoService;
 import com.robben.entity.UserInfoEntity;
 import com.robben.service.MpUseService;
@@ -33,13 +34,26 @@ public class MybatisPlusController extends UnifiedReply {
     private MpUseService mpUseService;
     @Autowired
     private UserInfoService userInfoService;
-//    @Autowired
-//    private UserInfoMapper userInfoMapper;
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
-
-    @Operation(summary = "批量插入用户信息")
+    @Operation(summary = "批量插入用户信息-mapper")
     @GetMapping("/batchInsertUser")
     public ResponseEntityDto batchInsertUser(){
+        int count = 100;
+
+        List<UserInfoEntity> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            UserInfoEntity userByCount = mpUseService.createUserByCount(i);
+            userInfoMapper.insert(userByCount);
+        }
+        return buildSuccesResp();
+    }
+
+
+    @Operation(summary = "批量插入用户信息2-service")
+    @GetMapping("/batchInsertUser2")
+    public ResponseEntityDto batchInsertUser2(){
         int count = 100;
 
         List<UserInfoEntity> list = new ArrayList<>();
@@ -51,9 +65,9 @@ public class MybatisPlusController extends UnifiedReply {
         return buildSuccesResp();
     }
 
-    @Operation(summary = "批量插入用户信息2",description = "使用insertBatchSomeColumn")
-    @GetMapping("/batchInsertUser2")
-    public ResponseEntityDto batchInsertUser2(){
+    @Operation(summary = "批量插入用户信息3-service",description = "使用insertBatchSomeColumn")
+    @GetMapping("/batchInsertUser3")
+    public ResponseEntityDto batchInsertUser3(){
         userInfoService.remove(Wrappers.emptyWrapper());
 
         int count = 100;
@@ -62,7 +76,7 @@ public class MybatisPlusController extends UnifiedReply {
             UserInfoEntity userByCount = mpUseService.createUserByCount(i);
             list.add(userByCount);
         }
-//        userInfoMapper.insertBatchSomeColumn(list);
+        userInfoService.saveBatch(list);
         return buildSuccesResp();
     }
 

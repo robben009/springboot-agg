@@ -15,12 +15,13 @@ public class MpUseService {
 
     public UserInfoEntity createUserByCount(int count) {
         UserInfoEntity vo = new UserInfoEntity();
-        vo.setAge(count);
+
         vo.setName("name-" + count);
-        vo.setCreateTime(new Date());
         vo.setSex(count%2 == 0 ? false : true);
-        vo.setUpdateTime(new Date());
+        vo.setAge(count);
+
         vo.setWorkInfo("workinfo" + count);
+        vo.setGroupInfo(1);
 
         //赋值一个json对象,这个对象中还有数组集合
         DescInfoVo dv = new DescInfoVo();
@@ -39,6 +40,8 @@ public class MpUseService {
         descInfoListVo.setDlist(ld);
         vo.setDescInfoListVo(descInfoListVo);
 
+        vo.setCreateTime(new Date());
+        vo.setUpdateTime(new Date());
         return vo;
     }
 

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.robben.model.jsonChange.DescInfoVoListTypeHandler;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -38,17 +39,17 @@ public class UserInfoEntity implements Serializable {
      *  JSON 数据类型推荐使用在不经常更新的静态数据存储
      *  注意:@TableName中的autoResultMap == true,否则对象的属性无法查询获取
      */
-    @TableField(typeHandler = FastjsonTypeHandler.class)
+//    @TableField(typeHandler = FastjsonTypeHandler.class)
+    @TableField(typeHandler = JacksonTypeHandler.class)
     private DescInfoVo descInfo;
 
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private DescInfoListVo descInfoListVo;
     /**
      * 对于list对象需要重写typeHandler,如果不想重写.可以将List<T> 变成一个对象向下面descInfoListVo属性也可以
      */
     @TableField(typeHandler = DescInfoVoListTypeHandler.class)
     private List<DescInfoVo> descInfoList;
-
-    @TableField(typeHandler = FastjsonTypeHandler.class)
-    private DescInfoListVo descInfoListVo;
 
     @Schema(description = "创建时间")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")  //前后到后台的时间格式的转换(作为对象入参的时候传唤)

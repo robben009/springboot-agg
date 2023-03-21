@@ -47,7 +47,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <!-- 没有该配置，devtools 不生效 -->
-                    <fork>true</fork>
                     <addResources>true</addResources>
                     <!-- 打包配置跳过测试 -->
                     <!--                    <skip>true</skip>-->

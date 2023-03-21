@@ -1,10 +1,7 @@
 package com.kafka.controller;
 
-import com.alibaba.fastjson2.JSON;
-import com.kafka.constant.KakfaConstant;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.*;
 import org.apache.kafka.common.KafkaFuture;
@@ -34,7 +31,7 @@ public class KafkaController {
     // "num.partitions=3\n" +
     // "auto.create.topics.enable=true\n" +
     // "default.replication.factor=3\n"
-    @Operation("手动创建topic")
+    @Operation(summary = "手动创建topic")
     @GetMapping("/createTopic")
     public String createTopic(@ApiParam(name = "topicName") String topicName) {
         NewTopic newTopic = new NewTopic(topicName, 1, (short) 1);

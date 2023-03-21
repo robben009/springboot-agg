@@ -17,6 +17,7 @@
         <java.version>17</java.version>
         <encoding>UTF-8</encoding>
 
+        <knife4j-v>4.0.0</knife4j-v>
         <mysql-connect-java-v>8.0.31</mysql-connect-java-v>
         <druid-v>1.2.15</druid-v>
         <mybatis-plus-boot-starter-v>3.5.3.1</mybatis-plus-boot-starter-v>
@@ -37,7 +38,7 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-            <version>4.0.0</version>
+            <version>${knife4j-v}</version>
         </dependency>
 
         <!-- 自定义的jar的一些依赖 -->
@@ -146,6 +147,7 @@
             <artifactId>json-path</artifactId>
             <version>${json-path-v}</version>
         </dependency>
+
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
