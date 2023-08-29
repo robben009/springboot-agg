@@ -42,7 +42,7 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("base-service")
+                        .title("base-project")
                         .version("1.0")
                         .description("esUse接口文档")
                         .termsOfService("http://doc.xiaominfo.com")

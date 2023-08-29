@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springboot-agg</artifactId>
     <groupId>springboot-agg.groupId</groupId>
+    <artifactId>springboot-agg</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <!--此处为工程名字,具体的项目名字是在application-dev.yml中配置的,项目名字为springBootDemo 此处为小写大写会报错-->
@@ -35,7 +35,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2022.0.1</version>
+                <version>2022.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -43,7 +43,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2022.0.0.0-RC1</version>
+                <version>2022.0.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -51,24 +51,19 @@
     </dependencyManagement>
 
     <properties>
-        <knife4j-v>4.0.0</knife4j-v>
-        <lombok-v>1.18.24</lombok-v>
-        <fastjson2-v>2.0.21</fastjson2-v>
-        <guava-v>31.1-jre</guava-v>
+        <knife4j-singleton-v>3.0.3</knife4j-singleton-v>
 
-        <commons-lang3-v>3.12.0</commons-lang3-v>
-        <hutool-v>5.8.10</hutool-v>
-        <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+        <lombok-v>1.18.28</lombok-v>
+        <fastjson2-v>2.0.39</fastjson2-v>
+        <guava-v>32.1.2-jre</guava-v>
+        <commons-lang3-v>3.13.0</commons-lang3-v>
+        <hutool-v>5.8.21</hutool-v>
+
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <java-sizeof-v>0.0.5</java-sizeof-v>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-            <version>${knife4j-v}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

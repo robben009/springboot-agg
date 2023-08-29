@@ -15,14 +15,14 @@ apollo:
 
 
 spring:
-  redis:
-#    database: 6
-    host: ${extraEnvHost}
-    port: 6379
-    password: ${redis.pwd}
-    pool:
-      minIdle: 1
-      maxIdle: 10
-      maxWait: 3
-      maxActive: 8
+  data:
+    redis:
+      host: ${extraEnvHost}
+      port: 6379
+      password: ${redis.pwd}
+      pool:
+        minIdle: 1
+        maxIdle: 10
+        maxWait: 3
+        maxActive: 8
 

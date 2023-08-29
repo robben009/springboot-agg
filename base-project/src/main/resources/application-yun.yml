@@ -4,13 +4,13 @@ extraEnvHost: 212.64.18.166
 #设置项目名
 server:
   servlet:
-    context-path: /base-service
+    context-path: /base-project
   port: 28081
 
 #spring的相关配置
 spring:
   application:
-    name: base-service
+    name: base-project
   #===============数据库=================
   #spring-boot中对于@RestController或者@Controller+@ResponseBody注解的接口方法的返回值默认是Json格式，
   #对于date类型的数据，在返回浏览器端是会被spring-boot默认的Jackson框架转换，而Jackson框架默认的时区GMT（相对于中国是少了8小时）
@@ -34,8 +34,8 @@ spring:
   data:
     redis:
       host: ${extraEnvHost}
-      password: ${redis.pwd}
       port: 6379
+      password: ${redis.pwd}
 
   cloud:
     nacos:
@@ -48,7 +48,7 @@ spring:
 
   config:
     import:
-      - optional:nacos:base-service
+      - optional:nacos:base-project
 
 
 link:
