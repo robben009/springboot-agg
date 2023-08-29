@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>springboot-agg</artifactId>
         <groupId>springboot-agg.groupId</groupId>
+        <artifactId>hjz</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -43,7 +43,7 @@
 
         <!-- 自定义的jar的一些依赖 -->
         <dependency>
-            <groupId>robben2</groupId>
+            <groupId>customStarter.groupId</groupId>
             <artifactId>customStarter</artifactId>
             <version>1.0.0</version>
         </dependency>
