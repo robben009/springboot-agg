@@ -51,6 +51,7 @@
     </dependencyManagement>
 
     <properties>
+        <!-- https://doc.xiaominfo.com/docs/quick-start/start-knife4j-version  -->
         <knife4j-singleton-v>4.3.0</knife4j-singleton-v>
 
         <lombok-v>1.18.28</lombok-v>
