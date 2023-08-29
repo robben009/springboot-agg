@@ -51,7 +51,7 @@
     </dependencyManagement>
 
     <properties>
-        <knife4j-singleton-v>3.0.3</knife4j-singleton-v>
+        <knife4j-singleton-v>4.3.0</knife4j-singleton-v>
 
         <lombok-v>1.18.28</lombok-v>
         <fastjson2-v>2.0.39</fastjson2-v>
