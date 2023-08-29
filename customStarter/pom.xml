@@ -2,18 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>springboot-agg</artifactId>
-        <groupId>springboot-agg.groupId</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
-
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>robben2</groupId>
     <artifactId>customStarter</artifactId>
+    <groupId>customStarter.groupId</groupId>
     <version>1.0.0</version>
-
 
     <properties>
         <java.version>17</java.version>
@@ -21,13 +14,12 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
-
-
     <dependencies>
         <!--添加 Starter 的自动化配置类-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>1.5.22.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -35,6 +27,7 @@
             <artifactId>lombok</artifactId>
             <!-- true表明不传递依赖 -->
             <optional>true</optional>
+            <version>1.18.26</version>
         </dependency>
     </dependencies>
 

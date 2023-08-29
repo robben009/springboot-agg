@@ -3,7 +3,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
     <artifactId>springboot-agg</artifactId>
     <groupId>springboot-agg.groupId</groupId>
     <version>0.0.1-SNAPSHOT</version>
@@ -12,12 +11,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>springCloudAlibaba</module>
-        <module>springCloud</module>
-        <module>middleware</module>
-        <module>customStarter</module>
         <module>algorithm</module>
         <module>base-project</module>
+        <module>middleware</module>
+        <module>springCloud</module>
+        <module>springCloudAlibaba</module>
     </modules>
 
     <name>springboot-agg</name>
@@ -62,9 +60,6 @@
         <hutool-v>5.8.10</hutool-v>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <java-sizeof-v>0.0.5</java-sizeof-v>
-
-        <!-- 这个jar比较奇怪不加会导致sentinel-springCloud启动失败-->
-        <hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
     </properties>
 
     <dependencies>
