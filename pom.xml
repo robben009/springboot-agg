@@ -3,19 +3,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.robben</groupId>
-    <!--此处为工程名字,具体的项目名字是在application-dev.yml中配置的,项目名字为springBootDemo 此处为小写大写会报错-->
+
     <artifactId>springboot-agg</artifactId>
-    <packaging>pom</packaging>
+    <groupId>springboot-agg.groupId</groupId>
     <version>0.0.1-SNAPSHOT</version>
+
+    <!--此处为工程名字,具体的项目名字是在application-dev.yml中配置的,项目名字为springBootDemo 此处为小写大写会报错-->
+    <packaging>pom</packaging>
 
     <modules>
         <module>springCloudAlibaba</module>
         <module>springCloud</module>
         <module>middleware</module>
         <module>customStarter</module>
-        <module>zsf</module>
-        <module>base-service</module>
+        <module>algorithm</module>
+        <module>base-project</module>
     </modules>
 
     <name>springboot-agg</name>
