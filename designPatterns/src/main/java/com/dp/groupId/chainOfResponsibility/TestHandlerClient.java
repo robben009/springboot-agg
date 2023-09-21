@@ -1,8 +1,8 @@
 package com.dp.groupId.chainOfResponsibility;
 
-public class HandlerClient {
-    public static void main(String[] args) {
+public class TestHandlerClient {
 
+    public static void main(String[] args) {
         FirstPassHandler firstPassHandler = new FirstPassHandler();//第一关
         SecondPassHandler secondPassHandler = new SecondPassHandler();//第二关
         ThirdPassHandler thirdPassHandler = new ThirdPassHandler();//第三关
@@ -14,7 +14,6 @@ public class HandlerClient {
         //说明：因为第三关是最后一关，因此没有下一关
 
         //从第一个关卡开始
-        firstPassHandler.handler();
-
+        firstPassHandler.handler(null);
     }
 }

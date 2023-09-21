@@ -1,8 +1,9 @@
 package com.dp.groupId.chainOfResponsibility;
 
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public abstract class AbstractHandler {
-
     /**
      * 下一关用当前抽象类来接收
      */
@@ -12,5 +13,8 @@ public abstract class AbstractHandler {
         this.next = next;
     }
 
-    public abstract int handler();
+    public abstract int handler(Order order);
+
+
+
 }
