@@ -14,6 +14,8 @@ import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.persist.StateMachinePersister;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Slf4j
 @Service
 public class TbOrderServiceImpl extends ServiceImpl<TbOrderMapper, TbOrder> implements TbOrderService {
@@ -90,22 +92,34 @@ public class TbOrderServiceImpl extends ServiceImpl<TbOrderMapper, TbOrder> impl
      * @return
      */
     private synchronized boolean sendEvent(OrderStatusChangeEventEnum changeEvent, TbOrder order) {
-        boolean result = false;
+        boolean sendResult = false;
         try {
             //启动状态机
             orderStateMachine.start();
             //尝试恢复状态机状态
             stateMachineRedisPersister.restore(orderStateMachine, String.valueOf(order.getId()));
             Message message = MessageBuilder.withPayload(changeEvent).setHeader("order", order).build();
-            result = orderStateMachine.sendEvent(message);
-            //持久化状态机状态
-            stateMachineRedisPersister.persist(orderStateMachine, String.valueOf(order.getId()));
+            sendResult = orderStateMachine.sendEvent(message);
+
+            //获取到监听的结果信息
+            Integer handleReuslt = (Integer) orderStateMachine.getExtendedState().getVariables().get(order.getId());
+            //操作完成之后,删除本次对应的key信息
+            orderStateMachine.getExtendedState().getVariables().remove(order.getId());
+            //如果事务执行成功，则持久化状态机(注意存储的key为order.getId())
+            if(Objects.equals(1,Integer.valueOf(handleReuslt))){
+                //持久化状态机状态
+                stateMachineRedisPersister.persist(orderStateMachine, String.valueOf(order.getId()));
+            }else {
+                //订单执行业务异常
+                log.info("订单执行业务异常 {}",changeEvent);
+            }
+
         } catch (Exception e) {
             log.error("订单操作失败:{}", e);
         } finally {
             orderStateMachine.stop();
         }
-        return result;
+        return sendResult;
     }
 
 
