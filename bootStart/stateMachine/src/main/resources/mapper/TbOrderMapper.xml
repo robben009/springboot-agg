@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bootStart.groupId.generator.mapper.TbOrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.bootStart.groupId.generator.domain.TbOrder">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="orderCode" column="order_code" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="SMALLINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+            <result property="deleteFlag" column="delete_flag" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="createUserCode" column="create_user_code" jdbcType="VARCHAR"/>
+            <result property="updateUserCode" column="update_user_code" jdbcType="VARCHAR"/>
+            <result property="version" column="version" jdbcType="INTEGER"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_code,status,
+        name,price,delete_flag,
+        create_time,update_time,create_user_code,
+        update_user_code,version,remark
+    </sql>
+</mapper>

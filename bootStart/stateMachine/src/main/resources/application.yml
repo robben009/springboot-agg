@@ -1,13 +1,5 @@
-#外部环境地址(云服务器地址)
 extraEnvHost: hujingzheng.com
 
-#设置项目名
-server:
-  servlet:
-    context-path: /base-project
-  port: 28081
-
-#spring的相关配置
 spring:
   application:
     name: base-project
@@ -23,20 +15,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
-  #本地缓存的配置
-  cache:
-    type: caffeine
-    #该配置项在com.robben.config.CaffeineCacheConfig 也可以实现配置
-#    cache-names:
-#      - userCache
-#    caffeine:
-#      spec: maximumSize=1024,refreshAfterWrite=60s
-  data:
-    redis:
-      host: ${extraEnvHost}
-      port: 6379
-      password: ${redis.pwd}
-
   cloud:
     nacos:
       config:
@@ -48,20 +26,3 @@ spring:
   config:
     import:
       - optional:nacos:base-project
-
-
-link:
-  name: adasdf
-  msg: asdfasd22222
-
-
-knife4j:
-  # 开启增强配置
-  enable: true
-  # 开启生产环境屏蔽
-  production: false
-
-
-#logging:
-#  level:
-#    com.robben: debug

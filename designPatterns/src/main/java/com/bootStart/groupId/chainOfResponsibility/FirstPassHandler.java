@@ -1,4 +1,4 @@
-package com.dp.groupId.chainOfResponsibility;
+package com.bootStart.groupId.chainOfResponsibility;
 
 import lombok.NoArgsConstructor;
 

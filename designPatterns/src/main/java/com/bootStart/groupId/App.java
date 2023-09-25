@@ -1,4 +1,4 @@
-package com.dp.groupId;
+package com.bootStart.groupId;
 
 /**
  * Hello world!
