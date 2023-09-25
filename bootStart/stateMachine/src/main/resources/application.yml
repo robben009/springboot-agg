@@ -15,6 +15,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
+  data:
+    redis:
+      host: ${extraEnvHost}
+      port: 6379
+      password: ${redis.pwd}
   cloud:
     nacos:
       config:

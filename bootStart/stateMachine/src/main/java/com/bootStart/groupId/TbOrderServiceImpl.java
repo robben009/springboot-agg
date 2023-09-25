@@ -7,6 +7,7 @@ import com.bootStart.groupId.generator.domain.TbOrder;
 import com.bootStart.groupId.generator.mapper.TbOrderMapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateMachine;
@@ -19,7 +20,7 @@ public class TbOrderServiceImpl extends ServiceImpl<TbOrderMapper, TbOrder> impl
     @Resource
     private StateMachine<OrderStatusEnum, OrderStatusChangeEventEnum> orderStateMachine;
     @Resource
-    private StateMachinePersister<OrderStatusEnum, OrderStatusChangeEventEnum, String> stateMachineMemPersister;
+    private StateMachinePersister<OrderStatusEnum, OrderStatusChangeEventEnum, String> stateMachineRedisPersister;
     @Resource
     private TbOrderMapper tbOrderMapper;
     /**
@@ -94,11 +95,11 @@ public class TbOrderServiceImpl extends ServiceImpl<TbOrderMapper, TbOrder> impl
             //启动状态机
             orderStateMachine.start();
             //尝试恢复状态机状态
-            stateMachineMemPersister.restore(orderStateMachine, String.valueOf(order.getId()));
+            stateMachineRedisPersister.restore(orderStateMachine, String.valueOf(order.getId()));
             Message message = MessageBuilder.withPayload(changeEvent).setHeader("order", order).build();
             result = orderStateMachine.sendEvent(message);
             //持久化状态机状态
-            stateMachineMemPersister.persist(orderStateMachine, String.valueOf(order.getId()));
+            stateMachineRedisPersister.persist(orderStateMachine, String.valueOf(order.getId()));
         } catch (Exception e) {
             log.error("订单操作失败:{}", e);
         } finally {
@@ -106,4 +107,6 @@ public class TbOrderServiceImpl extends ServiceImpl<TbOrderMapper, TbOrder> impl
         }
         return result;
     }
+
+
 }

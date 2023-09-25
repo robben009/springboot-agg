@@ -1,21 +1,35 @@
 package com.bootStart.groupId.config;
 
+import com.alibaba.fastjson2.JSON;
 import com.bootStart.groupId.constant.OrderStatusChangeEventEnum;
 import com.bootStart.groupId.constant.OrderStatusEnum;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.statemachine.StateMachineContext;
+import org.springframework.statemachine.StateMachinePersist;
 import org.springframework.statemachine.config.EnableStateMachine;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
+import org.springframework.statemachine.persist.DefaultStateMachinePersister;
+import org.springframework.statemachine.persist.RepositoryStateMachinePersist;
+import org.springframework.statemachine.persist.StateMachinePersister;
+import org.springframework.statemachine.redis.RedisStateMachineContextRepository;
+import org.springframework.statemachine.redis.RedisStateMachinePersister;
 
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
+@Slf4j
 @Configuration
 @EnableStateMachine(name = "orderStateMachine")
 public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<OrderStatusEnum, OrderStatusChangeEventEnum> {
     /**
      * 配置状态
-     *
      * @param states
      * @throws Exception
      */
@@ -28,7 +42,6 @@ public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<Order
 
     /**
      * 配置状态转换事件关系
-     *
      * @param transitions
      * @throws Exception
      */

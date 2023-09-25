@@ -1,4 +1,4 @@
-package com.bootStart.groupId;
+package com.bootStart.groupId.config;
 
 import com.alibaba.fastjson2.JSON;
 import jakarta.annotation.Resource;
@@ -25,8 +25,6 @@ public class TbOrderPersist<E, S> {
 
     /**
      * 持久化到内存map中
-     *
-     * @return
      */
     @Bean(name = "stateMachineMemPersister")
     public static StateMachinePersister getPersister() {
@@ -49,10 +47,9 @@ public class TbOrderPersist<E, S> {
         });
     }
 
+
     /**
      * 持久化到redis中，在分布式系统中使用
-     *
-     * @return
      */
     @Bean(name = "stateMachineRedisPersister")
     public RedisStateMachinePersister<E, S> getRedisPersister() {
@@ -60,4 +57,5 @@ public class TbOrderPersist<E, S> {
         RepositoryStateMachinePersist p = new RepositoryStateMachinePersist<>(repository);
         return new RedisStateMachinePersister<>(p);
     }
+
 }
