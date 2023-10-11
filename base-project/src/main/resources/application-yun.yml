@@ -46,7 +46,7 @@ spring:
       discovery:
         server-addr: ${extraEnvHost}:38080
   #nacos有两种注入方式
-  #一种是nacos直接写配置文件和环境名  charge-test.properties,这个加载优先级比较高
+  #一种是nacos直接写配置文件和环境名  base-project-test.properties,这个加载优先级比较高
   #一种是使用import 可以自定义一些配置项目
   config:
     import:
