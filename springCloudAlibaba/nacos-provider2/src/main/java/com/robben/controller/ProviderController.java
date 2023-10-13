@@ -2,8 +2,8 @@ package com.robben.controller;
 
 import com.alibaba.fastjson2.JSON;
 import com.robben.model.StudentVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ public class ProviderController {
     @Value("${server.port}")
     private String serverPort;
 
-    @Operation(summary = "提供对外服务2", notes = "测试提供对外服务2")
+    @Operation(summary = "提供对外服务2", description = "测试提供对外服务2description")
     @PostMapping(value = "/myHandle")
     public StudentVo myHandle(@RequestBody StudentVo studentVo) {
         log.info("np2获取了参数:{}", JSON.toJSONString(studentVo));
@@ -27,7 +27,7 @@ public class ProviderController {
         return studentVo;
     }
 
-    @Operation(summary = "网关调用", notes = "网关调用服务")
+    @Operation(summary = "网关调用", description = "网关调用服务description")
     @GetMapping(value = "/gateWayGetData")
     public StudentVo gateWayGetData() {
         log.info("nacos-provider2网关调用！！！！！");

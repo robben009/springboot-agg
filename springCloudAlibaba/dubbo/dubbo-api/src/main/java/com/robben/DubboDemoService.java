@@ -7,7 +7,7 @@ import com.robben.vo.StudentVo;
  * Author: robben
  * Date: 2021/3/6 15:58
  */
-public interface DemoService {
+public interface DubboDemoService {
 
     String sayHello(StudentVo vo);
 

@@ -1,27 +1,18 @@
-
-spring:
-  application:
-    name: dubbo-nacos-provider
-
 server:
   port: 8081
 
-nacos:
-  server-address: 212.64.18.166
-  port: 30000
-  username: nacos
-  password: ${nacosPwd}
-
-
+spring:
+  application:
+    name: dubbo-provider
 
 dubbo:
   application:
-    name: ${spring.application.name}
+    name: dubbo-provider
   scan:
-    base-packages: com.robben.service
+    base-packages: com.robben
   protocol:
     port: -1
   registry:
-    address: nacos://${nacos.server-address}:${nacos.port}/?username=${nacos.username}&password=${nacos.password}
+    address: nacos://212.64.18.166:38080
 
-
+#这个比较奇怪,如果改成了bootstrap.yml会存在启动问题

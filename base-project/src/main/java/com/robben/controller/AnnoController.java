@@ -4,7 +4,6 @@ import com.alibaba.fastjson2.JSONObject;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
-import com.robben.common.ResponseEntityDto;
 import com.robben.common.UnifiedReply;
 import com.robben.service.CacheService;
 import com.robben.utils.RedisUtils;
@@ -12,7 +11,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/anno")
 public class AnnoController extends UnifiedReply {
-
     @Autowired
     private CacheService userService;
     @Autowired
@@ -30,8 +29,8 @@ public class AnnoController extends UnifiedReply {
     private Configuration configuration;
 
     @Operation(summary = "postConstruct使用")
-    @GetMapping(value = "/use")
-    public ResponseEntityDto use(){
+    @PostMapping(value = "/use")
+    public BenefitDetail use(@RequestBody BenefitDetail req){
         String jsonText = """
             {
               "name": "john",
@@ -48,8 +47,10 @@ public class AnnoController extends UnifiedReply {
         String gender1 = ctx.read("$.name1");
         System.out.println(gender1);
 
-        return buildSuccesResp();
+        req.setRightsName("asdfasdfa");
+        return req;
     }
+
 
 
 
