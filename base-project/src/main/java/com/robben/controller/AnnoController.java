@@ -27,6 +27,9 @@ public class AnnoController extends UnifiedReply {
     private RedisUtils redisUtils;
     @Autowired
     private Configuration configuration;
+//    @Resource
+//    private CmsOrderApi cmsOrderApi;
+
 
     @Operation(summary = "postConstruct使用")
     @PostMapping(value = "/use")
@@ -52,6 +55,14 @@ public class AnnoController extends UnifiedReply {
     }
 
 
+//    @Operation(summary = "postConstruct使用")
+//    @GetMapping(value = "/use2")
+//    public String use(){
+//        OrderDetailReq orderDetailReq = new OrderDetailReq();
+//        orderDetailReq.setChargeSeq("aaaaa");
+//        cmsOrderApi.orderDetail(orderDetailReq);
+//        return "123";
+//    }
 
 
 }

@@ -1,4 +1,4 @@
-package com.robben.annotation;
+package com.robben.annotation.validParam.auth;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +24,7 @@ public class AuthTokenAspect {
     @Pointcut("@annotation(authToken)")
     public void doAuthToken(AuthToken authToken) {
     }
+
 
 
 //
@@ -54,10 +55,10 @@ public class AuthTokenAspect {
         HttpServletRequest request = attributes.getRequest();
 
         // 获取访问该方法所需的role_name信息
-        String[] role_name = authToken.role_name();
+        String[] roleList = authToken.roleName();
         // 需要验证身份
-        String role = request.getHeader("role");
-        for (String str : role_name) {
+        String role = request.getHeader("roleName");
+        for (String str : roleList) {
             /**
              * 此处str由于是用role_name中取值，则str必定不为空
              * 而从请求头中获取的role有可能为空，则此处调用str的equals方法
@@ -68,7 +69,7 @@ public class AuthTokenAspect {
                 return pjp.proceed();
             }
         }
-        log.info("权限检验失败：{}",role_name);
+        log.info("权限检验失败：{}",roleList);
         return "权限校验失败，不具有指定的身份";
     }
 

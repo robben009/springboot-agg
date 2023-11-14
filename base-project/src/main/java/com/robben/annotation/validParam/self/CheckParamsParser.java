@@ -1,5 +1,7 @@
 package com.robben.annotation.validParam.self;
 
+import com.robben.annotation.validParam.anno.NotNull;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 

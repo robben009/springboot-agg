@@ -8,7 +8,7 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         UserInfoEntity UserInfoEntity = new UserInfoEntity();
-//        UserInfoEntity.setId(333);
+        UserInfoEntity.setId(333L);
 
         paramsParser.check(UserInfoEntity);
     }

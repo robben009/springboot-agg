@@ -26,9 +26,19 @@ public class ProviderController {
     }
 
     @Operation(summary = "提供对外服务", description = "测试提供对外服务")
+    @GetMapping(value = "/testServer")
+    public StudentVo testServer() {
+        StudentVo studentVo = new StudentVo();
+        studentVo.setName("provideraaaaaaaaaaaa");
+        studentVo.setAge(studentVo.getAge() + 1);
+        return studentVo;
+    }
+
+
+    @Operation(summary = "提供对外服务", description = "测试提供对外服务")
     @PostMapping(value = "/myHandle")
     public StudentVo myHandle(@RequestBody StudentVo studentVo) {
-        studentVo.setName("provider:" + testValue);
+        studentVo.setName("provideraaaaaaaaaaaa");
         studentVo.setAge(studentVo.getAge() + 1);
         return studentVo;
     }

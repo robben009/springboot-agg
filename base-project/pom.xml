@@ -52,11 +52,14 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-        <!-- 无需注册feign调用的服务 -->
+
+
 <!--        <dependency>-->
-<!--            <groupId>com.alibaba.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
+<!--            <groupId>com.chery.charge</groupId>-->
+<!--            <artifactId>charge-client</artifactId>-->
+<!--            <version>1.0.0-SNAPSHOT</version>-->
 <!--        </dependency>-->
+
 
         <!-- spring的一些依赖 -->
         <dependency>

@@ -1,8 +1,6 @@
 package com.robben.model;
 
-import com.robben.annotation.ProductTypeEnum;
-import com.robben.annotation.validParam.EnumValidAnnotation;
-import com.robben.annotation.validParam.ValidGroup;
+import com.robben.annotation.validParam.anno.ValidGroup;
 import com.robben.entity.UserInfoEntity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -57,7 +55,6 @@ public class ValidVo {
     @NotEmpty(message = "级别不能为空")
     private String level;
 
-    @EnumValidAnnotation(message = "商品类型输入错误",target = ProductTypeEnum.class )
     private String type;
 
     //分组有个弊端,其他的不能校验,所以其分组必须继承默认的分组,才能保持实现功能

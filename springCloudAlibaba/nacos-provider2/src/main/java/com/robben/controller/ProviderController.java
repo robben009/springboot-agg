@@ -14,15 +14,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/nprovider")
 public class ProviderController {
 
-    @Value("${server.port}")
-    private String serverPort;
 
     @Operation(summary = "提供对外服务2", description = "测试提供对外服务2description")
     @PostMapping(value = "/myHandle")
     public StudentVo myHandle(@RequestBody StudentVo studentVo) {
         log.info("np2获取了参数:{}", JSON.toJSONString(studentVo));
 
-        studentVo.setName("provider2:" + serverPort);
+        studentVo.setName("provider2222222222");
         studentVo.setAge(studentVo.getAge() + 2);
         return studentVo;
     }

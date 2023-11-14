@@ -1,7 +1,5 @@
 package com.robben.common;
 
-import com.robben.annotation.ProductTypeEnum;
-import com.robben.annotation.validParam.EnumValidAnnotation;
 import com.robben.model.valid.ParamValidAdd;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -39,7 +37,6 @@ public class ParamVaildReqVo {
     @Schema(description = "名字")
     private String name;
 
-    @EnumValidAnnotation(message = "商品类型输入错误",target = ProductTypeEnum.class )
     @Schema(description = "类型")
     private String type;
 

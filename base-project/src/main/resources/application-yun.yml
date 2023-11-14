@@ -1,6 +1,13 @@
 #外部环境地址(云服务器地址)
 extraEnvHost: 212.64.18.166
 
+knife4j:
+  # 开启增强配置
+  enable: true
+  # 开启生产环境屏蔽
+  production: false
+
+
 #设置项目名
 server:
   servlet:
@@ -14,6 +21,7 @@ spring:
   #===============数据库=================
   #spring-boot中对于@RestController或者@Controller+@ResponseBody注解的接口方法的返回值默认是Json格式，
   #对于date类型的数据，在返回浏览器端是会被spring-boot默认的Jackson框架转换，而Jackson框架默认的时区GMT（相对于中国是少了8小时）
+  #也可以去除soringboot的Jackson框架转换，使用fastjson框架
   jackson:
     time-zone: GMT+8
   datasource:
@@ -42,9 +50,6 @@ spring:
         server-addr: ${extraEnvHost}:38080
         group: DEFAULT_GROUP
         file-extension: properties
-#      discovery:
-#        server-addr: ${extraEnvHost}:38080
-
   #nacos有两种注入方式
   #一种是nacos直接写配置文件和环境名  base-project-test.properties,这个加载优先级比较高
   #一种是使用import 可以自定义一些配置项目
@@ -53,18 +58,8 @@ spring:
       - optional:nacos:base-project
 
 
-link:
-  name: adasdf
-  msg: asdfasd22222
 
-
-knife4j:
-  # 开启增强配置
-  enable: true
-  # 开启生产环境屏蔽
-  production: false
-
-
+#日志的配置
 #logging:
 #  level:
 #    com.robben: debug

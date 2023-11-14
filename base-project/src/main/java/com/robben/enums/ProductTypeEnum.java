@@ -1,4 +1,4 @@
-package com.robben.annotation;
+package com.robben.enums;
 
 public enum ProductTypeEnum {
     P("原材料"), M("加工品");

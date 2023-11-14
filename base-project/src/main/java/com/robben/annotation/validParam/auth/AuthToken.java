@@ -1,4 +1,4 @@
-package com.robben.annotation;
+package com.robben.annotation.validParam.auth;
 
 import java.lang.annotation.*;
 
@@ -15,6 +15,6 @@ public @interface AuthToken {
      * @data 2018年12月19日
      * @version v1.0.0.0
      */
-    String[] role_name() default "";
+    String[] roleName() default "";
 
 }
