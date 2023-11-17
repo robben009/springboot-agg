@@ -24,12 +24,22 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>3.2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+            <version>2.2.4</version>
+        </dependency>
 
-<!--        <dependency>-->
-<!--            <artifactId>dubbo-api</artifactId>-->
-<!--            <groupId>dubbo-api.groupId</groupId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>hjz-dubbo.groupId</groupId>
+            <artifactId>dubbo-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 

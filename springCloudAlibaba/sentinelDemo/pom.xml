@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>springCloudAlibaba.groupId</groupId>
+        <groupId>com.hjz.springCloudAlibaba</groupId>
         <artifactId>springCloudAlibaba</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -11,9 +11,13 @@
 
     <artifactId>sentinelDemo</artifactId>
 
-
-
     <dependencies>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>${knife4j-singleton-v}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>

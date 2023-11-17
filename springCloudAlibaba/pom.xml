@@ -10,16 +10,15 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-
+    <groupId>com.hjz.springCloudAlibaba</groupId>
     <artifactId>springCloudAlibaba</artifactId>
-    <groupId>springCloudAlibaba.groupId</groupId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
     <modules>
-        <module>nacos-discovery-config</module>
-        <module>nacos-provider2</module>
+        <module>nacos-demo-server1</module>
+        <module>nacos-demo-server2</module>
         <module>nacos-gateway</module>
         <module>dubbo</module>
         <module>seateDemo</module>

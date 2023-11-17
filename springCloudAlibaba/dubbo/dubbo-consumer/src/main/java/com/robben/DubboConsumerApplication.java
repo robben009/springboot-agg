@@ -1,6 +1,6 @@
 package com.robben;
 
-import com.robben.DemoService;
+import com.robben.DubboDemoService;
 import com.robben.vo.StudentVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 public class DubboConsumerApplication {
 
     @DubboReference
-    private DemoService demoService;
+    private DubboDemoService demoService;
 
 
     public static void main(String[] args) {

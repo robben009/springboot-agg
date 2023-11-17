@@ -1,0 +1,27 @@
+#设置项目名
+server:
+  servlet:
+    context-path: /nacos-provider1   #设置应用访问url的名字
+  port: 28083
+
+nacosServerHost: 212.64.18.166
+
+spring:
+  application:
+    name: nacos-demo-server1
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacosServerHost}:38080
+      config:
+        server-addr: ${nacosServerHost}:38080
+        #如果要填写下面的name,group,fileExtension字段,必须要有name.yaml有配置文件才行,否则报错。如果name不填会自动找spring.application.name的配置文件
+#        name: nacos-demo-server11.yaml
+#        group: nacosDemoGroup
+#        fileExtension: yaml
+        ext-config:
+          - dataId: nacos-demo-server1.yaml
+            group: nacosDemoGroup
