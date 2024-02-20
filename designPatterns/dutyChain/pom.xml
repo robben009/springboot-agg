@@ -5,31 +5,26 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.hjz.springCloudAlibaba</groupId>
-        <artifactId>springCloudAlibaba</artifactId>
+        <groupId>hjz.designPatterns.groupId</groupId>
+        <artifactId>designPatterns</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-
-    <groupId>hjz-dubbo-provider.groupId</groupId>
-    <artifactId>dubbo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>dubbo-consumer</module>
-        <module>dubbo-provider</module>
-        <module>dubbo-api</module>
-    </modules>
+    <artifactId>dutyChain</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+
+        <xxl-job-v>2.3.0</xxl-job-v>
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+        </dependency>
     </dependencies>
 
 

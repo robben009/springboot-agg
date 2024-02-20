@@ -17,7 +17,6 @@
         <module>springCloud</module>
         <module>springCloudAlibaba</module>
         <module>designPatterns</module>
-        <module>bootStart</module>
     </modules>
 
     <name>springboot-agg</name>
