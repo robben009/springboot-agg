@@ -1,7 +1,10 @@
 package com.mq;
 
+import org.apache.rocketmq.spring.autoconfigure.RocketMQAutoConfiguration;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Description：
@@ -10,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Date: 2021/7/3 17:20
  */
 @SpringBootApplication
+@ImportAutoConfiguration({RocketMQAutoConfiguration.class})
 public class MqApplication {
 
     public static void main(String[] args) {

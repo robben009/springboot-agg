@@ -18,7 +18,6 @@
 
     <modules>
         <module>xxlJobUse</module>
-        <module>codeGenerate</module>
         <module>esUse</module>
         <module>kafkaUse</module>
         <module>mongoDBUse</module>
@@ -29,5 +28,6 @@
         <module>shardingJDBC-table3-Use</module>
         <module>canalUse</module>
     </modules>
+
 
 </project>
