@@ -11,8 +11,6 @@
 
     <artifactId>shardingJDBC-table2-Use</artifactId>
 
-
-
     <dependencies>
 
         <dependency>
@@ -33,6 +31,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connect-java-v}</version>
         </dependency>
 
 
@@ -51,16 +50,6 @@
         </dependency>
 
     </dependencies>
-
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 
 

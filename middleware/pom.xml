@@ -10,11 +10,11 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>middleware</artifactId>
     <groupId>middleware.groupId</groupId>
+    <artifactId>middleware</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
 
+    <packaging>pom</packaging>
 
     <modules>
         <module>xxlJobUse</module>
