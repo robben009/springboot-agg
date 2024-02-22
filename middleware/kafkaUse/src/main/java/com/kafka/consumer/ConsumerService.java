@@ -1,22 +1,19 @@
-package com.kafka.handleMsg;
+package com.kafka.consumer;
 
 import com.kafka.constant.KakfaConstant;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Slf4j
 @Component
-public class MsgHandler {
+public class ConsumerService {
 
     //以下的方式都可以来接受请求
-//    @KafkaListener(topics = { KakfaConstant.topic1 },groupId = KakfaConstant.Consumer_user1)
-//    public void handle(String message) {
-//        log.info("Consumer_user1开始处理消息:{}",message );
-//    }
+    @KafkaListener(topics = { KakfaConstant.topic1 },groupId = KakfaConstant.Consumer_user1)
+    public void handle(String message) {
+        log.info("Consumer_user1开始处理消息:{}",message );
+    }
 
 
     //批量消费(需要配置spring.kafka.listener.type=batch,spring.kafka.consumer.max-poll-records==5批量数,注意入参是list)

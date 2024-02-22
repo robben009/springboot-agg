@@ -1,4 +1,4 @@
-package com.kafka.handleMsg;
+package com.kafka.consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

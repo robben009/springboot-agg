@@ -57,7 +57,7 @@ public class KafkaController {
     })
     @GetMapping("/send")
     public String send(@RequestParam(name = "topicName") String topicName, @RequestParam(name = "msg") String msg) {
-        kafkaTemplate.send(topicName, msg);
+        CompletableFuture send = kafkaTemplate.send(topicName, msg);
         return "success";
     }
 

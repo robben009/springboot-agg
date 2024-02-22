@@ -1,4 +1,4 @@
-package com.kafka.handleMsg;
+package com.kafka.consumer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.EnableScheduling;

@@ -1,7 +1,7 @@
 package com.kafka.constant;
 
 public interface KakfaConstant {
-    String topic1 = "aaa";
+    String topic1 = "testTopic";
     String topic2 = "bbb";
 
     String Consumer_user1 = "Consumer_user1";
