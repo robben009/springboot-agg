@@ -23,9 +23,6 @@
         <module>mongoDBUse</module>
         <module>redisExtend</module>
         <module>rocketMqUse</module>
-        <module>shardingJDBC-table-Use</module>
-        <module>shardingJDBC-table2-Use</module>
-        <module>shardingJDBC-table3-Use</module>
         <module>canalUse</module>
     </modules>
 
