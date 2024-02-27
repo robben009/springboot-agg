@@ -14,15 +14,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/nacosServer1")
 @RefreshScope
 public class ProviderController {
-
     @Value("${testValue}")
     private String testValue;
+    @Value("${testValueExt}")
+    private String testValueExt;
 
 
     @Operation(summary = "获取配置项的值")
     @PostMapping(value = "/getConfigValue")
     public String getConfigValue() {
         return testValue;
+    }
+
+    @Operation(summary = "获取额外配置项的值")
+    @PostMapping(value = "/getExtConfigValue")
+    public String getExtConfigValue() {
+        return testValueExt;
     }
 
     @Operation(summary = "提供对外服务", description = "测试提供对外服务")

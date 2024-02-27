@@ -1,10 +1,8 @@
 #设置项目名
 server:
-  servlet:
-    context-path: /nacos-provider1   #设置应用访问url的名字
   port: 28083
 
-nacosServerHost: 212.64.18.166
+nacosServerHost: 150.158.121.165
 
 spring:
   application:
@@ -15,13 +13,16 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: ${nacosServerHost}:38080
+        serverAddr: ${nacosServerHost}:8848
       config:
-        server-addr: ${nacosServerHost}:38080
-        #如果要填写下面的name,group,fileExtension字段,必须要有name.yaml有配置文件才行,否则报错。如果name不填会自动找spring.application.name的配置文件
-#        name: nacos-demo-server11.yaml
-#        group: nacosDemoGroup
-#        fileExtension: yaml
-        ext-config:
-          - dataId: nacos-demo-server1.yaml
+        serverAddr: ${nacosServerHost}:8848
+        #如果要填写下面的name,group,fileExtension字段,必须要有name.yaml有配置文件才行(最新版本dataId=nacos-demo-server1,nacos-demo-server1,yml都行),否则报错。如果name不填会自动找spring.application.name的配置文件
+        name: nacos-demo-server1.yaml
+        group: nacosDemoGroup
+        fileExtension: yaml
+        extension-configs:
+          #dataId必须要等于nacos-demo-server1-ext.yaml,不能省略文件名后缀,但是本项目名的dataId是可以省略的
+          - dataId: nacos-demo-server1-ext.yaml
             group: nacosDemoGroup
+            refresh: true
+
