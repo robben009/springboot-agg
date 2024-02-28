@@ -12,9 +12,6 @@
     <artifactId>canalUse</artifactId>
 
 
-
-
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
