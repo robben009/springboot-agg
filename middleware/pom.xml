@@ -23,7 +23,6 @@
         <module>mongoDBUse</module>
         <module>redisExtend</module>
         <module>rocketMqUse</module>
-        <module>canalUse</module>
     </modules>
 
 

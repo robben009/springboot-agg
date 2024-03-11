@@ -29,8 +29,6 @@ spring:
     username: ${jdbc.username}
     password: ${jdbc.pwd}
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #使用druid数据源
-    type: com.alibaba.druid.pool.DruidDataSource
   #本地缓存的配置
   cache:
     type: caffeine

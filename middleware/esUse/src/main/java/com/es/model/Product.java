@@ -9,17 +9,11 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
 
-//主要用于ElasticsearchTemplate
-@Document(indexName = "person")
+//主要用于ElasticsearchClient
 @Data
-public class Person {
-    @Id
+public class Product {
     private String id;
-
-    @Field(type = FieldType.Keyword)
     private String name;
-
-    @Field(type = FieldType.Date,format = DateFormat.basic_date)
     private Date birthday;
 
     /**
@@ -33,7 +27,6 @@ public class Person {
      * <p>
      * 简单来说，ik_max_word 更侧重于召回率，可能会产生更多的分词结果；而 ik_smart 更侧重于准确性，产生的分词数量相对较少。选择哪种策略取决于你的应用场景和对搜索效果的需求。
      */
-    @Field(type = FieldType.Text, analyzer = "ik_smart")
     private String addr;
 
 }

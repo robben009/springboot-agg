@@ -1,141 +1,59 @@
 package com.es.config;
 
-import com.alibaba.fastjson2.JSON;
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.rest_client.RestClientTransport;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.ssl.SSLContextBuilder;
-import org.apache.http.ssl.SSLContexts;
-import org.apache.http.ssl.TrustStrategy;
 import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
-import org.elasticsearch.client.RestClientBuilder.RequestConfigCallback;
-import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-
-import javax.net.ssl.SSLContext;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.KeyStore;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateFactory;
 
 @Slf4j
 @Component
 public class ESConfig {
-
-    @Value("${elasticsearch.user}")
-    private  String esUserName;
-    @Value("${elasticsearch.password}")
-    private  String esPassword;
-    @Value("${elasticsearch.host}")
-    private  String esHost;
-    @Value("${elasticsearch.keystorePath}")
-    private  String eskeystorePath;
+    @Value("${spring.elasticsearch.uris}")
+    private String uris;
+//    @Value("${spring.elasticsearch.username}")
+//    private String username;
+//    @Value("${spring.elasticsearch.password}")
+//    private String password;
 
 
-    public RestHighLevelClient getClient() {
-        String[] hosts = esHost.split(",");
-        HttpHost[] httpHostsList = new HttpHost[hosts.length];
+    @Bean
+    public ElasticsearchClient esRestClient() {
+        int urlIndex = uris.lastIndexOf(":");
+        String hostUrl = uris.substring(0, urlIndex).replaceAll("http://","");
+        Integer port = Integer.parseInt(uris.substring(urlIndex + 1, uris.length()));
 
-        for(int i = 0; i < hosts.length; ++i) {
-            HttpHost h = new HttpHost(hosts[i].split(":")[0], Integer.parseInt(hosts[i].split(":")[1]), "https");
-            httpHostsList[i] = h;
-        }
+        RestClient restClient = RestClient.builder(new HttpHost(hostUrl, port)).build();
 
-        log.debug("RestHighLevelClient_httpHostsList:{}", JSON.toJSONString(httpHostsList));
-        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-        credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(esUserName, esPassword));
-        Path caCertificatePath = Paths.get(eskeystorePath);
+        RestClientTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
 
-        try {
-            CertificateFactory factory = CertificateFactory.getInstance("X.509");
-            InputStream is = Files.newInputStream(caCertificatePath);
-            Throwable var11 = null;
-
-            Certificate trustedCa;
-            try {
-                trustedCa = factory.generateCertificate(is);
-            } catch (Throwable var21) {
-                var11 = var21;
-                throw var21;
-            } finally {
-                if (is != null) {
-                    if (var11 != null) {
-                        try {
-                            is.close();
-                        } catch (Throwable var20) {
-                            var11.addSuppressed(var20);
-                        }
-                    } else {
-                        is.close();
-                    }
-                }
-
-            }
-
-            KeyStore trustStore = KeyStore.getInstance("pkcs12");
-            trustStore.load((InputStream)null, (char[])null);
-            trustStore.setCertificateEntry("ca", trustedCa);
-            SSLContextBuilder sslContextBuilder = SSLContexts.custom().loadTrustMaterial(trustStore, (TrustStrategy)null);
-            SSLContext sslContext = sslContextBuilder.build();
-            RestClientBuilder builder = RestClient.builder(httpHostsList);
-            builder.setHttpClientConfigCallback((httpClientBuilder) -> {
-                return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider).setSSLContext(sslContext).setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE);
-            });
-            builder.setRequestConfigCallback(new RequestConfigCallback() {
-                public RequestConfig.Builder customizeRequestConfig(RequestConfig.Builder requestConfigBuilder) {
-                    return requestConfigBuilder.setConnectTimeout(5000000).setSocketTimeout(6000000);
-                }
-            });
-            RestHighLevelClient restHighLevelClient = new RestHighLevelClient(builder);
-            return restHighLevelClient;
-        } catch (Exception e) {
-           e.printStackTrace();
-        }
-
-        return null;
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+        return client;
     }
 
 
-
-    private static void close(RestHighLevelClient client) {
-        try {
-            client.close();
-        } catch (IOException var2) {
-            var2.printStackTrace();
-        }
-
-    }
-
-
-//    public static void main(String[] args) {
-//        try {
-//            RestHighLevelClient rc = getClient();
-//            Request request = new Request("POST", "http://10.0.81.188:9200/risk-20210327/_search?size=1");
-//            try {
-//                Response response = rc.getLowLevelClient().performRequest(request);
-//                String result = EntityUtils.toString(response.getEntity(), "UTF-8");
+    //如果存在密码,则用一下配置获取ElasticsearchClient
+//    @Bean
+//    public ElasticsearchClient esRestClient() {
+//        int urlIndex = uris.lastIndexOf(":");
+//        String hostUrl = uris.substring(0, urlIndex).replaceAll("http://","");
+//        Integer port = Integer.parseInt(uris.substring(urlIndex + 1, uris.length()));
 //
-//                System.out.println(result);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            } finally {
-//                rc.close();
-//            }
-//        } catch (Exception var11) {
-//            var11.printStackTrace();
-//        }
+//        final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+//        credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(username, password));
 //
+//        RestClient restClient = RestClient.builder(new HttpHost(hostUrl, port))
+//                .setHttpClientConfigCallback(httpClientBuilder -> httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider))
+//                .build();
+//
+//        RestClientTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+//
+//        ElasticsearchClient client = new ElasticsearchClient(transport);
+//        return client;
 //    }
 
 }

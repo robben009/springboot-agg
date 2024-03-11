@@ -38,9 +38,9 @@
         </dependency>
 
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connect-java-v}</version>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql-connect-j.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>

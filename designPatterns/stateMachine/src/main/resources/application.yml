@@ -12,9 +12,8 @@ spring:
     url: jdbc:mysql://${extraEnvHost}:3306/springBootDemo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&rewriteBatchedStatements=true
     username: ${jdbc.username}
     password: ${jdbc.pwd}
+    type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #使用druid数据源
-    type: com.alibaba.druid.pool.DruidDataSource
   data:
     redis:
       host: ${extraEnvHost}
