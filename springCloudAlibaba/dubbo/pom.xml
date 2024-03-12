@@ -10,7 +10,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-
     <groupId>hjz-dubbo-provider.groupId</groupId>
     <artifactId>dubbo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -18,14 +17,16 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>dubbo-api</module>
         <module>dubbo-consumer</module>
         <module>dubbo-provider</module>
-        <module>dubbo-api</module>
     </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <dubbo-spring-boot-starter.version>3.2.7</dubbo-spring-boot-starter.version>
+        <nacos-client.version>2.2.4</nacos-client.version>
     </properties>
 
 
