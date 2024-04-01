@@ -14,5 +14,11 @@ dubbo:
     port: -1
   registry:
     address: nacos://212.64.18.166:38080
+  provider:
+    threadpool:
+      core-pool-size: 10
+      max-pool-size: 20
+      queue-capacity: 100
+      keep-alive-seconds: 60
 
 #这个比较奇怪,如果改成了bootstrap.yml会存在启动问题

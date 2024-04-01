@@ -22,12 +22,5 @@
         <module>dubbo-provider</module>
     </modules>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <dubbo-spring-boot-starter.version>3.2.7</dubbo-spring-boot-starter.version>
-        <nacos-client.version>2.2.4</nacos-client.version>
-    </properties>
-
 
 </project>

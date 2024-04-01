@@ -1,6 +1,5 @@
 package com.robben;
 
-import com.robben.DubboDemoService;
 import com.robben.vo.StudentVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;

@@ -17,6 +17,7 @@
         <module>springCloudAlibaba</module>
         <module>designPatterns</module>
         <module>middleware/shardingJDBC</module>
+        <module>reactorSet</module>
     </modules>
 
     <name>springboot-agg</name>
@@ -30,6 +31,9 @@
         <mysql-connect-j.version>8.3.0</mysql-connect-j.version>
         <redisson-spring-boot-starter.version>3.16.1</redisson-spring-boot-starter.version>
         <xxl-job-core.version>2.4.0</xxl-job-core.version>
+
+        <dubbo-spring-boot-starter.version>3.2.11</dubbo-spring-boot-starter.version>
+        <nacos-client.version>2.2.4</nacos-client.version>
 
         <lombok.version>1.18.28</lombok.version>
         <fastjson2.version>2.0.39</fastjson2.version>
