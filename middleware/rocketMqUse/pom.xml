@@ -13,8 +13,8 @@
     <artifactId>rocketMqUse</artifactId>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>${maven-compiler-plugin.target}</maven.compiler.source>
+        <maven.compiler.target>${maven-compiler-plugin.target}</maven.compiler.target>
         <rocketMq-v>2.2.2</rocketMq-v>
         <rocketmq-client.version>5.2.0</rocketmq-client.version>
     </properties>

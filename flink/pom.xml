@@ -61,57 +61,7 @@
             <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
         </dependency>
-
-
     </dependencies>
-
-
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-assembly-plugin</artifactId>-->
-<!--                <version>3.0.0</version>-->
-<!--                <configuration>-->
-<!--                    <descriptorRefs>-->
-<!--                        <descriptorRef>jar-with-dependencies</descriptorRef>-->
-<!--                    </descriptorRefs>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>make-assembly</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>single</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
-
-
-<!--    <build>-->
-<!--          <resources>-->
-<!--               <resource>-->
-<!--                &lt;!&ndash; 要打包的文件所在的目录 &ndash;&gt;-->
-<!--                <directory>src/main/</directory>-->
-<!--                <includes>-->
-<!--                    <include>**/*.*</include>-->
-<!--                </includes>-->
-
-<!--                &lt;!&ndash; 或者也可以剔除不需要打包的文件 &ndash;&gt;-->
-<!--                <excludes>-->
-<!--                 <exclude>**/*.jsp</exclude>-->
-<!--                </excludes>-->
-
-<!--                &lt;!&ndash; 指定打包到目的文件夹 &ndash;&gt;-->
-<!--                <targetPath>META-INF</targetPath>-->
-<!--               </resource>-->
-<!--          </resources>-->
-<!--     </build>-->
-
 
 
 </project>

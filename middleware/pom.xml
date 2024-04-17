@@ -23,6 +23,7 @@
         <module>mongoDBUse</module>
         <module>redisExtend</module>
         <module>rocketMqUse</module>
+        <module>shardingJDBC</module>
     </modules>
 
 
