@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sentinelController")
 public class SentinelController {
-    @DubboReference
+    @DubboReference(version = "1.0.0",timeout = 5000)
     private DubboDemoService demoService;
 
 
@@ -39,7 +39,6 @@ public class SentinelController {
 
 
     @Operation(summary = "测试dubbo限流-默认方法")
-    @SentinelResource(value = "api3", blockHandlerClass = Tools.class, blockHandler = "webHandle")
     @PostMapping(value = "/getAppValue3")
     public String getAppValue3(@RequestBody String req) {
         return demoService.sayHello(new StudentVo(1,req));

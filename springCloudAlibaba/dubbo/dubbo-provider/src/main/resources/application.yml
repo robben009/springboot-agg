@@ -17,6 +17,15 @@ spring:
       discovery:
         server-addr: ${serverHost}:8848
         namespace: springBootAgg
+    sentinel:
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 150.158.121.165:8848
+            namespace: springBootAgg
+            group-id: DEFAULT_GROUP
+            dataId: dubbo-provider-flowRules
+            rule-type: flow
 
 dubbo:
   application:
@@ -27,11 +36,14 @@ dubbo:
     port: 20883
   registry:
     address: nacos://${serverHost}:8848
-    #对应的名称空间
-    group: springBootAgg
+    #对应的分组名称
+    group: DEFAULT_GROUP
+    #对应的命名空间
+    parameters:
+      namespace: springBootAgg
   consumer:
     #启动不在是否有提供者,默认true如果没有则终止进程
-    check: false
+    check: true
     #服务端如果返回超时(默认是1秒)会自动重试(默认是2秒)
     retries: 0
 
