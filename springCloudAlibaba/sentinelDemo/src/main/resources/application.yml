@@ -1,14 +1,14 @@
 server:
-  port: 8800
+  port: 8801
 
 serverHost: 150.158.121.165
 
 spring:
   application:
-    name: dubbo-provider
+    name: sentinelDemo
   config:
     import:
-      - nacos:dubbo-provider
+      - nacos:sentinelDemo
   cloud:
     nacos:
       config:
@@ -17,14 +17,24 @@ spring:
       discovery:
         server-addr: ${serverHost}:8848
         namespace: springBootAgg
+    sentinel:
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 150.158.121.165:8848
+            namespace: springBootAgg
+            group-id: DEFAULT_GROUP
+            dataId: sentinelDemo-flowRules
+            rule-type: flow
+
 
 dubbo:
   application:
-    name: dubbo-provider-dubbo
-    qos-port: 33334
+    name: sentinelDemo-dubbo
+    qos-port: 33333
   protocol:
     name: dubbo
-    port: 20883
+    port: 20882
   registry:
     address: nacos://${serverHost}:8848
     #对应的名称空间
@@ -34,4 +44,5 @@ dubbo:
     check: false
     #服务端如果返回超时(默认是1秒)会自动重试(默认是2秒)
     retries: 0
+
 

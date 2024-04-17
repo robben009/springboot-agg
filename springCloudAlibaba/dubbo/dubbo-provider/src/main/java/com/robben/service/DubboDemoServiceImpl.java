@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * Date: 2021/3/6 16:03
  */
 @Service
-@DubboService(version = "1.0.0",timeout = 50000)
+@DubboService(version = "1.0.0",timeout = 5000)
 public class DubboDemoServiceImpl implements DubboDemoService {
 
     @Override

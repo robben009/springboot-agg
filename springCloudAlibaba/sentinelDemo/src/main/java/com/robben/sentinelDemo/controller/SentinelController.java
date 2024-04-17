@@ -2,10 +2,15 @@ package com.robben.sentinelDemo.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.robben.DubboDemoService;
+import com.robben.sentinelDemo.tool.Tools;
+import com.robben.vo.StudentVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,32 +19,40 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sentinelController")
 public class SentinelController {
+    @DubboReference
+    private DubboDemoService demoService;
 
-    //测速控制台的话,需要放到服务上的才能测试看的
-    @Operation(summary = "静态配置-测试限流")
-    @SentinelResource(value = "getAppValue", blockHandler = "exceptionBlockHandler", fallback = "exceptionFallbackHandler")
+
+    @Operation(summary = "测试web限流")
+    @SentinelResource(value = "api", blockHandler = "exceptionBlockHandler", fallback = "exceptionFallbackHandler")
     @PostMapping(value = "/getAppValue")
-    public String getAppValue() {
-        return "getAppValueValue";
+    public String getAppValue(@RequestBody String req) {
+        return "测试web限流";
+    }
+
+    @Operation(summary = "测试web限流-默认方法")
+    @SentinelResource(value = "api", blockHandlerClass = Tools.class, blockHandler = "webHandle")
+    @PostMapping(value = "/getAppValue2")
+    public String getAppValue2(@RequestBody String req) {
+        return "测试web限流-默认方法";
     }
 
 
-    //动态配置规则
-    @Operation(summary = "动态配置规则-测试限流")
-    @SentinelResource(value = "getAppValue2", blockHandler = "exceptionBlockHandler", fallback = "exceptionFallbackHandler")
-    @PostMapping(value = "/getAppValue2")
-    public String getAppValue2() {
-        return "getAppValueValue2";
+    @Operation(summary = "测试dubbo限流-默认方法")
+    @SentinelResource(value = "api3", blockHandlerClass = Tools.class, blockHandler = "webHandle")
+    @PostMapping(value = "/getAppValue3")
+    public String getAppValue3(@RequestBody String req) {
+        return demoService.sayHello(new StudentVo(1,req));
     }
 
 
     // Fallback 函数，函数签名与原函数一致或加一个 Throwable 类型的参数.
-    public String exceptionFallbackHandler() {
+    public String exceptionFallbackHandler(@RequestBody String req) {
         return "helloFallback~~~~~~~~~~~~";
     }
 
     // Block 异常处理函数，参数最后多一个 BlockException，其余与原函数一致.
-    public String exceptionBlockHandler(BlockException ex) {
+    public String exceptionBlockHandler(@RequestBody String req, BlockException ex) {
         // Do some log here.
         ex.printStackTrace();
         return "exceptionHandler~~~~~~~~~";

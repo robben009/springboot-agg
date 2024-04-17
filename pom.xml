@@ -30,7 +30,7 @@
         <maven-compiler-plugin.target>17</maven-compiler-plugin.target>
 
         <!-- https://doc.xiaominfo.com/docs/quick-start/start-knife4j-version  -->
-        <knife4j.version>4.3.0</knife4j.version>
+        <knife4j.version>4.4.0</knife4j.version>
 
         <mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
         <mysql-connect-j.version>8.3.0</mysql-connect-j.version>
