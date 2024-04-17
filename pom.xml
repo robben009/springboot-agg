@@ -16,6 +16,7 @@
         <module>middleware</module>
         <module>springCloudAlibaba</module>
         <module>designPatterns</module>
+        <module>bigdata</module>
     </modules>
 
     <name>springboot-agg</name>
