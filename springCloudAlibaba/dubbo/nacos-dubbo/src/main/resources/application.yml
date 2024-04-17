@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: KKKKKK
+  config:
+    import:
+      - nacos:shardingJDBC1
+  cloud:
+    nacos:
+      config:
+        server-addr: 150.158.121.165:8848
+        namespace: public
+      discovery:
+        server-addr: 150.158.121.165:8848
+        namespace: public
+
+#
+dubbo:
+  application:
+    name: KKKKKK-dubbo
+    qos-port: 33333
+  protocol:
+    name: dubbo
+    port: 20881
+  registry:
+    address: nacos://150.158.121.165:8848
+  consumer:
+    #启动不在是否有提供者,默认true如果没有则终止进程
+    check: false
+    #服务端如果返回超时(默认是1秒)会自动重试(默认是2秒)
+    retries: 0
+
+
+server:
+  port: 58006
+
+
+# 有些jdk版本不支持 https://github.com/alibaba/Sentinel/issues/1282
+#    sentinel:
+#      eager: true
+#      datasource:
+#        ds1:
+#          nacos:
+#            server-addr: 150.158.121.165:8848
+#            namespace: public
+#            group-id: DEFAULT_GROUP
+#            dataId: power-station-core-flow-rules
+#            rule-type: flow

@@ -20,6 +20,7 @@
         <module>dubbo-api</module>
         <module>dubbo-consumer</module>
         <module>dubbo-provider</module>
+        <module>nacos-dubbo</module>
     </modules>
 
 
