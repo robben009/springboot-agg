@@ -13,9 +13,6 @@
     <artifactId>dutyChain</artifactId>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-
         <xxl-job-v>2.3.0</xxl-job-v>
     </properties>
 

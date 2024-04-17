@@ -1,0 +1,19 @@
+server:
+  port: 9011
+
+spring:
+  kafka:
+    streams:
+      application-id: test-kafka-stream
+      bootstrap-servers: 127.0.0.1:9092
+      properties:
+        default:
+          key:
+            serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+          value:
+            serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+          timestamp:
+            extractor: org.apache.kafka.streams.processor.WallclockTimestampExtractor
+    consumer:
+      group-id: abc
+    bootstrap-servers: 127.0.0.1:9092

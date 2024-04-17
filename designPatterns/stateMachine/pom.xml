@@ -14,9 +14,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>${maven-compiler-plugin.target}</maven.compiler.source>
-        <maven.compiler.target>${maven-compiler-plugin.target}</maven.compiler.target>
-
         <druid-v>1.2.18</druid-v>
         <mybatis-generator-maven-plugin-v>1.4.2</mybatis-generator-maven-plugin-v>
     </properties>
