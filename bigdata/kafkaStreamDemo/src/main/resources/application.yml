@@ -8,11 +8,17 @@ spring:
       group-id: abc
 
     streams:
+      #唯一标识你的Streams应用程序的ID，用来区分不同的Streams应用程序
       application-id: test-kafka-stream
       bootstrap-servers: 127.0.0.1:9092
+      #Streams应用中的每一个流处理实例的标识
+      client-id: test-kafka-stream-id
       properties:
         default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
         default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        #将使用消息到达时的系统时间（"墙上时间"）作为消息的时间戳
         default.timestamp.extractor: org.apache.kafka.streams.processor.WallclockTimestampExtractor
         #Kafka Streams应用程序每*秒自动提交一次其当前状态，包括窗口聚合、KTable状态更新(默认是30秒),可参考https://kafka.apache.org/documentation/streams/
         commit.interval.ms: 1000
+        #进行流处理的线程数量(一般与分区数相等)
+        num.stream.threads: 1
