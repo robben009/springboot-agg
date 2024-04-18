@@ -38,5 +38,23 @@ public class DemoController {
     }
 
 
+    @GetMapping("/addData2")
+    public String addData2() {
+        int count = 20;
+        for (int i = 0; i < count; i++) {
+            JSONObject data = new JSONObject();
+            data.put("age", i);
+
+            if (i % 2 == 0) {
+                data.put("name", "aaa");
+            } else {
+                data.put("name", "bbb");
+            }
+
+            kafkaTemplate.send(TopicContants.inputTopic2, data.getString("name"), data.toJSONString());
+        }
+
+        return "ok";
+    }
 }
 

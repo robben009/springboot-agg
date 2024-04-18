@@ -16,6 +16,9 @@ import java.time.Duration;
 @Slf4j
 public class KafkaStreamTestListener {
 
+    /**
+     * 直接依据消息中的某个字段做为分组聚合的依据，发送消息时可以直接发送字符串
+     */
     @Bean
     public KStream<String, String> kStream(StreamsBuilder streamsBuilder) {
         //创建kstream对象，同时指定从那个topic中接收消息
@@ -37,10 +40,35 @@ public class KafkaStreamTestListener {
                 //下面两种方式都可以转发到其他topic中
 //                .map((key, value) -> new KeyValue<>(key.key(), value))
 //                .to(TopicContants.outputTopic)
-                .to(TopicContants.outputTopic, Produced.with(WindowedSerdes.timeWindowedSerdeFrom(String.class), Serdes.String()));
+                .to(TopicContants.outputTopic, Produced.with(WindowedSerdes.timeWindowedSerdeFrom(String.class), Serdes.String()))
         ;
 
         return inputStream;
     }
+
+
+    /**
+     * 直接依据消息中的key作为分组依据,然后去重发送到其他topic中.
+     * 注意，要求发送消息的时候要注意key的赋值，不能直接发送一个消息字符串，需要携带一个key
+     * @param streamsBuilder
+     * @return
+     */
+    @Bean
+    public KStream<String, String> kStream2(StreamsBuilder streamsBuilder) {
+        //创建kstream对象，同时指定从那个topic中接收消息
+        KStream<String, String> inputStream = streamsBuilder.stream(TopicContants.inputTopic2);
+
+        inputStream
+                .groupByKey()
+                .windowedBy(TimeWindows.of(Duration.ofSeconds(5)))
+                .reduce((value1, value2) -> value2, Materialized.as("deduplicated-store2"))
+                .toStream()
+                .to(TopicContants.outputTopic2, Produced.with(WindowedSerdes.timeWindowedSerdeFrom(String.class), Serdes.String()))
+        ;
+
+        return inputStream;
+    }
+
+
 
 }

@@ -17,5 +17,17 @@ public class MyConsumer {
     public void processMessage2(String content) {
         log.info("outputTopic......" + content);
     }
+
+    @KafkaListener(topics = TopicContants.inputTopic2)
+    public void processMessage3(String content) {
+        log.info("inputTopic2......" + content);
+    }
+
+    @KafkaListener(topics = TopicContants.outputTopic2)
+    public void processMessage4(String content) {
+        log.info("outputTopic2......" + content);
+    }
+
+
 }
 
