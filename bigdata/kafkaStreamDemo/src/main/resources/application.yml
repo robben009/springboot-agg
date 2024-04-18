@@ -11,11 +11,8 @@ spring:
       application-id: test-kafka-stream
       bootstrap-servers: 127.0.0.1:9092
       properties:
-        default:
-          key:
-            serde: org.apache.kafka.common.serialization.Serdes$StringSerde
-          value:
-            serde: org.apache.kafka.common.serialization.Serdes$StringSerde
-          timestamp:
-            extractor: org.apache.kafka.streams.processor.WallclockTimestampExtractor
-
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.timestamp.extractor: org.apache.kafka.streams.processor.WallclockTimestampExtractor
+        #Kafka Streams应用程序每*秒自动提交一次其当前状态，包括窗口聚合、KTable状态更新(默认是30秒),可参考https://kafka.apache.org/documentation/streams/
+        commit.interval.ms: 1000
