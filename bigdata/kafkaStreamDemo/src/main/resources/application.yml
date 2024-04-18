@@ -3,6 +3,10 @@ server:
 
 spring:
   kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      group-id: abc
+
     streams:
       application-id: test-kafka-stream
       bootstrap-servers: 127.0.0.1:9092
@@ -14,6 +18,4 @@ spring:
             serde: org.apache.kafka.common.serialization.Serdes$StringSerde
           timestamp:
             extractor: org.apache.kafka.streams.processor.WallclockTimestampExtractor
-    consumer:
-      group-id: abc
-    bootstrap-servers: 127.0.0.1:9092
+
