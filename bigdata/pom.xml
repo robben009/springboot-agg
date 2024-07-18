@@ -19,7 +19,6 @@
 
     <modules>
         <module>flinkDemo</module>
-        <module>kafkaStreamDemo</module>
     </modules>
 
 

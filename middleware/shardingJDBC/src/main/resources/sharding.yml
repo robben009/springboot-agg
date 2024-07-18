@@ -5,8 +5,23 @@ dataSources:
     jdbcUrl: jdbc:mysql://150.158.121.165:53306/sharding?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: JZh2019@nodejsjava
+    hikari:
+      minimum-idle: 200 # 最小空闲连接数量
+      maximum-pool-size: 200 # 连接池最大连接数，默认是10
+      idle-timeout: 600000 # 空闲连接存活最大时间，默认600000（10分钟）
+      auto-commit: true # 自动提交行为,默认值：true
+      pool-name: playHikariPool # 连接池名称
+      max-lifetime: 1800000 # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      connection-timeout: 30000 # 数据库连接超时时间,默认30秒，即30000
+      connection-test-query: Select 1
+      
 
 rules:
+  #可以获取单表的数据
+  - !SINGLE
+      tables:
+        - "*.*"
+      defaultDataSource: ds_0
   - !SHARDING
     tables:
       t_order:

@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.hjz.bigdata</groupId>
-        <artifactId>bigdata</artifactId>
+        <groupId>middleware.groupId</groupId>
+        <artifactId>middleware</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -27,8 +27,6 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-streams</artifactId>
         </dependency>
-
-
     </dependencies>
 
 
