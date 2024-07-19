@@ -1,7 +1,7 @@
 package com.robben.agg.base.service;
 
-import com.robben.common.Contants;
-import com.robben.utils.OtherUtils;
+import com.robben.agg.base.common.Contants;
+import com.robben.agg.base.utils.OtherUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;

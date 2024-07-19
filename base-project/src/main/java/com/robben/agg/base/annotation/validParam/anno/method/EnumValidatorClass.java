@@ -1,8 +1,7 @@
 package com.robben.agg.base.annotation.validParam.anno.method;
 
-import com.robben.annotation.validParam.anno.EnumValidator;
+import com.robben.agg.base.annotation.validParam.anno.EnumValidator;
 import lombok.extern.slf4j.Slf4j;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.annotation.Annotation;

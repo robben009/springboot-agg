@@ -1,7 +1,7 @@
 package com.robben.agg.base.model;
 
-import com.robben.annotation.validParam.anno.ValidGroup;
-import com.robben.entity.UserInfoEntity;
+import com.robben.agg.base.annotation.validParam.anno.ValidGroup;
+import com.robben.agg.base.entity.UserInfoEntity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

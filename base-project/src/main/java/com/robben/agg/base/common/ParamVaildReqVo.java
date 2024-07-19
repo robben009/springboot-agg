@@ -1,6 +1,6 @@
 package com.robben.agg.base.common;
 
-import com.robben.model.valid.ParamValidAdd;
+import com.robben.agg.base.model.valid.ParamValidAdd;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

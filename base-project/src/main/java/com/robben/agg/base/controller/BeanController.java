@@ -1,7 +1,7 @@
 package com.robben.agg.base.controller;
 
+import com.robben.agg.base.utils.OtherUtils;
 import com.robben.agg.customstarter.HelloService;
-import com.robben.utils.OtherUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;

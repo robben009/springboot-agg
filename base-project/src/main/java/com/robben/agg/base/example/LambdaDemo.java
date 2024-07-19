@@ -1,6 +1,6 @@
 package com.robben.agg.base.example;
 
-import com.robben.model.StudentVo;
+import com.robben.agg.base.model.StudentVo;
 
 import java.util.Arrays;
 import java.util.List;

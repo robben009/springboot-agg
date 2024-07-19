@@ -1,6 +1,6 @@
 package com.robben.agg.base.annotation.validParam.anno;
 
-import com.robben.annotation.validParam.anno.method.EnumValidatorClass;
+import com.robben.agg.base.annotation.validParam.anno.method.EnumValidatorClass;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

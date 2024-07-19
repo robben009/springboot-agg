@@ -1,7 +1,7 @@
 package com.robben.agg.base.example;
 
 import com.google.common.base.Joiner;
-import com.robben.model.StudentVo;
+import com.robben.agg.base.model.StudentVo;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;

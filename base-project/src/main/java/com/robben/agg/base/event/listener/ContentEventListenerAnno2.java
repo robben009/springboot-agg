@@ -1,7 +1,7 @@
 package com.robben.agg.base.event.listener;
 
 import com.alibaba.fastjson2.JSON;
-import com.robben.event.ContentAnnoEvent;
+import com.robben.agg.base.event.ContentAnnoEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;

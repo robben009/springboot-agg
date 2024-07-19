@@ -1,4 +1,4 @@
-package com.robben.agg.base.agg.base;
+package com.robben.agg.base;
 
 import cn.hutool.core.net.NetUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +16,7 @@ public class Application {
     public static void main(String[] args) {
         //下面语句使得日志输出使用异步处理，减小输出日志对性能的影响
         System.setProperty("Log4jContextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
-
         SpringApplication.run(Application.class, args);
-
 //        SpringApplication application = new SpringApplication(Application.class);
 //        application.setDefaultProperties(getInitConfFile());
 //        application.run(args);

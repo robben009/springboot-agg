@@ -1,8 +1,8 @@
 package com.robben.agg.base.event.listener;
 
 import com.alibaba.fastjson2.JSON;
-import com.robben.controller.EventController;
-import com.robben.event.ContentSmartEvent;
+import com.robben.agg.base.controller.EventController;
+import com.robben.agg.base.event.ContentSmartEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.SmartApplicationListener;

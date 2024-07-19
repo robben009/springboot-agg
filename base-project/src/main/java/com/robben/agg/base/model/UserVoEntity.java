@@ -1,8 +1,8 @@
 package com.robben.agg.base.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.robben.enums.CommonErrorCodeEnum;
-import com.robben.annotation.validParam.anno.NotNull;
+import com.robben.agg.base.annotation.validParam.anno.MyNotNull;
+import com.robben.agg.base.enums.CommonErrorCodeEnum;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 public class UserVoEntity implements Serializable {
 
-    @NotNull(codeEnum = CommonErrorCodeEnum.P_Common_ParamMissing)
+    @MyNotNull(codeEnum = CommonErrorCodeEnum.P_Common_ParamMissing)
     private Integer id;
 
     private String name;

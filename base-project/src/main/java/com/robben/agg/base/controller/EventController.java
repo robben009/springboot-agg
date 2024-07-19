@@ -1,9 +1,9 @@
 package com.robben.agg.base.controller;
 
-import com.robben.entity.UserInfoEntity;
-import com.robben.event.ContentAnnoEvent;
-import com.robben.event.ContentEvent;
-import com.robben.event.ContentSmartEvent;
+import com.robben.agg.base.entity.UserInfoEntity;
+import com.robben.agg.base.event.ContentAnnoEvent;
+import com.robben.agg.base.event.ContentEvent;
+import com.robben.agg.base.event.ContentSmartEvent;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
