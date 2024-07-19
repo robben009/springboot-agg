@@ -1,4 +1,4 @@
-package com.robben.config.mybtis;
+package com.robben.agg.base.config.mybtis;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;

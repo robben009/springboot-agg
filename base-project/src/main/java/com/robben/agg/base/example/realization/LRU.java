@@ -1,4 +1,4 @@
-package com.robben.example.realization;
+package com.robben.agg.base.example.realization;
 
 import java.util.LinkedHashMap;
 

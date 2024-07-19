@@ -1,4 +1,4 @@
-package com.robben.controller;
+package com.robben.agg.base.controller;
 
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.crypto.SecureUtil;
@@ -9,12 +9,12 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.robben.common.ResponseEntityDto;
-import com.robben.common.UnifiedReply;
-import com.robben.dao.mapper.UserInfoMapper;
-import com.robben.dao.service.UserInfoService;
-import com.robben.entity.UserInfoEntity;
-import com.robben.service.MpUseService;
+import com.robben.agg.base.common.ResponseEntityDto;
+import com.robben.agg.base.common.UnifiedReply;
+import com.robben.agg.base.dao.mapper.UserInfoMapper;
+import com.robben.agg.base.dao.service.UserInfoService;
+import com.robben.agg.base.entity.UserInfoEntity;
+import com.robben.agg.base.service.MpUseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;

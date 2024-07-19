@@ -1,4 +1,4 @@
-package com.robben.controller;
+package com.robben.agg.base.controller;
 
 import com.robben.entity.UserInfoEntity;
 import com.robben.event.ContentAnnoEvent;

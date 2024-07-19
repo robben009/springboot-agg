@@ -1,4 +1,4 @@
-package com.robben.event.listener;
+package com.robben.agg.base.event.listener;
 
 import com.alibaba.fastjson2.JSON;
 import com.robben.event.ContentEvent;

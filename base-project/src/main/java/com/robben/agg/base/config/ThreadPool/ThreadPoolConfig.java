@@ -1,4 +1,4 @@
-package com.robben.config.ThreadPool;
+package com.robben.agg.base.config.ThreadPool;
 
 import com.google.common.base.Joiner;
 import lombok.extern.slf4j.Slf4j;

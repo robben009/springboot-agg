@@ -1,9 +1,9 @@
-package com.robben.dao.service.impl;
+package com.robben.agg.base.dao.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.robben.dao.mapper.UserInfoMapper;
-import com.robben.dao.service.UserInfoService;
-import com.robben.entity.UserInfoEntity;
+import com.robben.agg.base.dao.mapper.UserInfoMapper;
+import com.robben.agg.base.dao.service.UserInfoService;
+import com.robben.agg.base.entity.UserInfoEntity;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity>
-    implements UserInfoService{
+    implements UserInfoService {
 
 }
 

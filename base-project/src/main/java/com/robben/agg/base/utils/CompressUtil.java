@@ -1,4 +1,4 @@
-package com.robben.utils;
+package com.robben.agg.base.utils;
 
 import com.carrotsearch.sizeof.RamUsageEstimator;
 import lombok.extern.slf4j.Slf4j;

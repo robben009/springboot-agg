@@ -1,4 +1,4 @@
-package com.robben.example.singleton;
+package com.robben.agg.base.example.singleton;
 
 /**
  * Description： TODO

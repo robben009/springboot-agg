@@ -1,4 +1,4 @@
-package com.robben.controller;
+package com.robben.agg.base.controller;
 
 import lombok.Data;
 

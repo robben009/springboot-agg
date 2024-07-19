@@ -1,4 +1,4 @@
-package com.robben.controller;
+package com.robben.agg.base.controller;
 
 import com.robben.agg.customstarter.HelloService;
 import com.robben.utils.OtherUtils;

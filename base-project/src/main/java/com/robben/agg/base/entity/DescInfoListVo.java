@@ -1,4 +1,4 @@
-package com.robben.entity;
+package com.robben.agg.base.entity;
 
 import lombok.Data;
 

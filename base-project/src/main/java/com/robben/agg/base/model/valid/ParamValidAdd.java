@@ -1,4 +1,4 @@
-package com.robben.model.valid;
+package com.robben.agg.base.model.valid;
 
 /**
  * Description： TODO

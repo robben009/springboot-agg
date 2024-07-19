@@ -1,7 +1,8 @@
-package com.robben.dao.service;
+package com.robben.agg.base.dao.service;
+
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.robben.entity.UserInfoEntity;
+import com.robben.agg.base.entity.UserInfoEntity;
 
 /**
 * @author hjz

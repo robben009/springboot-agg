@@ -1,4 +1,4 @@
-package com.robben.utils.guava;
+package com.robben.agg.base.utils.guava;
 
 import com.google.common.eventbus.Subscribe;
 

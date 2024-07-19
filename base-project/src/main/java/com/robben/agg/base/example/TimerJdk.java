@@ -1,4 +1,4 @@
-package com.robben.example;
+package com.robben.agg.base.example;
 
 import java.util.Calendar;
 import java.util.Date;

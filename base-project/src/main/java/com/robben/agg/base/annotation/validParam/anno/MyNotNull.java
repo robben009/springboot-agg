@@ -1,14 +1,12 @@
-package com.robben.annotation.validParam.anno;
+package com.robben.agg.base.annotation.validParam.anno;
 
-
-import com.robben.enums.CommonErrorCodeEnum;
-
+import com.robben.agg.base.enums.CommonErrorCodeEnum;
 import java.lang.annotation.*;
 
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
-public  @interface NotNull {
+public  @interface MyNotNull {
 
     CommonErrorCodeEnum codeEnum();
 

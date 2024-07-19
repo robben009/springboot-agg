@@ -1,4 +1,4 @@
-package com.robben.config;
+package com.robben.agg.base.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.google.common.collect.Lists;

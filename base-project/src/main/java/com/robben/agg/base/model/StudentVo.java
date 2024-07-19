@@ -1,4 +1,4 @@
-package com.robben.model;
+package com.robben.agg.base.model;
 
 import lombok.Data;
 

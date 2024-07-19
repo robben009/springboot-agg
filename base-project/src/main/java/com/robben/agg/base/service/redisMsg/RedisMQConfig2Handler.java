@@ -1,4 +1,4 @@
-package com.robben.service.redisMsg;
+package com.robben.agg.base.service.redisMsg;
 
 public interface RedisMQConfig2Handler {
 

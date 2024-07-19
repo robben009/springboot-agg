@@ -1,4 +1,4 @@
-package com.robben.event;
+package com.robben.agg.base.event;
 
 import org.springframework.context.ApplicationEvent;
 

@@ -1,4 +1,4 @@
-package com.robben.enums;
+package com.robben.agg.base.enums;
 
 /**
  * 系统异常错误码

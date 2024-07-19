@@ -1,4 +1,4 @@
-package com.robben.example.proxy.JdkDong;
+package com.robben.agg.base.example.proxy.JdkDong;
 
 public interface Star
 {

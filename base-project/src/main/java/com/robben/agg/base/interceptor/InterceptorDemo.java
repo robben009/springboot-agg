@@ -1,4 +1,4 @@
-package com.robben.interceptor;
+package com.robben.agg.base.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;

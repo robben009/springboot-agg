@@ -1,4 +1,4 @@
-package com.robben.agg.base;
+package com.robben.agg.base.agg.base;
 
 import cn.hutool.core.net.NetUtil;
 import lombok.extern.slf4j.Slf4j;

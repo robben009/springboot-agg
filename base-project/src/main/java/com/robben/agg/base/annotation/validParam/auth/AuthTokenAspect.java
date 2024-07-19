@@ -1,4 +1,4 @@
-package com.robben.annotation.validParam.auth;
+package com.robben.agg.base.annotation.validParam.auth;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

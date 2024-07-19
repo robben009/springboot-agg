@@ -1,4 +1,4 @@
-package com.robben.model.jsonChange;
+package com.robben.agg.base.model.jsonChange;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;

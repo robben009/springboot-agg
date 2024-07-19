@@ -1,4 +1,4 @@
-package com.robben.common;
+package com.robben.agg.base.common;
 
 public enum ResultEnum {
 

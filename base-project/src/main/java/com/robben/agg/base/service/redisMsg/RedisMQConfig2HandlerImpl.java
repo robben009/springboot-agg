@@ -1,6 +1,6 @@
-package com.robben.service.redisMsg;
+package com.robben.agg.base.service.redisMsg;
 
-import com.robben.config.RedisConfig.RedisMQChannels;
+import com.robben.agg.base.config.RedisConfig.RedisMQChannels;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

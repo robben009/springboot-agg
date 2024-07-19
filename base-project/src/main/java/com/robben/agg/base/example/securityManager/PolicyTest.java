@@ -1,4 +1,4 @@
-package com.robben.example.securityManager;
+package com.robben.agg.base.example.securityManager;
 
 import java.io.*;
 import java.lang.reflect.Method;

@@ -1,4 +1,4 @@
-package com.robben.config.RedisConfig;
+package com.robben.agg.base.config.RedisConfig;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;

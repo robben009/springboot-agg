@@ -1,4 +1,4 @@
-package com.robben.config.ThreadPool;
+package com.robben.agg.base.config.ThreadPool;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;

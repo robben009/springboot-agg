@@ -4,7 +4,7 @@
  * Official Web Site: http://www.xiaominfo.com.
  * Developer Web Site: http://open.xiaominfo.com.
  */
-package com.robben.model.req;
+package com.robben.agg.base.model.req;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

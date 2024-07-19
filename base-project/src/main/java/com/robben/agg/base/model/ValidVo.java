@@ -1,4 +1,4 @@
-package com.robben.model;
+package com.robben.agg.base.model;
 
 import com.robben.annotation.validParam.anno.ValidGroup;
 import com.robben.entity.UserInfoEntity;

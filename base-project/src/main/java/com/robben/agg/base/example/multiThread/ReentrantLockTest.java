@@ -1,4 +1,4 @@
-package com.robben.example.multiThread;
+package com.robben.agg.base.example.multiThread;
 
 import lombok.extern.slf4j.Slf4j;
 

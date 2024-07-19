@@ -1,4 +1,4 @@
-package com.robben.annotation.validParam.anno;
+package com.robben.agg.base.annotation.validParam.anno;
 
 import javax.validation.groups.Default;
 

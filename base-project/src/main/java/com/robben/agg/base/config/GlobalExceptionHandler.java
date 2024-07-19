@@ -1,4 +1,4 @@
-package com.robben.config;
+package com.robben.agg.base.config;
 
 import com.robben.model.ResultEnum;
 import com.robben.common.ResponseEntityDto;

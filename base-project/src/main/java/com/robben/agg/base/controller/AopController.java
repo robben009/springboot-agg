@@ -1,9 +1,9 @@
-package com.robben.controller;
+package com.robben.agg.base.controller;
 
-import com.robben.annotation.aop.DeclareParents.Animal;
-import com.robben.annotation.aop.DeclareParents.Person;
-import com.robben.annotation.aop.DeclareParents.Women;
-import com.robben.service.AopService;
+import com.robben.agg.base.annotation.aop.DeclareParents.Animal;
+import com.robben.agg.base.annotation.aop.DeclareParents.Person;
+import com.robben.agg.base.annotation.aop.DeclareParents.Women;
+import com.robben.agg.base.service.AopService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;

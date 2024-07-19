@@ -1,4 +1,4 @@
-package com.robben.config.RedisConfig;
+package com.robben.agg.base.config.RedisConfig;
 
 import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;

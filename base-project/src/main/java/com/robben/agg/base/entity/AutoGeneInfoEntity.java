@@ -1,4 +1,4 @@
-package com.robben.entity;
+package com.robben.agg.base.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

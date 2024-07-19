@@ -1,4 +1,4 @@
-package com.robben.example.objectSize;
+package com.robben.agg.base.example.objectSize;
 
 import com.carrotsearch.sizeof.RamUsageEstimator;
 

@@ -1,6 +1,6 @@
-package com.robben.service;
+package com.robben.agg.base.service;
 
-import com.robben.entity.UserInfoEntity;
+import com.robben.agg.base.entity.UserInfoEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

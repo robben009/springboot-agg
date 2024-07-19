@@ -1,4 +1,4 @@
-package com.robben.example.multiThread.lock;
+package com.robben.agg.base.example.multiThread.lock;
 
 /**
  * Description： TODO

@@ -1,4 +1,4 @@
-package com.robben.event;
+package com.robben.agg.base.event;
 
 import com.robben.entity.UserInfoEntity;
 import org.springframework.context.ApplicationEvent;

@@ -1,4 +1,4 @@
-package com.robben.config.DBConfig;
+package com.robben.agg.base.config.DBConfig;
 
 import org.springframework.stereotype.Component;
 

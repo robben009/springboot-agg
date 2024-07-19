@@ -1,4 +1,4 @@
-package com.robben.example.proxy.JdkDong;
+package com.robben.agg.base.example.proxy.JdkDong;
 
 // jdk的动态代理  https://blog.csdn.net/flyfeifei66/article/details/81481222
 public class TestProxy {

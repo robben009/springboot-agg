@@ -1,4 +1,4 @@
-package com.robben.annotation.aop.DeclareParents;
+package com.robben.agg.base.annotation.aop.DeclareParents;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.DeclareParents;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AspectConfig {
     //"+"表示Men的所有子类(2.0以后版本+不能用了)；defaultImpl 表示默认需要添加的新的类
-    @DeclareParents(value = "com.robben.annotation.aop.DeclareParents.Women", defaultImpl = FemaleAnimal2.class)
+    @DeclareParents(value = "com.robben.agg.base.annotation.aop.DeclareParents.Women", defaultImpl = FemaleAnimal2.class)
     public Animal animal;
 
 }

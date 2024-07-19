@@ -1,4 +1,4 @@
-package com.robben.example;
+package com.robben.agg.base.example;
 
 import com.google.common.base.Joiner;
 import com.robben.model.StudentVo;

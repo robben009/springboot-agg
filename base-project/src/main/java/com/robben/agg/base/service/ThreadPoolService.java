@@ -1,4 +1,4 @@
-package com.robben.service;
+package com.robben.agg.base.service;
 
 import com.robben.common.Contants;
 import com.robben.utils.OtherUtils;

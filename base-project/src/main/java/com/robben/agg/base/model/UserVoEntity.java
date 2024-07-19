@@ -1,4 +1,4 @@
-package com.robben.model;
+package com.robben.agg.base.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.robben.enums.CommonErrorCodeEnum;

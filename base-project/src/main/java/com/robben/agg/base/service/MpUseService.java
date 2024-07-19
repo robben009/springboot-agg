@@ -1,8 +1,8 @@
-package com.robben.service;
+package com.robben.agg.base.service;
 
-import com.robben.entity.DescInfoListVo;
-import com.robben.entity.DescInfoVo;
-import com.robben.entity.UserInfoEntity;
+import com.robben.agg.base.entity.DescInfoListVo;
+import com.robben.agg.base.entity.DescInfoVo;
+import com.robben.agg.base.entity.UserInfoEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

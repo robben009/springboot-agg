@@ -1,4 +1,4 @@
-package com.robben.example.proxy.JdkDong;
+package com.robben.agg.base.example.proxy.JdkDong;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

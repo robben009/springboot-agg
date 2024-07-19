@@ -1,4 +1,4 @@
-package com.robben.interceptor;
+package com.robben.agg.base.interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.robben.config.RedisConfig;
+package com.robben.agg.base.config.RedisConfig;
 
 import org.springframework.stereotype.Component;
 

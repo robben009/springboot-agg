@@ -1,4 +1,4 @@
-package com.robben.annotation.validParam.self;
+package com.robben.agg.base.annotation.validParam.self;
 
 import com.alibaba.fastjson2.JSONObject;
 import org.springframework.http.HttpStatus;

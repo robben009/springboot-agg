@@ -1,4 +1,4 @@
-//package com.robben.convert;
+//package com.robben.agg.base.convert;
 //
 //import org.mapstruct.Mapper;
 //import org.mapstruct.Mapping;

@@ -1,4 +1,4 @@
-package com.robben.annotation.validParam.anno.method;
+package com.robben.agg.base.annotation.validParam.anno.method;
 
 import com.robben.annotation.validParam.anno.EnumValidator;
 import lombok.extern.slf4j.Slf4j;

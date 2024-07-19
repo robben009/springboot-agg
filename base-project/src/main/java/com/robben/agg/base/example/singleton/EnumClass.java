@@ -1,4 +1,4 @@
-package com.robben.example.singleton;
+package com.robben.agg.base.example.singleton;
 
 /**
  * Description： 除了枚举其他几种都会反射破坏了单例

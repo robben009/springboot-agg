@@ -1,4 +1,4 @@
-package com.robben.common;
+package com.robben.agg.base.common;
 
 import com.robben.model.valid.ParamValidAdd;
 import io.swagger.v3.oas.annotations.media.Schema;

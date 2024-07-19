@@ -1,4 +1,4 @@
-package com.robben.example.proxy.Static;
+package com.robben.agg.base.example.proxy.Static;
 
 public class Test{
     public static void main(String[] args) {

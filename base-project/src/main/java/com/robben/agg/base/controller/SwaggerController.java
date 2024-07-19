@@ -1,4 +1,4 @@
-package com.robben.controller;
+package com.robben.agg.base.controller;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;

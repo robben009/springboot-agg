@@ -1,7 +1,7 @@
-package com.robben.annotation.validParam.self;
+package com.robben.agg.base.annotation.validParam.self;
 
 
-import com.robben.entity.UserInfoEntity;
+import com.robben.agg.base.entity.UserInfoEntity;
 
 public class Test {
     private static CheckParamsParser paramsParser = new CheckParamsParser();

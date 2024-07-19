@@ -1,4 +1,4 @@
-package com.robben.controller;
+package com.robben.agg.base.controller;
 
 import com.robben.annotation.validParam.auth.AuthToken;
 import com.robben.annotation.validParam.anno.ValidGroup;

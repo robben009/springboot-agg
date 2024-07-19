@@ -1,4 +1,4 @@
-package com.robben.example.proxy.cglib;
+package com.robben.agg.base.example.proxy.cglib;
 
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;

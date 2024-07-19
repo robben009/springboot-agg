@@ -1,4 +1,4 @@
-package com.robben.example;
+package com.robben.agg.base.example;
 
 public class RedBlackTree {
     private final int R = 0;

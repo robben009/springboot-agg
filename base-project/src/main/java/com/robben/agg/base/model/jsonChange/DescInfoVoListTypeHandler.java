@@ -1,8 +1,7 @@
-package com.robben.model.jsonChange;
+package com.robben.agg.base.model.jsonChange;
 
 import com.alibaba.fastjson2.TypeReference;
-import com.robben.entity.DescInfoVo;
-
+import com.robben.agg.base.entity.DescInfoVo;
 import java.util.List;
 
 

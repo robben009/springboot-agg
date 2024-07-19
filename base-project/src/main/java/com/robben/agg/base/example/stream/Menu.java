@@ -1,4 +1,4 @@
-package com.robben.example.stream;
+package com.robben.agg.base.example.stream;
 
 import lombok.Builder;
 import lombok.Data;

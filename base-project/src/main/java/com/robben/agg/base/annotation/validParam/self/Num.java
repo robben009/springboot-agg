@@ -1,4 +1,4 @@
-//package com.robben.annotation.validParam.self;
+//package com.robben.agg.base.annotation.validParam.self;
 //
 //
 //import java.lang.annotation.*;

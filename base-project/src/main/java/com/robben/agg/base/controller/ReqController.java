@@ -1,4 +1,4 @@
-package com.robben.controller;
+package com.robben.agg.base.controller;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.jayway.jsonpath.Configuration;

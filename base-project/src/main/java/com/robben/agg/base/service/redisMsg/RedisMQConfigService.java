@@ -1,4 +1,4 @@
-package com.robben.service.redisMsg;
+package com.robben.agg.base.service.redisMsg;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

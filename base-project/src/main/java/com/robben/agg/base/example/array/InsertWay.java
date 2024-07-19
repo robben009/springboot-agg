@@ -1,4 +1,4 @@
-package com.robben.example.array;
+package com.robben.agg.base.example.array;
 
 import java.util.ArrayList;
 import java.util.Arrays;

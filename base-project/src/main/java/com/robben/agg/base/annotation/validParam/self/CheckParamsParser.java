@@ -1,7 +1,6 @@
-package com.robben.annotation.validParam.self;
+package com.robben.agg.base.annotation.validParam.self;
 
-import com.robben.annotation.validParam.anno.NotNull;
-
+import com.robben.agg.base.annotation.validParam.anno.MyNotNull;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
@@ -19,11 +18,11 @@ public class CheckParamsParser {
             if(annotations.length != 0){
 
                 for (Annotation annotation : annotations) {
-                    if (annotation instanceof NotNull) {
-                        NotNull notNull = f.getAnnotation(NotNull.class);
+                    if (annotation instanceof MyNotNull) {
+                        MyNotNull myNotNull = f.getAnnotation(MyNotNull.class);
                         Object o = f.get(object);
                         if(o == null){
-                            throw new ParamException(notNull.codeEnum().getValue(),notNull.codeEnum().getName());
+                            throw new ParamException(myNotNull.codeEnum().getValue(), myNotNull.codeEnum().getName());
                         }
                         System.out.println(1);
                     }

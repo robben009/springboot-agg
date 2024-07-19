@@ -1,4 +1,4 @@
-package com.robben.convert;
+package com.robben.agg.base.convert;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.robben.service;
+package com.robben.agg.base.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;

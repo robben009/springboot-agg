@@ -1,4 +1,4 @@
-package com.robben.annotation.aop.DeclareParents;
+package com.robben.agg.base.annotation.aop.DeclareParents;
 
 import org.springframework.stereotype.Component;
 
