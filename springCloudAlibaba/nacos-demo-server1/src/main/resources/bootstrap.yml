@@ -2,27 +2,42 @@
 server:
   port: 28083
 
-nacosServerHost: 150.158.121.165
+nacosIp: 150.158.121.165
 
+#写法一(监听了两个配置文件，dataId=nacos-demo-server1,dataId=nacos-demo-server1.yml，适用于只有一个配置文件的情况)
+#spring:
+#  application:
+#    name: nacos-demo-server1
+#  cloud:
+#    nacos:
+#      discovery:
+#        serverAddr: ${nacosIp}:8848
+#      config:
+#        server-addr: ${nacosIp}:8848
+#        #这种写法查看日志发现实际还默认多监听了两个配置文件
+#        namespace: springBootAgg
+#        group: nacosDemo
+#        fileExtension: yml
+#        name: ${spring.application.name}
+
+
+#写法二((监听了三个配置文件，dataId=nacos-demo-server1,dataId=nacos-demo-server1.yml，dataId=nacos-demo-server1-ext.yml 适用于只有一个配置文件的情况))
 spring:
   application:
     name: nacos-demo-server1
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
   cloud:
     nacos:
       discovery:
-        serverAddr: ${nacosServerHost}:8848
+        serverAddr: ${nacosIp}:8848
       config:
-        serverAddr: ${nacosServerHost}:8848
-        #如果要填写下面的name,group,fileExtension字段,必须要有name.yaml有配置文件才行(最新版本dataId=nacos-demo-server1,nacos-demo-server1,yml都行),否则报错。如果name不填会自动找spring.application.name的配置文件
-        name: nacos-demo-server1.yaml
-        group: nacosDemoGroup
-        fileExtension: yaml
+        server-addr: ${nacosIp}:8848
+        #这种写法查看日志发现实际还默认多监听了两个配置文件
+        namespace: springBootAgg
+        group: nacosDemo
+        fileExtension: yml
+        name: ${spring.application.name}
         extension-configs:
-          #dataId必须要等于nacos-demo-server1-ext.yaml,不能省略文件名后缀,但是本项目名的dataId是可以省略的
-          - dataId: nacos-demo-server1-ext.yaml
-            group: nacosDemoGroup
+          - dataId: ${spring.application.name}-ext.yml
+            group: nacosDemo
             refresh: true
 

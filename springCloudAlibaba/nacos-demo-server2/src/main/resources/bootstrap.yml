@@ -1,32 +1,24 @@
 #设置项目名
 server:
-  servlet:
-    context-path: /nacos-provider2   #设置应用访问url的名字
   port: 28084
 
-nacosServerHost: 212.64.18.166
+nacosIp: 150.158.121.165
 
+#写法一(监听了两个配置文件，dataId=nacos-demo-server1,dataId=nacos-demo-server1.yml，适用于只有一个配置文件的情况)
 spring:
   application:
     name: nacos-demo-server2
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
   cloud:
     nacos:
       discovery:
-        server-addr: ${nacosServerHost}:38080
+        serverAddr: ${nacosIp}:8848
       config:
-        server-addr: ${nacosServerHost}:38080
-        #如果要填写下面的name,group,fileExtension字段,必须要有name.yaml有配置文件才行,否则报错。如果name不填会自动找spring.application.name的配置文件
-        #        name: nacos-demo-server11.yaml
-        #        group: nacosDemoGroup
-        #        fileExtension: yaml
-        ext-config:
-          - dataId: nacos-demo-server2.yaml
-            group: nacosDemoGroup
-
-
+        server-addr: ${nacosIp}:8848
+        #这种写法查看日志发现实际还默认多监听了两个配置文件
+        namespace: springBootAgg
+        group: nacosDemo
+        fileExtension: yml
+        name: ${spring.application.name}
 
 
 

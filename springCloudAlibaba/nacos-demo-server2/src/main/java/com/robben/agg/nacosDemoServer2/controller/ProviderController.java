@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @Slf4j
-@Tag(name = "nacosServer1对外接口")
+@Tag(name = "nacosServer2对外接口")
 @RestController
-@RequestMapping("/nacosServer1")
+@RequestMapping("/nacosServer2")
 @RefreshScope
 public class ProviderController {
 

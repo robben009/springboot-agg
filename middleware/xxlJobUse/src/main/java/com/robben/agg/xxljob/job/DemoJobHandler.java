@@ -1,7 +1,6 @@
 package com.robben.agg.xxljob.job;
 
 import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.context.XxlJobHelper;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -10,12 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class DemoJobHandler {
 
-	@XxlJob(value = "testJob")
-	public ReturnT<String> lalala(String param) throws Exception {
-		log.info("startAllFlinkTask begin");
+    @XxlJob(value = "testJob")
+    public ReturnT<String> lalala(String param) throws Exception {
+        log.info("startAllFlinkTask begin");
 
-		log.info("startAllFlinkTask end");
-		return ReturnT.SUCCESS;
-	}
+        log.info("startAllFlinkTask end");
+        return ReturnT.SUCCESS;
+    }
 
 }

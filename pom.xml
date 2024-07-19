@@ -17,6 +17,7 @@
         <module>springCloudAlibaba</module>
         <module>designPatterns</module>
         <module>bigdata</module>
+        <module>LiteFlowDemo</module>
     </modules>
 
     <name>springboot-agg</name>
@@ -25,23 +26,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
 
-        <!-- https://doc.xiaominfo.com/docs/quick-start/start-knife4j-version  -->
+        <!-- 工具类的依赖  -->
         <knife4j.version>4.4.0</knife4j.version>
-
-        <mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
-        <mysql-connect-j.version>8.3.0</mysql-connect-j.version>
-        <redisson-spring-boot-starter.version>3.16.1</redisson-spring-boot-starter.version>
-        <xxl-job-core.version>2.4.0</xxl-job-core.version>
-
-        <dubbo-spring-boot-starter.version>3.2.11</dubbo-spring-boot-starter.version>
-        <nacos-client.version>2.2.4</nacos-client.version>
-
         <lombok.version>1.18.28</lombok.version>
         <fastjson2.version>2.0.39</fastjson2.version>
         <guava.version>32.1.2-jre</guava.version>
@@ -54,12 +45,22 @@
         <easyexcel.version>3.3.2</easyexcel.version>
         <json-path.version>2.8.0</json-path.version>
 
+        <!-- 框架类的依赖  -->
+        <mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
+        <mysql-connect-j.version>8.3.0</mysql-connect-j.version>
+        <redisson-spring-boot-starter.version>3.16.1</redisson-spring-boot-starter.version>
+        <xxl-job-core.version>2.4.0</xxl-job-core.version>
+
+        <dubbo-spring-boot-starter.version>3.2.11</dubbo-spring-boot-starter.version>
+        <nacos-client.version>2.2.4</nacos-client.version>
+        <liteflow-spring-boot-starter.version>2.12.1</liteflow-spring-boot-starter.version>
     </properties>
 
 
     <!-- 注意版本之间的依赖关系 https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E -->
     <dependencyManagement>
         <dependencies>
+            <!-- ###################框架类的依赖################### -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
@@ -100,70 +101,65 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
+            <!-- ###################工具类的依赖################### -->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
+
+            <!--guava-->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- mapstruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.carrotsearch</groupId>
+                <artifactId>java-sizeof</artifactId>
+                <version>${java-sizeof.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-
-
-    <dependencies>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-            <version>${knife4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2 -->
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-            <version>${fastjson2.version}</version>
-        </dependency>
-
-        <!--guava-->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
-        </dependency>
-
-        <!-- mapstruct -->
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${org.mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>${org.mapstruct.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.carrotsearch/java-sizeof -->
-        <dependency>
-            <groupId>com.carrotsearch</groupId>
-            <artifactId>java-sizeof</artifactId>
-            <version>${java-sizeof.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-
-    </dependencies>
 
 
     <build>

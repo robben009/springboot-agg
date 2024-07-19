@@ -1,16 +1,15 @@
 server:
-  port: 28086
+  port: 28085
 
-nacosServerHost: 212.64.18.166
-
+nacosIp: 212.64.18.166
 
 spring:
   application:
-    name: api-gateway
+    name: nacos-gateway
   cloud:
     nacos:
       discovery:
-        server-addr: ${nacosServerHost}:30000
+        server-addr: ${nacosIp}:30000
         #注意:配置group的时候,必须配置一个namespace(这个值是从nacos控制台命名空间获取的ID值),这样才能设置权重和负载均衡
         namespace: rrrrrrrrr
         cluster-name: kkk
