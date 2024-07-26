@@ -13,5 +13,12 @@
     <groupId>hjz-dubbo.groupId</groupId>
     <artifactId>dubbo-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
 </project>

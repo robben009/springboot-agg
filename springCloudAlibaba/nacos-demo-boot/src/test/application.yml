@@ -1,0 +1,34 @@
+#设置项目名
+server:
+  port: 28083
+
+nacosIp: 150.158.121.165
+
+spring:
+  application:
+    name: nacos-demo-boot
+
+nacos:
+  discovery:
+    serverAddr: ${nacosIp}:8848
+  config:
+    bootstrap:
+      enable: true
+    remoteFirst: true
+    serverAddr: ${nacosIp}:8848
+    namespace: springBootAgg
+    group: nacosDemo
+    dataIds: ${spring.application.name}.yml
+    type: yaml
+    autoRefresh: true
+    enable-remote-sync-config: true
+    extConfig:
+      - dataId: ${spring.application.name}-ext.yml
+        serverAddr: ${nacosIp}:8848
+        namespace: springBootAgg
+        group: nacosDemo
+        type: yaml
+        autoRefresh: true
+        enable-remote-sync-config: true
+
+

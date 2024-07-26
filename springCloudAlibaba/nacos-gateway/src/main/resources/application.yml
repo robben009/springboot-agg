@@ -1,7 +1,7 @@
 server:
   port: 28085
 
-nacosIp: 212.64.18.166
+nacosIp: 150.158.121.165
 
 spring:
   application:
@@ -9,9 +9,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: ${nacosIp}:30000
+        server-addr: ${nacosIp}:8848
         #注意:配置group的时候,必须配置一个namespace(这个值是从nacos控制台命名空间获取的ID值),这样才能设置权重和负载均衡
-        namespace: rrrrrrrrr
+        namespace: springBootAgg
         cluster-name: kkk
     gateway:
       discovery:

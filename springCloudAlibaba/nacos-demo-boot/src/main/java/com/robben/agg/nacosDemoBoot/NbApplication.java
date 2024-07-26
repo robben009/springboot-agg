@@ -1,11 +1,13 @@
 package com.robben.agg.nacosDemoBoot;
 
 
+import com.alibaba.nacos.spring.context.annotation.config.EnableNacosConfig;
 import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@EnableNacosConfig
 //@NacosPropertySource(dataId = "nacos-demo-boot.yml", groupId = "nacosDemo", autoRefreshed = true)
 //@NacosPropertySource(dataId = "nacos-demo-boot-ext.yml", groupId = "nacosDemo", autoRefreshed = true)
 public class NbApplication {
