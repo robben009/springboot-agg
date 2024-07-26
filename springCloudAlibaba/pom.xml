@@ -20,7 +20,7 @@
         <module>nacos-demo-server1</module>
         <module>nacos-demo-server2</module>
         <module>nacos-demo-boot</module>
-        <module>nacos-gateway</module>
+        <module>cloud-gateway-nacos</module>
         <module>dubbo</module>
         <module>seateDemo</module>
         <module>sentinelDemo</module>
