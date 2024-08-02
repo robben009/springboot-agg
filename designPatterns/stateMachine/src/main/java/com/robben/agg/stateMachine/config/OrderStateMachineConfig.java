@@ -1,5 +1,6 @@
 package com.robben.agg.stateMachine.config;
 
+import com.alibaba.fastjson2.JSON;
 import com.robben.agg.stateMachine.constant.OrderStatusChangeEventEnum;
 import com.robben.agg.stateMachine.constant.OrderStatusEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,6 @@ public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<Order
                 .initial(OrderStatusEnum.WAIT_PAYMENT)
                 .states(EnumSet.allOf(OrderStatusEnum.class));
     }
-
 
     /**
      * 配置状态转换事件关系

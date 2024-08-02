@@ -1,6 +1,6 @@
 package com.robben.agg.stateMachine.service;
 
-import com.robben.agg.stateMachine.generator.domain.TbOrder;
+import com.robben.agg.stateMachine.dao.domain.TbOrder;
 
 /**
 * @author hjz

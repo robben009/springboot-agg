@@ -2,7 +2,7 @@ package com.robben.agg.stateMachine.anno;
 
 import com.robben.agg.stateMachine.constant.OrderStatusChangeEventEnum;
 import com.robben.agg.stateMachine.constant.OrderStatusEnum;
-import com.robben.agg.stateMachine.generator.domain.TbOrder;
+import com.robben.agg.stateMachine.dao.domain.TbOrder;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -25,7 +25,7 @@ public class SmHanleAspect {
 
 
     //拦截 LogHistory注解
-    @Pointcut("@annotation(com.bootStart.groupId.anno.SmHandle)")
+    @Pointcut("@annotation(com.robben.agg.stateMachine.anno.SmHandle)")
     private void logResultPointCut() {
     }
 

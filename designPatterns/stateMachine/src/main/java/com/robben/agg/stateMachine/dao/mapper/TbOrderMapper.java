@@ -1,7 +1,7 @@
-package com.robben.agg.stateMachine.generator.mapper;
+package com.robben.agg.stateMachine.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.robben.agg.stateMachine.generator.domain.TbOrder;
+import com.robben.agg.stateMachine.dao.domain.TbOrder;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

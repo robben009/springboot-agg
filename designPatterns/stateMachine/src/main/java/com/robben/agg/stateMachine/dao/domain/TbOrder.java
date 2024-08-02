@@ -1,4 +1,4 @@
-package com.robben.agg.stateMachine.generator.domain;
+package com.robben.agg.stateMachine.dao.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
