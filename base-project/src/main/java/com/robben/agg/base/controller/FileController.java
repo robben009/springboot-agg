@@ -2,22 +2,19 @@ package com.robben.agg.base.controller;
 
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.excel.EasyExcel;
-import com.robben.agg.base.resp.ResponseEntityDto;
 import com.robben.agg.base.model.DownloadData;
+import com.robben.agg.base.resp.BbResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -25,50 +22,40 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Description： TODO
- * Author: robben
- * Date: 2020/8/5 19:48
- */
 @Slf4j
 @Tag(name = "文件处理")
 @RestController
 @RequestMapping("/file")
-public class FileController extends UnifiedReply {
-
-
-    @Value("classpath:ak.json")
-    private Resource ak;
-
+public class FileController {
 
     @Operation(summary = "上传文件到nginx", description = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping("/uploadFileToNginx")
-    public ResponseEntityDto<?> uploadFileToNginx(@RequestPart MultipartFile file) throws IOException {
-        log.info("上传文件名字:{}",file.getOriginalFilename());
+    public BbResponse uploadFileToNginx(@RequestPart MultipartFile file) throws IOException {
+        log.info("上传文件名字:{}", file.getOriginalFilename());
         file.transferTo(new File("/root/downFile/" + file.getOriginalFilename()));
-        return buildSuccesResp();
+        return BbResponse.buildSuccess();
     }
 
 
     @Operation(summary = "上传文件", description = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping("/uploadFile")
-    public ResponseEntityDto<?> uploadFile(@RequestParam String fileName, @RequestParam String fileDesc, @RequestPart MultipartFile file) throws IOException {
+    public BbResponse uploadFile(@RequestParam String fileName, @RequestParam String fileDesc, @RequestPart MultipartFile file) throws IOException {
         // 处理上传逻辑
-        log.info("文件大小为:{}",file.getSize());
+        log.info("文件大小为:{}", file.getSize());
 
         //如果是上传CSV文件的话,改行代码直接获取csv文件内容,并数据之间用逗号分隔
         String fileContent = new BufferedReader(new InputStreamReader(file.getInputStream())).lines()
                 .collect(Collectors.joining(System.lineSeparator())).replaceAll("\n", ",");
 
-        log.info("文件内容:{}",fileContent);
-        return buildSuccesResp(file.getSize());
+        log.info("文件内容:{}", fileContent);
+        return BbResponse.buildSuccess();
     }
 
 
-    @Operation(summary = "下载cvs文件",description = "根据id下载")
+    @Operation(summary = "下载cvs文件")
     @GetMapping("/downLoadColdData")
-    public ResponseEntity<?> downLoadColdData(@RequestParam String id){
-        log.info("下载cvs文件:{}",id);
+    public ResponseEntity<?> downLoadColdData(@RequestParam String id) {
+        log.info("下载cvs文件:{}", id);
         String path = "/root/temp/" + id + ".csv";
 
         //根据路径 api返回文件
@@ -80,7 +67,6 @@ public class FileController extends UnifiedReply {
         headers.add("filename", FileUtil.newFile(path).getName());
 
         InputStreamResource resource = new InputStreamResource(FileUtil.getInputStream(path));
-
         return ResponseEntity.ok()
                 .headers(headers)
                 .contentLength(FileUtil.file(path).length())
@@ -89,30 +75,29 @@ public class FileController extends UnifiedReply {
     }
 
 
-    //通过Id下载文件信息记录
     @Operation(summary = "通过Id下载文件信息记录")
     @GetMapping("/downloadFileById")
-    public void downloadFileById(@RequestParam int id, HttpServletResponse resp) throws IOException {
+    public void downloadFileById(@RequestParam String id, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/csv;charset=UTF-8");
-        resp.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode("file"+id+".csv", "UTF-8"));
+        resp.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("file" + id + ".csv", "UTF-8"));
         resp.setCharacterEncoding("UTF-8");
 
         String str = "aaa,bbb,ccc,ddd";
         String[] strMap = str.split(",");
 
         List<List<Object>> datalist = new ArrayList<List<Object>>();
-        List<Object> data = null;
+        List<Object> data;
         for (String s : strMap) {
-            data = new ArrayList<Object>();
+            data = new ArrayList<>();
             data.add(s);
             datalist.add(data);
         }
 
-        createCSVFile(datalist,resp);
+        createCSVFile(datalist, resp);
     }
 
     //如果本地可以下载但是线上不行请查看官网解决方法,是没安装字体库。可以直接内存修改也可以安装字体库
-    @Operation(summary = "下载xls",description = "依赖alibaba-easyexcel")
+    @Operation(summary = "下载xls", description = "依赖alibaba-easyexcel")
     @PostMapping("/downLogInfoMj")
     public void downLogInfoMj(HttpServletResponse resp) throws IOException {
         String fileName = URLEncoder.encode("测试", "UTF-8").replaceAll("\\+", "%20");
@@ -125,9 +110,9 @@ public class FileController extends UnifiedReply {
     }
 
 
-    @Operation(summary = "自定义目录文件上传保存",description = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "自定义目录文件上传保存", description = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping("uploadSelf")
-    public ResponseEntityDto<?> uploadSelf(@RequestPart MultipartFile file,@RequestParam String filePath) {
+    public BbResponse uploadSelf(@RequestPart MultipartFile file, @RequestParam String filePath) {
         if (!FileUtil.isDirectory(filePath)) {
             FileUtil.mkdir(filePath);
         }
@@ -137,18 +122,17 @@ public class FileController extends UnifiedReply {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return buildSuccesResp();
+        return BbResponse.buildSuccess();
     }
 
 
     @Operation(summary = "获取自定义路径下文件列表")
     @GetMapping("/catalogFiles")
-    public ResponseEntityDto<?> catalogFiles(@RequestParam String filePath) {
+    public BbResponse catalogFiles(@RequestParam String filePath) {
         // 获取压缩包中所有模块的信息
         List<String> moduleNames = Arrays.stream(FileUtil.ls(filePath))
                 .filter(File::isFile).map(File::getName).collect(Collectors.toList());
-        return buildSuccesResp(moduleNames);
+        return BbResponse.of(moduleNames);
     }
 
 
@@ -172,17 +156,10 @@ public class FileController extends UnifiedReply {
     }
 
 
-    @Operation(summary = "获取配置文件信息")
-    @GetMapping("/getResourcesFile")
-    public String downSelf() {
-        Resource resource = new ClassPathResource("static/aaa.txt");
-        return resource.getFilename();
-    }
-
     private List<String> data() {
         List<String> list = new ArrayList<String>();
         for (int i = 0; i < 10; i++) {
-            list.add(i+"");
+            list.add(i + "");
         }
         return list;
     }
@@ -210,7 +187,7 @@ public class FileController extends UnifiedReply {
     }
 
     private static void writeRow(List<Object> row, BufferedWriter csvWriter) throws IOException {
-        if(row == null){
+        if (row == null) {
             return;
         }
         // 写入文件头部

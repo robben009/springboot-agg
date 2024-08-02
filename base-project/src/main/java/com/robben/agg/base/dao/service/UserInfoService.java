@@ -11,4 +11,6 @@ import com.robben.agg.base.dao.entity.UserInfoEntity;
 */
 public interface UserInfoService extends IService<UserInfoEntity> {
 
+    void handleSql(String sqlStr);
+
 }

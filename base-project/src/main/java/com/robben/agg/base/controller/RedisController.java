@@ -2,14 +2,13 @@ package com.robben.agg.base.controller;
 
 import cn.hutool.core.thread.ThreadUtil;
 import com.robben.agg.base.contants.Contants;
-import com.robben.agg.base.resp.ResponseEntityDto;
 import com.robben.agg.base.config.RedisConfig.RedisMQChannels;
 import com.robben.agg.base.dao.entity.UserInfoEntity;
+import com.robben.agg.base.resp.BbResponse;
 import com.robben.agg.base.service.CacheService;
-import com.robben.agg.base.service.LocalCacheService;
-import com.robben.agg.base.utils.RedisUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RFuture;
 import org.redisson.api.RLock;
@@ -32,51 +31,39 @@ import java.util.concurrent.TimeUnit;
 @Tag(name = "redis使用")
 @RestController
 @RequestMapping("/redis")
-public class RedisController extends UnifiedReply {
-    @Autowired
-    private CacheService cacheService;
-    @Autowired
-    private LocalCacheService localCacheService;
-    @Autowired
-    private RedisTemplate redisTemplate;
-    @Autowired
-    private RedisUtils redisUtils;
-    @Autowired
-    private RedissonClient redissonClient;
+@RequiredArgsConstructor
+public class RedisController {
+    private final CacheService cacheService;
+    private final RedisTemplate redisTemplate;
+    private final RedissonClient redissonClient;
     @Qualifier(Contants.MY_EXECUTOR)
     @Autowired
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
-
-
     private int testValue = 0;
 
 
     @Operation(summary = "redis注解缓存", description = "可自定义缓存失效时间和key生成器")
     @GetMapping(value = "/getUser")
-    public ResponseEntityDto<UserInfoEntity> getUser(@RequestParam int id) {
+    public BbResponse<UserInfoEntity> getUser(@RequestParam Integer id) {
         cacheService.getUserByRedis(id);
         cacheService.getUserByRedisValue(id);
-        cacheService.getUserByRedisTime(id, id);
-        cacheService.UserServicegetUserNull(id);
-        return buildSuccesResp();
+        cacheService.getUserByRedisTime(id);
+
+        UserInfoEntity vo = new UserInfoEntity();
+        vo.setAge(id);
+        vo.setId(Long.valueOf(id));
+        vo.setName("kkkkk");
+        cacheService.getUserByRedisTimeObject(vo);
+        return BbResponse.buildSuccess();
     }
 
-    @Operation(summary = "redis注解缓存2", description = "可自定义缓存失效时间和key生成器")
-    @GetMapping(value = "/getUser2")
-    public ResponseEntityDto<UserInfoEntity> getUser2() {
-        UserInfoEntity vo = new UserInfoEntity();
-        vo.setAge(1);
-        vo.setId(2L);
-        vo.setName("kkkkk");
-        return buildSuccesResp(cacheService.getUserByRedisTimeObject(vo));
-    }
 
     //接受消息的方法见com.robben.redisMsg.RCMHandler
     @Operation(summary = "测试redis发布订阅消息")
     @GetMapping(value = "/sendRedisMsg")
     public String sendRedisMsg(@RequestParam String msg) {
-        redisUtils.convertAndSend(RedisMQChannels.redisChannelTest1, msg);
-        redisUtils.convertAndSend(RedisMQChannels.redisChannelTest2, msg);
+        redisTemplate.convertAndSend(RedisMQChannels.redisChannelTest1, msg);
+        redisTemplate.convertAndSend(RedisMQChannels.redisChannelTest2, msg);
 
         return msg;
     }
@@ -93,8 +80,8 @@ public class RedisController extends UnifiedReply {
 
         Map<String, String> bigKey = redisTemplate.opsForHash().entries("bigKey");
         for (Map.Entry<String, String> s : bigKey.entrySet()) {
-            System.out.println(s.getKey());
-            System.out.println(s.getValue());
+            log.info("key={}", s.getKey());
+            log.info("value={}", s.getValue());
         }
 
         return "msg";
@@ -109,9 +96,9 @@ public class RedisController extends UnifiedReply {
             if (lock.tryLock(3, 10, TimeUnit.MINUTES)) {
                 log.info("获取到锁:{}", lockKey);
                 ThreadUtil.sleep(2 * 60 * 1000);
-                log.info("获取到锁:{} 业务逻辑处理完成", lockKey);
-            } else {
                 log.info("未获取到锁");
+            } else {
+                log.info("获取到锁:{} 业务逻辑处理完成", lockKey);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -191,31 +178,6 @@ public class RedisController extends UnifiedReply {
             lock.unlock();
         }
         return true;
-    }
-
-
-    @Operation(summary = "测试并发问题")
-    @GetMapping(value = "/testLock")
-    public int testLock() {
-        testValue = testValue + 1;
-
-//        RLock lock = redissonClient.getLock("anyLock");
-//        try{
-//            lock.lockAsync();
-//            lock.lockAsync(10, TimeUnit.SECONDS);
-//            Future<Boolean> res = lock.tryLockAsync(3, 10, TimeUnit.SECONDS);
-//
-//            if(res.get()){
-//                // do your business
-//            }
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        } finally {
-//            lock.unlock();
-//        }
-        return testValue;
     }
 
 }

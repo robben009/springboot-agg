@@ -1,6 +1,6 @@
 package com.robben.agg.base.config;
 
-import com.robben.agg.base.resp.ResponseEntityDto;
+import com.robben.agg.base.resp.BbResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     //设置响应码
     @ResponseStatus(HttpStatus.EXPECTATION_FAILED)
     @ExceptionHandler(value = {BindException.class, ValidationException.class, MethodArgumentNotValidException.class})
-    public ResponseEntityDto handleValidatedException(Exception e) {
+    public BbResponse handleValidatedException(Exception e) {
         String errorMsg = null;
         if (e instanceof MethodArgumentNotValidException) {
             // BeanValidation exception
@@ -29,17 +29,19 @@ public class GlobalExceptionHandler {
         } else if (e instanceof ConstraintViolationException) {
             // BeanValidation GET simple param
             ConstraintViolationException ex = (ConstraintViolationException) e;
-            errorMsg =  ex.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.joining("; "));
+            errorMsg = ex.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.joining("; "));
         } else if (e instanceof BindException) {
             // BeanValidation GET object param
             BindException ex = (BindException) e;
             errorMsg = ex.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining("; "));
         }
 
-        return  new ResponseEntityDto(ResultEnum.PARAMETER_ERROR.getCode(),errorMsg);
+        BbResponse bbResponse = new BbResponse();
+        bbResponse.setErrMessage(errorMsg);
+        bbResponse.setErrCode("-1");
+        bbResponse.setSuccess(false);
+        return bbResponse;
     }
-
-
 
 
 }

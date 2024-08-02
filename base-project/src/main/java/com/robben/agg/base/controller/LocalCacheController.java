@@ -2,11 +2,12 @@ package com.robben.agg.base.controller;
 
 import cn.hutool.core.thread.ThreadUtil;
 import com.alibaba.fastjson2.JSON;
-import com.robben.agg.base.resp.ResponseEntityDto;
+import com.robben.agg.base.resp.BbResponse;
 import com.robben.agg.base.service.LocalCacheService;
 import com.robben.agg.base.utils.guava.GuavaCacheUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,58 +27,57 @@ import java.util.Map;
 @Tag(name = "本地缓存")
 @RestController
 @RequestMapping("/localCache")
-public class LocalCacheController extends UnifiedReply {
+@RequiredArgsConstructor
+public class LocalCacheController {
     @Autowired
     @Qualifier("caffeineCacheManager")
     private CacheManager caffeineCacheManager;
-
-    @Autowired
-    private LocalCacheService localCacheService;
+    private final LocalCacheService localCacheService;
 
 
     @Operation(summary = "guava本地缓存使用")
     @GetMapping(value = "/guavaCacheUse")
-    public String guavaCacheUse(){
-        GuavaCacheUtils.setKey("aaa","bbb");
+    public BbResponse guavaCacheUse() {
+        GuavaCacheUtils.setKey("aaa", "bbb");
 
         String one = GuavaCacheUtils.getKey("aaa");
-        System.out.println(one);
+        log.info("one={}",one);
 
         ThreadUtil.sleep(3000);
 
         String two = GuavaCacheUtils.getKey("aaa");
-        if(two == null){
-            System.out.println(1);
+        if (two == null) {
+            log.info("two={}",two);
         }
-        System.out.println(two + "11");
+        log.info(two + "11");
 
-        return "1";
+        return BbResponse.buildSuccess();
     }
 
 
     @Operation(summary = "caffeine本地缓存使用")
     @GetMapping(value = "/caffeineCacheUse")
-    public ResponseEntityDto<Boolean> caffeineCacheUse(@RequestParam String s){
-        return buildSuccesResp(localCacheService.getCacheValue(s));
+    public BbResponse caffeineCacheUse(@RequestParam String s) {
+        return BbResponse.of(localCacheService.getCacheValue(s));
     }
 
 
     @Operation(summary = "caffeine本地缓存使用2")
     @GetMapping(value = "/caffeineCacheUse2")
-    public ResponseEntityDto<Boolean> caffeineCacheUse2(@RequestParam String s){
+    public BbResponse caffeineCacheUse2(@RequestParam String s) {
         localCacheService.getCacheValue(s);
         localCacheService.getCacheValue(s);
 
         //获取当前的缓存服务
         Collection<String> cacheNames = caffeineCacheManager.getCacheNames();
-        System.out.println(JSON.toJSONString(cacheNames));
+        log.info("cacheNames={}", JSON.toJSONString(cacheNames));
 
         //可以在此打断点直接查看Cache中缓存的值
         Cache cache = caffeineCacheManager.getCache("userCache");
         Map<String, Object> stringObjectMap = cacheToMap(cache);
-        System.out.println(JSON.toJSONString(stringObjectMap));
+        log.info("stringObjectMap={}", JSON.toJSONString(stringObjectMap));
 
-        return buildSuccesResp();
+        return BbResponse.buildSuccess();
     }
 
 
@@ -102,7 +102,6 @@ public class LocalCacheController extends UnifiedReply {
         // 获取Cache.map中的cache
         return (Map<String, Object>) map.get("cache");
     }
-
 
 
 }

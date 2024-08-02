@@ -2,7 +2,6 @@ package com.robben.agg.base.controller;
 
 import com.jayway.jsonpath.Configuration;
 import com.robben.agg.base.service.CacheService;
-import com.robben.agg.base.utils.RedisUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
