@@ -20,8 +20,8 @@ public class FirstPassHandler extends AbstractHandler {
         int score = play();
         if(score >= 80){
             //分数>=80 并且存在下一关才进入下一关
-            if(this.next != null){
-                return this.next.handler(order);
+            if(this.selfHandle != null){
+                return this.selfHandle.handler(order);
             }
         }
         return score;

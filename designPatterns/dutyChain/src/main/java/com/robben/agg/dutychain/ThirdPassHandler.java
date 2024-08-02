@@ -22,8 +22,8 @@ public class ThirdPassHandler extends AbstractHandler {
         int score = play();
         if(score >= 95){
             //分数>=95 并且存在下一关才进入下一关
-            if(this.next != null){
-                return this.next.handler(order);
+            if(this.selfHandle != null){
+                return this.selfHandle.handler(order);
             }
         }
 

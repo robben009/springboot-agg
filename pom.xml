@@ -31,6 +31,16 @@
         <maven.compiler.target>17</maven.compiler.target>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
 
+        <!-- 框架类的依赖  -->
+        <mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
+        <mysql-connect-j.version>8.3.0</mysql-connect-j.version>
+        <redisson-spring-boot-starter.version>3.16.1</redisson-spring-boot-starter.version>
+        <xxl-job-core.version>2.4.0</xxl-job-core.version>
+
+        <dubbo-spring-boot-starter.version>3.2.11</dubbo-spring-boot-starter.version>
+        <nacos-client.version>2.2.4</nacos-client.version>
+        <liteflow-spring-boot-starter.version>2.12.1</liteflow-spring-boot-starter.version>
+
         <!-- 工具类的依赖  -->
         <knife4j.version>4.4.0</knife4j.version>
         <lombok.version>1.18.28</lombok.version>
@@ -44,16 +54,6 @@
         <caffeine.version>3.0.5</caffeine.version>
         <easyexcel.version>3.3.2</easyexcel.version>
         <json-path.version>2.8.0</json-path.version>
-
-        <!-- 框架类的依赖  -->
-        <mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
-        <mysql-connect-j.version>8.3.0</mysql-connect-j.version>
-        <redisson-spring-boot-starter.version>3.16.1</redisson-spring-boot-starter.version>
-        <xxl-job-core.version>2.4.0</xxl-job-core.version>
-
-        <dubbo-spring-boot-starter.version>3.2.11</dubbo-spring-boot-starter.version>
-        <nacos-client.version>2.2.4</nacos-client.version>
-        <liteflow-spring-boot-starter.version>2.12.1</liteflow-spring-boot-starter.version>
     </properties>
 
 

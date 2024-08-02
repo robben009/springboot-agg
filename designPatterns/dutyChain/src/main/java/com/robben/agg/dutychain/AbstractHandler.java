@@ -7,10 +7,10 @@ public abstract class AbstractHandler {
     /**
      * 下一关用当前抽象类来接收
      */
-    protected AbstractHandler next;
+    protected AbstractHandler selfHandle;
 
-    public void setNext(AbstractHandler next) {
-        this.next = next;
+    public void setSelfHandle(AbstractHandler selfHandle) {
+        this.selfHandle = selfHandle;
     }
 
     public abstract int handler(Order order);

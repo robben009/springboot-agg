@@ -22,8 +22,8 @@ public class SecondPassHandler extends AbstractHandler {
         int score = play();
         if(score >= 90){
             //分数>=90 并且存在下一关才进入下一关
-            if(this.next != null){
-                return this.next.handler(order);
+            if(this.selfHandle != null){
+                return this.selfHandle.handler(order);
             }
         }
 
