@@ -1,5 +1,8 @@
 package com.robben.agg.base.controller;
 
+import com.robben.agg.base.contants.BbResultEnum;
+import com.robben.agg.base.exception.BizPlusException;
+import com.robben.agg.base.resp.BbResponse;
 import com.robben.agg.base.utils.OtherUtils;
 import com.robben.agg.customstarter.HelloService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j
 @Tag(name = "bean的api")
@@ -39,13 +40,11 @@ public class BeanController {
 
     @Operation(summary = "测试修改注入bean的字段值")
     @PostMapping("updateBeanField")
-    public Map<String,String> updateBeanField(String benaName, String beanField, String beanFieldValue) {
+    public BbResponse updateBeanField(String benaName, String beanField, String beanFieldValue) {
         log.info("测试修改注入bean的字段值_benaName:{},beanField:{},beanFieldValue:{}",benaName,beanField,beanFieldValue);
 
-        Map<String,String> map = new HashMap<>();
         if(StringUtils.isBlank(benaName) || StringUtils.isBlank(beanField) || StringUtils.isBlank(beanFieldValue)){
-            map.put("result","输入参数有误");
-            return map;
+            throw new BizPlusException(BbResultEnum.PARAMS_ERROR);
         }
 
         Class<?> object = applicationContext.getType(benaName);
@@ -65,9 +64,7 @@ public class BeanController {
                 }
             }
         }
-
-        map.put("result","success");
-        return map;
+        return BbResponse.buildSuccess();
     }
 
 }

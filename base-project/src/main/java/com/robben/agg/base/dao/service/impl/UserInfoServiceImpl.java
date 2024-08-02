@@ -3,7 +3,7 @@ package com.robben.agg.base.dao.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.robben.agg.base.dao.mapper.UserInfoMapper;
 import com.robben.agg.base.dao.service.UserInfoService;
-import com.robben.agg.base.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfoEntity;
 import org.springframework.stereotype.Service;
 
 /**

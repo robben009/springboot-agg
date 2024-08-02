@@ -17,11 +17,10 @@ import java.util.concurrent.TimeUnit;
 @EnableCaching  //这个一定要加上
 @Configuration
 public class CaffeineCacheConfig {
-
-
     /**
      * 创建基于Caffeine的Cache Manager
      * 初始化一些key存入
+     *
      * @return
      */
     @Bean(name = "caffeineCacheManager")
@@ -29,7 +28,7 @@ public class CaffeineCacheConfig {
         SimpleCacheManager cacheManager = new SimpleCacheManager();
         ArrayList<CaffeineCache> caches = Lists.newArrayList();
         List<CacheBean> list = setCacheBean();
-        for(CacheBean cacheBean : list){
+        for (CacheBean cacheBean : list) {
             caches.add(new CaffeineCache(cacheBean.getKey(),
                     Caffeine.newBuilder().recordStats()
                             .expireAfterWrite(cacheBean.getTtl(), TimeUnit.SECONDS)
@@ -55,12 +54,12 @@ public class CaffeineCacheConfig {
     }
 
 
-
     /**
      * 初始化一些缓存的 key
+     *
      * @return
      */
-    private List<CacheBean> setCacheBean(){
+    private List<CacheBean> setCacheBean() {
         List<CacheBean> list = Lists.newArrayList();
         CacheBean userCache = new CacheBean();
         userCache.setKey("userCache");

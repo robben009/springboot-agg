@@ -1,11 +1,10 @@
 package com.robben.agg.base.controller;
 
 import cn.hutool.core.thread.ThreadUtil;
-import com.robben.agg.base.common.Contants;
-import com.robben.agg.base.common.ResponseEntityDto;
-import com.robben.agg.base.common.UnifiedReply;
+import com.robben.agg.base.contants.Contants;
+import com.robben.agg.base.resp.ResponseEntityDto;
 import com.robben.agg.base.config.RedisConfig.RedisMQChannels;
-import com.robben.agg.base.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfoEntity;
 import com.robben.agg.base.service.CacheService;
 import com.robben.agg.base.service.LocalCacheService;
 import com.robben.agg.base.utils.RedisUtils;

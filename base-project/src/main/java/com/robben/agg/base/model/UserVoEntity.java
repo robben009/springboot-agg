@@ -1,8 +1,8 @@
 package com.robben.agg.base.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.robben.agg.base.annotation.validParam.anno.MyNotNull;
-import com.robben.agg.base.enums.CommonErrorCodeEnum;
+import com.robben.agg.base.aspect.validParam.anno.MyNotNull;
+import com.robben.agg.base.contants.CommonErrorCodeEnum;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 

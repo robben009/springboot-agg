@@ -1,6 +1,6 @@
 package com.robben.agg.base.event;
 
-import com.robben.agg.base.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfoEntity;
 import org.springframework.context.ApplicationEvent;
 
 public class ContentAnnoEvent extends ApplicationEvent {

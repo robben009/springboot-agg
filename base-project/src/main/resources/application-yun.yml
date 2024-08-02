@@ -1,5 +1,5 @@
 #外部环境地址(云服务器地址)
-extraEnvHost: 212.64.18.166
+extraEnvHost: 150.158.121.165
 
 knife4j:
   # 开启增强配置
@@ -42,25 +42,12 @@ spring:
       host: ${extraEnvHost}
       port: 6379
       password: ${redis.pwd}
-  cloud:
-    nacos:
-      config:
-        server-addr: ${extraEnvHost}:38080
-        group: DEFAULT_GROUP
-        file-extension: properties
-  #nacos有两种注入方式
-  #一种是nacos直接写配置文件和环境名  base-project-test.properties,这个加载优先级比较高
-  #一种是使用import 可以自定义一些配置项目
-  config:
-    import:
-      - optional:nacos:base-project
-
 
 
 #日志的配置
-#logging:
-#  level:
-#    com.robben: debug
+logging:
+  level:
+    com.robben: info
 
 
 

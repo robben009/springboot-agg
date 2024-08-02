@@ -1,7 +1,7 @@
 package com.robben.agg.base.controller;
 
-import com.robben.agg.base.annotation.validParam.anno.ValidGroup;
-import com.robben.agg.base.annotation.validParam.auth.AuthToken;
+import com.robben.agg.base.aspect.validParam.anno.ValidGroup;
+import com.robben.agg.base.aspect.validParam.auth.AuthToken;
 import com.robben.agg.base.model.ValidVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

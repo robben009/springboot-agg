@@ -1,8 +1,9 @@
 package com.robben.agg.base.service;
 
-import com.robben.agg.base.entity.DescInfoListVo;
-import com.robben.agg.base.entity.DescInfoVo;
-import com.robben.agg.base.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.DescInfoListVo;
+import com.robben.agg.base.dao.entity.DescInfoVo;
+import com.robben.agg.base.dao.entity.UserInfoEntity;
+import com.robben.agg.base.resp.BbResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,7 +46,17 @@ public class MpUseService {
         return vo;
     }
 
+    public BbResponse getUserInfo(String userId) {
+        UserInfoEntity vo = new UserInfoEntity();
+        vo.setName("name-" + userId);
+        return BbResponse.of(vo);
+    }
 
+    public BbResponse getUserInfo2(String userId) {
+        UserInfoEntity vo = new UserInfoEntity();
+        vo.setName("name2-" + userId);
+        return BbResponse.of(vo);
+    }
 
 
 }

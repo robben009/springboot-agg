@@ -18,6 +18,7 @@
         <module>designPatterns</module>
         <module>bigdata</module>
         <module>LiteFlowDemo</module>
+        <module>colaDemo</module>
     </modules>
 
     <name>springboot-agg</name>
@@ -42,6 +43,8 @@
         <liteflow-spring-boot-starter.version>2.12.1</liteflow-spring-boot-starter.version>
 
         <!-- 工具类的依赖  -->
+        <cola.components.version>5.0.0</cola.components.version>
+
         <knife4j.version>4.4.0</knife4j.version>
         <lombok.version>1.18.28</lombok.version>
         <fastjson2.version>2.0.39</fastjson2.version>
@@ -104,6 +107,38 @@
 
 
             <!-- ###################工具类的依赖################### -->
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-domain-starter</artifactId>
+                <version>${cola.components.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-exception</artifactId>
+                <version>${cola.components.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-extension-starter</artifactId>
+                <version>${cola.components.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-dto</artifactId>
+                <version>${cola.components.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-catchlog-starter</artifactId>
+                <version>${cola.components.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-statemachine</artifactId>
+                <version>${cola.components.version}</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>

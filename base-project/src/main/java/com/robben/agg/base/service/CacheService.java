@@ -1,6 +1,6 @@
 package com.robben.agg.base.service;
 
-import com.robben.agg.base.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfoEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -45,5 +45,6 @@ public class CacheService {
         log.info("~~~~~~~~handle-DB~~~~~~~~~~~~~~");
         return vo;
     }
+
 
 }

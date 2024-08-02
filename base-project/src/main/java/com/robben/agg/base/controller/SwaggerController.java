@@ -3,9 +3,8 @@ package com.robben.agg.base.controller;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.core.util.RandomUtil;
-import com.robben.agg.base.common.UnifiedReply;
-import com.robben.agg.base.model.req.FileResp;
-import com.robben.agg.base.model.req.MapEnumUser;
+import com.robben.agg.base.req.FileResp;
+import com.robben.agg.base.resp.MapEnumUserReq;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -18,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 
 @Slf4j
@@ -29,8 +27,8 @@ public class SwaggerController extends UnifiedReply {
 
     @Operation(summary = "枚举可用值")
     @PostMapping("/mo")
-    public ResponseEntity<MapEnumUser> mo(@RequestBody MapEnumUser mapEnumUser){
-        return ResponseEntity.ok(mapEnumUser);
+    public ResponseEntity<MapEnumUserReq> mo(@RequestBody MapEnumUserReq mapEnumUserReq){
+        return ResponseEntity.ok(mapEnumUserReq);
     }
 
     @Operation(summary = "文件上传-带参数")

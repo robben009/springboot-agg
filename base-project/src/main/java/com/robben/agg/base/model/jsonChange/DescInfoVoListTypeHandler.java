@@ -1,7 +1,7 @@
 package com.robben.agg.base.model.jsonChange;
 
 import com.alibaba.fastjson2.TypeReference;
-import com.robben.agg.base.entity.DescInfoVo;
+import com.robben.agg.base.dao.entity.DescInfoVo;
 import java.util.List;
 
 

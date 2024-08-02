@@ -1,6 +1,6 @@
 package com.robben.agg.base.controller;
 
-import com.robben.agg.base.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfoEntity;
 import com.robben.agg.base.event.ContentAnnoEvent;
 import com.robben.agg.base.event.ContentEvent;
 import com.robben.agg.base.event.ContentSmartEvent;

@@ -1,68 +1,32 @@
 package com.robben.agg.base.controller;
 
-import com.alibaba.fastjson2.JSONObject;
-import com.jayway.jsonpath.Configuration;
-import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.ReadContext;
-import com.robben.agg.base.common.UnifiedReply;
-import com.robben.agg.base.service.CacheService;
-import com.robben.agg.base.utils.RedisUtils;
+import com.robben.agg.base.aspect.anno.OpenApiCatch;
+import com.robben.agg.base.req.BenefitDetailReq;
+import com.robben.agg.base.resp.BbResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @Slf4j
-@Tag(name = "注解使用")
+@Tag(name = "注解使用", description = "提供统一的拦截器做处理,对异常处理和增加返回traceId")
 @RestController
 @RequestMapping("/anno")
-public class AnnoController extends UnifiedReply {
-    @Autowired
-    private CacheService userService;
-    @Autowired
-    private RedisUtils redisUtils;
-    @Autowired
-    private Configuration configuration;
-//    @Resource
-//    private CmsOrderApi cmsOrderApi;
+@RequiredArgsConstructor
+@OpenApiCatch
+public class AnnoController {
 
-
-    @Operation(summary = "postConstruct使用")
+    @Operation(summary = "测试切面")
     @PostMapping(value = "/use")
-    public BenefitDetail use(@RequestBody BenefitDetail req){
-        String jsonText = """
-            {
-              "name": "john",
-              "gender": male,
-            }
-            """;
-
-        JSONObject d = JSONObject.parseObject(jsonText);
-
-        ReadContext ctx = JsonPath.using(configuration).parse(d);
-//        ReadContext ctx = JsonPath.parse(d);
-        String gender0 = ctx.read("$.name");
-        System.out.println(gender0);
-        String gender1 = ctx.read("$.name1");
-        System.out.println(gender1);
-
-        req.setRightsName("asdfasdfa");
-        return req;
+    public BbResponse use(@RequestBody BenefitDetailReq req) {
+        req.setChargeCardCode("kkkkkkk");
+        return BbResponse.of(req);
     }
-
-
-//    @Operation(summary = "postConstruct使用")
-//    @GetMapping(value = "/use2")
-//    public String use(){
-//        OrderDetailReq orderDetailReq = new OrderDetailReq();
-//        orderDetailReq.setChargeSeq("aaaaa");
-//        cmsOrderApi.orderDetail(orderDetailReq);
-//        return "123";
-//    }
 
 
 }

@@ -1,6 +1,6 @@
 package com.robben.agg.base.service;
 
-import com.robben.agg.base.common.Contants;
+import com.robben.agg.base.contants.Contants;
 import com.robben.agg.base.utils.OtherUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

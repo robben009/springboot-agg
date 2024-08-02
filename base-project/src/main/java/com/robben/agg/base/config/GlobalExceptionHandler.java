@@ -1,7 +1,6 @@
 package com.robben.agg.base.config;
 
-import com.robben.agg.base.common.ResponseEntityDto;
-import com.robben.agg.base.model.ResultEnum;
+import com.robben.agg.base.resp.ResponseEntityDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
