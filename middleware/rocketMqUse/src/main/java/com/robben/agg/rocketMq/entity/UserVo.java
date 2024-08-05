@@ -17,13 +17,5 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class UserVo implements Serializable {
     String name;
-    int age;
-
-    @Override
-    public String toString() {
-        return "UserVo{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
+    Integer age;
 }

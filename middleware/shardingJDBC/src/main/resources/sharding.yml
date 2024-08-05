@@ -2,9 +2,9 @@ dataSources:
   ds_0:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     driverClassName: com.mysql.jdbc.Driver
-    jdbcUrl: jdbc:mysql://150.158.121.165:53306/sharding?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    jdbcUrl: jdbc:mysql://150.158.121.165:3306/sharding?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
     username: root
-    password: JZh2019@nodejsjava
+    password: root
     hikari:
       minimum-idle: 200 # 最小空闲连接数量
       maximum-pool-size: 200 # 连接池最大连接数，默认是10
@@ -32,9 +32,13 @@ rules:
             shardingAlgorithmName: t_order_inline
     bindingTables:
       - t_order
-
     shardingAlgorithms:
       t_order_inline:
         type: INLINE
         props:
           algorithm-expression: t_order_${order_id % 2}
+          #也可以自定义一些算法
+#        type: CLASS_BASED
+#        props:
+#          strategy: STANDARD
+#          algorithmClassName: com.robben.agg.sharding.config.OrderHitShardingRules
