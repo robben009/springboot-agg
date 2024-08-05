@@ -38,8 +38,6 @@
             <artifactId>fastjson2</artifactId>
         </dependency>
 
-
-
         <dependency>
             <groupId>com.alibaba.cola</groupId>
             <artifactId>cola-component-domain-starter</artifactId>

@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
-@SpringBootApplication(scanBasePackages = {"com.robben.agg.cola","com.alibaba.cola"})
+@SpringBootApplication(scanBasePackages = {"com.robben.agg","com.alibaba.cola"})
 public class ColaApplication {
 
     public static void main(String[] args) {

@@ -47,7 +47,7 @@
 
         <knife4j.version>4.4.0</knife4j.version>
         <lombok.version>1.18.28</lombok.version>
-        <fastjson2.version>2.0.39</fastjson2.version>
+        <fastjson2.version>2.0.52</fastjson2.version>
         <guava.version>32.1.2-jre</guava.version>
         <commons-lang3.version>3.13.0</commons-lang3.version>
         <hutool.version>5.8.21</hutool.version>
@@ -154,6 +154,11 @@
             <dependency>
                 <groupId>com.alibaba.fastjson2</groupId>
                 <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2-extension-spring6</artifactId>
                 <version>${fastjson2.version}</version>
             </dependency>
 
