@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+//可以取代命令 protoc --java_out=../protoMsg user.proto
+//option java_package = "com.robben.agg.nettycom.protoMsg";
+option java_outer_classname = "UserMsg";
+
+message User{
+    //ID
+    int32 id = 1;
+    //姓名
+    string name = 2;
+    //年龄
+    int32 age = 3;
+    //状态
+    int32 state = 4;
+}

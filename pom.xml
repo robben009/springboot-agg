@@ -19,6 +19,8 @@
         <module>bigdata</module>
         <module>LiteFlowDemo</module>
         <module>colaDemo</module>
+        <module>nettyDemo</module>
+        <module>nettyDemo/nettyCom</module>
     </modules>
 
     <name>springboot-agg</name>
@@ -46,6 +48,12 @@
         <liteflow-spring-boot-starter.version>2.12.1</liteflow-spring-boot-starter.version>
 
         <rocketMq-v>2.2.2</rocketMq-v>
+
+        <netty-all.version>4.1.42.Final</netty-all.version>
+        <protobuf.version>3.6.1</protobuf.version>
+        <grpc.version>1.15.0</grpc.version>
+
+
         <!-- 工具类的依赖  -->
         <cola.components.version>5.0.0</cola.components.version>
 
