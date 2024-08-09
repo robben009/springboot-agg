@@ -1,7 +1,6 @@
-package com.robben.agg.dubbo.api;
+package com.robben.pp;
 
 
-import com.alibaba.fastjson2.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,10 +15,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class StudentVo implements Serializable {
+public class GameVo implements Serializable {
 
-    private Integer age;
-    private String name;
-    private JSONObject extInfo;
+    private String gameName;
+
 
 }

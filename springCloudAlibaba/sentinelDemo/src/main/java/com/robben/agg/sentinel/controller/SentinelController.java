@@ -40,8 +40,8 @@ public class SentinelController {
 
     @Operation(summary = "测试dubbo限流-默认方法")
     @PostMapping(value = "/getAppValue3")
-    public String getAppValue3(@RequestBody String req) {
-        return demoService.sayHello(new StudentVo(1,req));
+    public StudentVo getAppValue3(@RequestBody String req) {
+        return demoService.sayHello(new StudentVo(1,req,null));
     }
 
 

@@ -20,7 +20,6 @@
         <module>LiteFlowDemo</module>
         <module>colaDemo</module>
         <module>nettyDemo</module>
-        <module>nettyDemo/nettyCom</module>
     </modules>
 
     <name>springboot-agg</name>
@@ -69,6 +68,11 @@
         <caffeine.version>3.0.5</caffeine.version>
         <easyexcel.version>3.3.2</easyexcel.version>
         <json-path.version>2.8.0</json-path.version>
+
+        <protobuf-java.version>4.27.3</protobuf-java.version>
+        <grpc-netty.version>1.66.0</grpc-netty.version>
+        <grpc-protobuf.version>1.66.0</grpc-protobuf.version>
+        <grpc-stub.version>1.66.0</grpc-stub.version>
     </properties>
 
 
@@ -104,7 +108,7 @@
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-bom</artifactId>
-                <version>3.2.0-beta.4</version>
+                <version>3.2.11</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -227,6 +231,28 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-netty</artifactId>
+                <version>${grpc-netty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-protobuf</artifactId>
+                <version>${grpc-protobuf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-stub</artifactId>
+                <version>${grpc-stub.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

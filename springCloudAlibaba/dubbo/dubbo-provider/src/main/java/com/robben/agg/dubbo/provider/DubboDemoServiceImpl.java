@@ -1,10 +1,10 @@
 package com.robben.agg.dubbo.provider;
 
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.robben.agg.dubbo.api.DubboDemoService;
 import com.robben.agg.dubbo.api.StudentVo;
+import com.robben.pp.GameVo;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +14,23 @@ import org.springframework.stereotype.Service;
  * Date: 2021/3/6 16:03
  */
 @Service
-@DubboService(version = "1.0.0",timeout = 5000)
+@DubboService
 public class DubboDemoServiceImpl implements DubboDemoService {
 
     @Override
-    @SentinelResource(value = "api2", blockHandler = "exceptionFallbackHandler", fallback = "exceptionFallbackHandler")
-    public String sayHello(StudentVo vo) {
-        return "我看到了一个学生:" + JSON.toJSONString(vo);
+//    @SentinelResource(value = "api2", blockHandler = "exceptionFallbackHandler", fallback = "exceptionFallbackHandler")
+    public StudentVo sayHello(StudentVo vo) {
+        vo.setAge(vo.getAge() + 1);
+        vo.setName(vo.getName() + "~~~");
+
+        GameVo gameVo = new GameVo();
+        gameVo.setGameName(System.currentTimeMillis() + "~~~~~~");
+
+        JSONObject j = new JSONObject();
+        j.put("gameVo", gameVo);
+
+        vo.setExtInfo(j);
+        return vo;
     }
 
 
@@ -30,6 +40,7 @@ public class DubboDemoServiceImpl implements DubboDemoService {
         ex.printStackTrace();
         return "exceptionHandler~~~~~~~~~";
     }
+
     // Fallback 函数，函数签名与原函数一致或加一个 Throwable 类型的参数.
     public String exceptionFallbackHandler(StudentVo vo) {
         return "helloFallback~~~~~~~~~~~~";

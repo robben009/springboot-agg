@@ -18,10 +18,6 @@ import org.springframework.stereotype.Service;
 @Service("nettyServer")
 @Slf4j
 public class NettyServer {
-    /**
-     * 通过springboot读取静态资源,实现netty配置文件的读写
-     */
-
     @Value("${server.bind_port}")
     private Integer port;
 
@@ -61,7 +57,7 @@ public class NettyServer {
                     // 设置 NioServerSocketChannel 的处理器
                     .handler(new LoggingHandler(LogLevel.INFO))
                     // 设置连入服务端的 Client 的 SocketChannel 的处理器
-                    .childHandler(new robben.agg.nettyserver.NettyServerInitializer());
+                    .childHandler(new NettyServerInitializer());
             // 绑定端口，并同步等待成功，即启动服务端
             channelFuture = b.bind(port).sync();
 

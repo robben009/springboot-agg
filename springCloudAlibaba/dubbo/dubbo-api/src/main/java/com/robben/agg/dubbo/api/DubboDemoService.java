@@ -7,6 +7,6 @@ package com.robben.agg.dubbo.api;
  */
 public interface DubboDemoService {
 
-    String sayHello(StudentVo vo);
+    StudentVo sayHello(StudentVo vo);
 
 }

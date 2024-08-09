@@ -1,5 +1,6 @@
-package com.robben.agg.nettyclient;
+package com.robben.agg.nettyClient;
 
+import com.robben.agg.nettycommon.protoMsg.UserMsg;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

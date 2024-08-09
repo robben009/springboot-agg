@@ -17,15 +17,15 @@ spring:
       discovery:
         server-addr: ${serverHost}:8848
         namespace: springBootAgg
-    sentinel:
-      datasource:
-        ds1:
-          nacos:
-            server-addr: 150.158.121.165:8848
-            namespace: springBootAgg
-            group-id: DEFAULT_GROUP
-            dataId: dubbo-provider-flowRules
-            rule-type: flow
+#    sentinel:
+#      datasource:
+#        ds1:
+#          nacos:
+#            server-addr: 150.158.121.165:8848
+#            namespace: springBootAgg
+#            group-id: DEFAULT_GROUP
+#            dataId: dubbo-provider-flowRules
+#            rule-type: flow
 
 dubbo:
   application:
@@ -36,6 +36,7 @@ dubbo:
     port: 20883
   registry:
     address: nacos://${serverHost}:8848
+    registerMode: instance
     #对应的分组名称
     group: DEFAULT_GROUP
     #对应的命名空间

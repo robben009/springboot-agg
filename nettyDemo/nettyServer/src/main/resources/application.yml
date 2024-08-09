@@ -1,11 +1,6 @@
 spring:
   banner:
     charset: UTF-8
-  http:
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
   messages:
     encoding: UTF-8
 
@@ -20,3 +15,4 @@ server:
     worker_group_thread_count: 12
     #最大负载大小
     max_payload_size: 65536
+

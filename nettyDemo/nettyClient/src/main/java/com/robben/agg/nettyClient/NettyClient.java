@@ -1,4 +1,4 @@
-package com.robben.agg.nettyclient;
+package com.robben.agg.nettyClient;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
