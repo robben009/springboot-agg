@@ -1,7 +1,8 @@
 package com.robben.agg.javabase.proxy.cglib;
 
-import com.robben.agg.base.example.proxy.JdkDong.LiuDeHua;
-import com.robben.agg.base.example.proxy.JdkDong.Star;
+
+import com.robben.agg.javabase.proxy.JdkDong.LiuDeHua;
+import com.robben.agg.javabase.proxy.JdkDong.Star;
 
 public class Test {
     public static void main(String[] args) {
