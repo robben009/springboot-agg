@@ -65,7 +65,6 @@
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-apache-dubbo3-adapter</artifactId>
-            <version>1.8.7</version>
         </dependency>
 
         <!-- sleuth依赖-->

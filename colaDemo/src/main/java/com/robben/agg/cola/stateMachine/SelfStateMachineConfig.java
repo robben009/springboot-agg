@@ -49,10 +49,15 @@ public class SelfStateMachineConfig {
                 .on(Event.EVENT3)
                 .perform((from, to, event, context) -> userService.updateName(context.getMessage()));
 
+        builder.setFailCallback((sourceState, event, context) -> {
+            log.warn("出错了,{}", JSON.toJSONString(context));
+            throw new BizException("error");
+        });
+
         return builder.build(MACHINE_ID);
     }
 
-
+    //这个也可以抽离出去作为独立的类来处理
     private boolean checkCondition(Context context) {
         if("ok".equals(context.getMessage())){
             return true;

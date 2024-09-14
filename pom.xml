@@ -12,7 +12,7 @@
 
     <modules>
         <module>algorithm</module>
-        <module>base-project</module>
+        <module>base-web-project</module>
         <module>middleware</module>
         <module>springCloudAlibaba</module>
         <module>designPatterns</module>
@@ -20,6 +20,8 @@
         <module>LiteFlowDemo</module>
         <module>colaDemo</module>
         <module>nettyDemo</module>
+        <module>javaBase</module>
+        <module>commonDto</module>
     </modules>
 
     <name>springboot-agg</name>
@@ -34,11 +36,14 @@
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
 
         <!-- 框架类的依赖  -->
+        <cola.components.version>5.0.0</cola.components.version>
+
         <mysql-connect-j.version>8.3.0</mysql-connect-j.version>
         <mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
         <shardingsphere-jdbc-core.version>5.4.1</shardingsphere-jdbc-core.version>
 
         <redisson-spring-boot-starter.version>3.16.1</redisson-spring-boot-starter.version>
+        <jrejson.version>1.5.0</jrejson.version>
 
         <xxl-job-core.version>2.4.0</xxl-job-core.version>
 
@@ -52,12 +57,23 @@
         <protobuf.version>3.6.1</protobuf.version>
         <grpc.version>1.15.0</grpc.version>
 
+        <spring-statemachine-redis.version>1.2.9.RELEASE</spring-statemachine-redis.version>
+        <spring-statemachine-starter.version>2.0.1.RELEASE</spring-statemachine-starter.version>
+
+        <sentinel-apache-dubbo3-adapter.version>1.8.7</sentinel-apache-dubbo3-adapter.version>
+        <nacos-config-spring-boot-starter.version>0.3.0-RC</nacos-config-spring-boot-starter.version>
+        <nacos-discovery-spring-boot-starter.version>0.3.0-RC</nacos-discovery-spring-boot-starter.version>
+
+        <protobuf-java.version>4.27.3</protobuf-java.version>
+        <grpc-netty.version>1.66.0</grpc-netty.version>
+        <grpc-protobuf.version>1.66.0</grpc-protobuf.version>
+        <grpc-stub.version>1.66.0</grpc-stub.version>
 
         <!-- 工具类的依赖  -->
-        <cola.components.version>5.0.0</cola.components.version>
-
         <knife4j.version>4.4.0</knife4j.version>
-        <lombok.version>1.18.28</lombok.version>
+        <jruby-complete-v>9.4.3.0</jruby-complete-v>
+
+        <lombok.version>1.18.34</lombok.version>
         <fastjson2.version>2.0.52</fastjson2.version>
         <guava.version>32.1.2-jre</guava.version>
         <commons-lang3.version>3.13.0</commons-lang3.version>
@@ -69,10 +85,8 @@
         <easyexcel.version>3.3.2</easyexcel.version>
         <json-path.version>2.8.0</json-path.version>
 
-        <protobuf-java.version>4.27.3</protobuf-java.version>
-        <grpc-netty.version>1.66.0</grpc-netty.version>
-        <grpc-protobuf.version>1.66.0</grpc-protobuf.version>
-        <grpc-stub.version>1.66.0</grpc-stub.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <snakeyaml.version>1.30</snakeyaml.version>
     </properties>
 
 
@@ -121,8 +135,100 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- ###################应用框架类的依赖################### -->
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>${mysql-connect-j.version}</version>
+            </dependency>
 
-            <!-- ###################框架类的依赖################### -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core</artifactId>
+                <version>${shardingsphere-jdbc-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-spring-boot-starter.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketMq-v}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${caffeine.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework.statemachine</groupId>
+                <artifactId>spring-statemachine-redis</artifactId>
+                <version>${spring-statemachine-redis.version}</version>
+            </dependency>
+
+            <!--状态机-->
+            <dependency>
+                <groupId>org.springframework.statemachine</groupId>
+                <artifactId>spring-statemachine-starter</artifactId>
+                <version>${spring-statemachine-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.redislabs</groupId>
+                <artifactId>jrejson</artifactId>
+                <version>${jrejson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl-job-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-apache-dubbo3-adapter</artifactId>
+                <version>${sentinel-apache-dubbo3-adapter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-config-spring-boot-starter</artifactId>
+                <version>${nacos-config-spring-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-discovery-spring-boot-starter</artifactId>
+                <version>${nacos-discovery-spring-boot-starter.version}</version>
+            </dependency>
+            <!-- ###################工具框架类的依赖################### -->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.yomahub</groupId>
+                <artifactId>liteflow-spring-boot-starter</artifactId>
+                <version>${liteflow-spring-boot-starter.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
                 <artifactId>cola-component-domain-starter</artifactId>
@@ -154,31 +260,28 @@
                 <version>${cola.components.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.shardingsphere</groupId>
-                <artifactId>shardingsphere-jdbc-core</artifactId>
-                <version>${shardingsphere-jdbc-core.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-                <version>${knife4j.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.rocketmq</groupId>
-                <artifactId>rocketmq-spring-boot-starter</artifactId>
-                <version>${rocketMq-v}</version>
-            </dependency>
 
             <!-- ###################工具类的依赖################### -->
+            <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.jruby</groupId>
+                <artifactId>jruby-complete</artifactId>
+                <version>${jruby-complete-v}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyexcel.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -209,7 +312,7 @@
                 <version>${hutool.version}</version>
             </dependency>
 
-            <!-- mapstruct -->
+
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
@@ -232,6 +335,19 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+                <version>${json-path.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation-api.version}</version>
+            </dependency>
+
 
 
             <dependency>

@@ -12,15 +12,11 @@
 
     <artifactId>dutyChain</artifactId>
 
-    <properties>
-        <xxl-job-v>2.3.0</xxl-job-v>
-    </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
         </dependency>
     </dependencies>
 
