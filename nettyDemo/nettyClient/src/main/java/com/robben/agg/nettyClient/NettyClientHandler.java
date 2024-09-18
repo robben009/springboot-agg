@@ -75,7 +75,6 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
             return;
         }
         try {
-
             // 得到protobuf的数据
             UserMsg.User userMsg = (UserMsg.User) msg;
             // 进行相应的业务处理。。。

@@ -20,7 +20,7 @@
         <module>LiteFlowDemo</module>
         <module>colaDemo</module>
         <module>nettyDemo</module>
-        <module>javaBase</module>
+        <module>baseJava</module>
         <module>commonDto</module>
     </modules>
 
@@ -36,8 +36,16 @@
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
 
         <!-- 框架类的依赖  -->
+        <dubbo-spring-boot-starter.version>3.2.11</dubbo-spring-boot-starter.version>
+        <liteflow-spring-boot-starter.version>2.12.1</liteflow-spring-boot-starter.version>
         <cola.components.version>5.0.0</cola.components.version>
 
+        <spring-statemachine-redis.version>1.2.9.RELEASE</spring-statemachine-redis.version>
+        <spring-statemachine-starter.version>2.0.1.RELEASE</spring-statemachine-starter.version>
+
+        <caffeine.version>3.0.5</caffeine.version>
+
+        <!-- 中间件的依赖  -->
         <mysql-connect-j.version>8.3.0</mysql-connect-j.version>
         <mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
         <shardingsphere-jdbc-core.version>5.4.1</shardingsphere-jdbc-core.version>
@@ -47,9 +55,9 @@
 
         <xxl-job-core.version>2.4.0</xxl-job-core.version>
 
-        <dubbo-spring-boot-starter.version>3.2.11</dubbo-spring-boot-starter.version>
         <nacos-client.version>2.2.4</nacos-client.version>
-        <liteflow-spring-boot-starter.version>2.12.1</liteflow-spring-boot-starter.version>
+        <nacos-config-spring-boot-starter.version>0.3.0-RC</nacos-config-spring-boot-starter.version>
+        <nacos-discovery-spring-boot-starter.version>0.3.0-RC</nacos-discovery-spring-boot-starter.version>
 
         <rocketMq-v>2.2.2</rocketMq-v>
 
@@ -57,12 +65,7 @@
         <protobuf.version>3.6.1</protobuf.version>
         <grpc.version>1.15.0</grpc.version>
 
-        <spring-statemachine-redis.version>1.2.9.RELEASE</spring-statemachine-redis.version>
-        <spring-statemachine-starter.version>2.0.1.RELEASE</spring-statemachine-starter.version>
-
         <sentinel-apache-dubbo3-adapter.version>1.8.7</sentinel-apache-dubbo3-adapter.version>
-        <nacos-config-spring-boot-starter.version>0.3.0-RC</nacos-config-spring-boot-starter.version>
-        <nacos-discovery-spring-boot-starter.version>0.3.0-RC</nacos-discovery-spring-boot-starter.version>
 
         <protobuf-java.version>4.27.3</protobuf-java.version>
         <grpc-netty.version>1.66.0</grpc-netty.version>
@@ -78,13 +81,11 @@
         <guava.version>32.1.2-jre</guava.version>
         <commons-lang3.version>3.13.0</commons-lang3.version>
         <hutool.version>5.8.21</hutool.version>
-
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-        <java-sizeof.version>0.0.5</java-sizeof.version>
-        <caffeine.version>3.0.5</caffeine.version>
         <easyexcel.version>3.3.2</easyexcel.version>
         <json-path.version>2.8.0</json-path.version>
 
+        <java-sizeof.version>0.0.5</java-sizeof.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <snakeyaml.version>1.30</snakeyaml.version>
     </properties>
@@ -97,7 +98,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
-                <version>3.2.3</version>
+                <version>3.3.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -105,7 +106,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2023.0.1</version>
+                <version>2023.0.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -113,7 +114,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2023.0.0.0-RC1</version>
+                <version>2023.0.1.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -122,7 +123,7 @@
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-bom</artifactId>
-                <version>3.2.11</version>
+                <version>3.3.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -130,7 +131,7 @@
             <dependency>
                 <groupId>io.micrometer</groupId>
                 <artifactId>micrometer-bom</artifactId>
-                <version>1.12.4</version>
+                <version>1.13.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -172,7 +173,6 @@
                 <artifactId>caffeine</artifactId>
                 <version>${caffeine.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>org.springframework.statemachine</groupId>
@@ -216,6 +216,8 @@
                 <artifactId>nacos-discovery-spring-boot-starter</artifactId>
                 <version>${nacos-discovery-spring-boot-starter.version}</version>
             </dependency>
+
+
             <!-- ###################工具框架类的依赖################### -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
@@ -262,7 +264,6 @@
 
 
             <!-- ###################工具类的依赖################### -->
-            <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
             <dependency>
                 <groupId>org.yaml</groupId>
                 <artifactId>snakeyaml</artifactId>
@@ -348,8 +349,6 @@
                 <version>${validation-api.version}</version>
             </dependency>
 
-
-
             <dependency>
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
@@ -400,7 +399,6 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
 

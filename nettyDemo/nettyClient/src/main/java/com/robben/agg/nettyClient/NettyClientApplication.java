@@ -1,17 +1,14 @@
-package com.robben.agg.nettyserver;
-
+package com.robben.agg.nettyClient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-
 
 @SpringBootApplication
-public class NettyServerApp {
+public class NettyClientApplication {
     /**
      * @param args
      */
     public static void main(String[] args) {
-       SpringApplication.run(NettyServerApp.class);
+        SpringApplication.run(NettyClientApplication.class);
     }
 }
