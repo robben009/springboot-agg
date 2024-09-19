@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
-public class NettyServerHandler extends ChannelInboundHandlerAdapter {
+public class ServerBizHandler extends ChannelInboundHandlerAdapter {
     /** 空闲次数 */
     private AtomicInteger idle_count = new AtomicInteger(1);
     /** 发送次数 */

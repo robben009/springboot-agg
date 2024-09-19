@@ -28,6 +28,6 @@ public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
         ph.addLast(new ProtobufEncoder());
 
         //业务逻辑实现类
-        ph.addLast("nettyServerHandler", new NettyServerHandler());
+        ph.addLast("serverBizHandler", new ServerBizHandler());
     }
 }

@@ -7,7 +7,7 @@ spring:
 server:
   enabled: true
   bindAddress: 0.0.0.0
-  bindPort: 9876
+  bind_port: 9876
   netty:
     #不进行内存泄露的检测
     leak_detector_level: DISABLED

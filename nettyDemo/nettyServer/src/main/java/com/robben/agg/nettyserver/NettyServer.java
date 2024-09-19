@@ -14,9 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-
-@Service("nettyServer")
 @Slf4j
+@Service
 public class NettyServer {
     @Value("${server.bind_port}")
     private Integer port;
@@ -28,35 +27,29 @@ public class NettyServer {
     private String leakDetectorLevel;
     @Value("${server.netty.max_payload_size}")
     private Integer maxPayloadSize;
-    private  ChannelFuture channelFuture;
-    private  EventLoopGroup bossGroup;
-    private  EventLoopGroup workerGroup;
+    private ChannelFuture channelFuture;
+    private EventLoopGroup bossGroup;
+    private EventLoopGroup workerGroup;
 
 
     @PostConstruct
     public void init() throws Exception {
-        log.info("Setting resource leak detector level to {}",leakDetectorLevel);
+        log.info("Setting resource leak detector level to {}", leakDetectorLevel);
         ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.valueOf(leakDetectorLevel.toUpperCase()));
 
-        log.info("Starting Server");
-        //创建boss线程组 用于服务端接受客户端的连接
+        log.info("开始启动服务端");
         bossGroup = new NioEventLoopGroup(bossGroupThreadCount);
-        // 创建 worker 线程组 用于进行 SocketChannel 的数据读写
         workerGroup = new NioEventLoopGroup(workerGroupThreadCount);
-        // 创建 ServerBootstrap 对象
-        ServerBootstrap b = new ServerBootstrap();
-        //设置使用的EventLoopGroup
-        b.group(bossGroup, workerGroup)
-                //设置要被实例化的为 NioServerSocketChannel 类
-                .channel(NioServerSocketChannel.class)
-                // 设置 NioServerSocketChannel 的处理器
-                .handler(new LoggingHandler(LogLevel.INFO))
-                // 设置连入服务端的 Client 的 SocketChannel 的处理器
-                .childHandler(new NettyServerInitializer());
-        // 绑定端口，并同步等待成功，即启动服务端
-        channelFuture = b.bind(port).sync();
+        ServerBootstrap serverBootstrap = new ServerBootstrap();
 
-        log.info("Server started!");
+        serverBootstrap.group(bossGroup, workerGroup)
+                .channel(NioServerSocketChannel.class)
+                .handler(new LoggingHandler(LogLevel.INFO))
+                .childHandler(new NettyServerInitializer());
+
+        // 绑定端口，并同步等待成功，即启动服务端
+        channelFuture = serverBootstrap.bind(port).sync();
+        log.info("服务端启动成功");
     }
 
     @PreDestroy
@@ -71,7 +64,6 @@ public class NettyServer {
             bossGroup.shutdownGracefully();
         }
         log.info("server stopped!");
-
     }
 
 }

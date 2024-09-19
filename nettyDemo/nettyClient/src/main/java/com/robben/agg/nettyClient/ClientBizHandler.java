@@ -2,6 +2,7 @@ package com.robben.agg.nettyClient;
 
 import com.robben.agg.nettycommon.protoMsg.UserMsg;
 import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.EventLoop;
@@ -18,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 @Slf4j
-public class NettyClientHandler extends ChannelInboundHandlerAdapter {
+public class ClientBizHandler extends ChannelInboundHandlerAdapter {
     @Autowired
     private NettyClient nettyClient;
 
@@ -31,7 +32,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
      * 建立连接时
      */
     @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+    public void channelActive(ChannelHandlerContext ctx) {
         log.info("建立连接时：" + new Date());
         ctx.fireChannelActive();
     }
@@ -51,7 +52,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
      * 心跳请求处理 每4秒发送一次心跳请求;
      */
     @Override
-    public void userEventTriggered(ChannelHandlerContext ctx, Object obj) throws Exception {
+    public void userEventTriggered(ChannelHandlerContext ctx, Object obj) {
         log.info("循环请求的时间：" + new Date() + "，次数" + fcount.get());
         if (obj instanceof IdleStateEvent) {
             IdleStateEvent event = (IdleStateEvent) obj;
@@ -74,18 +75,24 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
             log.info("未知数据!" + msg);
             return;
         }
+
         try {
             // 得到protobuf的数据
             UserMsg.User userMsg = (UserMsg.User) msg;
-            // 进行相应的业务处理。。。
-            // 这里就从简了，只是打印而已
-            log.info(
-                    "客户端接受到的用户信息。编号:" + userMsg.getId() + ",姓名:" + userMsg.getName() + ",年龄:" + userMsg.getAge());
+
+            // 进行相应的业务处理
+            log.info("客户端接受到的用户信息。编号:" + userMsg.getId() + ",姓名:" + userMsg.getName() + ",年龄:" + userMsg.getAge());
 
             // 这里返回一个已经接受到数据的状态
             UserMsg.User.Builder userState = UserMsg.User.newBuilder().setState(1);
-            ctx.writeAndFlush(userState);
-            log.info("成功发送给服务端!");
+            ChannelFuture channelFuture = ctx.writeAndFlush(userState);
+            channelFuture.addListener((ChannelFuture f) -> {
+                if (f.isSuccess()) {
+                    log.info("成功发送给服务端!");
+                } else {
+                    log.error("发送给服务端失败: " + f.cause());
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
