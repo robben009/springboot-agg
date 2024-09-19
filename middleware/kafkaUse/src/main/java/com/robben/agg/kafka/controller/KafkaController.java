@@ -34,13 +34,9 @@ public class KafkaController {
     // "num.partitions=3\n" +
     // "auto.create.topics.enable=true\n" +
     // "default.replication.factor=3\n"
-
-    @Parameters({
-            @Parameter(name = "topicName",description = "topic名称",required = true,in= ParameterIn.QUERY)
-    })
     @Operation(summary = "手动创建topic")
     @GetMapping("/createTopic")
-    public String createTopic(@RequestParam("topicName")  String topicName) {
+    public String createTopic(String topicName) {
         NewTopic newTopic = new NewTopic(topicName, 1, (short) 1);
         CreateTopicsResult result = kafkaAdminClient.createTopics(Arrays.asList(newTopic));
 
@@ -51,10 +47,6 @@ public class KafkaController {
 
 
     @Operation(summary = "简单发送")
-    @Parameters({
-            @Parameter(name = "topicName",description = "topic名称",required = true,in= ParameterIn.QUERY),
-            @Parameter(name = "msg",description = "msg数据",required = true,in= ParameterIn.QUERY)
-    })
     @GetMapping("/send")
     public String send(@RequestParam(name = "topicName") String topicName, @RequestParam(name = "msg") String msg) {
         CompletableFuture send = kafkaTemplate.send(topicName, msg);
@@ -63,10 +55,6 @@ public class KafkaController {
 
 
     @Operation(summary = "简单发送2")
-    @Parameters({
-            @Parameter(name = "topicName",description = "topic名称",required = true,in= ParameterIn.QUERY),
-            @Parameter(name = "msg",description = "msg数据",required = true,in= ParameterIn.QUERY)
-    })
     @GetMapping("/send2")
     public String send2(@RequestParam(name = "topicName") String topicName,
                         @RequestParam(name = "msg") String msg) {
@@ -79,10 +67,6 @@ public class KafkaController {
 
 
     @Operation(summary = "发送有回执")
-    @Parameters({
-            @Parameter(name = "topicName",description = "topic名称",required = true,in= ParameterIn.QUERY),
-            @Parameter(name = "msg",description = "msg数据",required = true,in= ParameterIn.QUERY)
-    })
     @GetMapping("/sendAck")
     public String sendAck(@RequestParam(name = "topicName") String topicName,
                           @RequestParam(name = "msg") String msg) {
@@ -111,10 +95,6 @@ public class KafkaController {
      * @return
      */
     @Operation(summary = "事务正常发送")
-    @Parameters({
-            @Parameter(name = "topicName",description = "topic名称",required = true,in= ParameterIn.QUERY),
-            @Parameter(name = "msg",description = "msg数据",required = true,in= ParameterIn.QUERY)
-    })
     @GetMapping("/transactionSend")
     @Transactional
     public String transactionSend(@RequestParam(name = "topicName") String topicName,
@@ -128,10 +108,6 @@ public class KafkaController {
     }
 
     @Operation(summary = "事务异常发送-模板方法")
-    @Parameters({
-            @Parameter(name = "topicName",description = "topic名称",required = true,in= ParameterIn.QUERY),
-            @Parameter(name = "msg",description = "msg数据",required = true,in= ParameterIn.QUERY)
-    })
     @GetMapping("/transactionSend2")
     public void transactionSend2(@RequestParam(name = "topicName") String topicName,
                                  @RequestParam(name = "msg") String msg){
@@ -143,14 +119,9 @@ public class KafkaController {
 
     //注解方式如果是同时操作数据库的可能会失效,参考https://blog.csdn.net/feg545/article/details/113742434
     @Operation(summary = "事务异常发送-注解")
-    @Parameters({
-            @Parameter(name = "topicName",description = "topic名称",required = true,in= ParameterIn.QUERY),
-            @Parameter(name = "msg",description = "msg数据",required = true,in= ParameterIn.QUERY)
-    })
     @GetMapping("/transactionSend3")
     @Transactional
-    public void transactionSend3(@RequestParam(name = "topicName") String topicName,
-                                 @RequestParam(name = "msg") String msg){
+    public void transactionSend3(@RequestParam(name = "topicName") String topicName, @RequestParam(name = "msg") String msg){
         kafkaTemplate.send(topicName, msg);
         throw new RuntimeException("fail");
     }

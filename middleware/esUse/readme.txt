@@ -8,5 +8,5 @@ es的java客户端有两种
 (https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/indexing.html
 官网下拉ELASTIC STACK,找Elasticsearch Clients)
 
-
+还有一种是直接使用easy-es这个开源框架来使用
 创建索引模版

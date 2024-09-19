@@ -1,6 +1,4 @@
-
 serverHost: 127.0.0.1
-
 
 server:
   port: 28085
@@ -37,13 +35,13 @@ spring:
     listener:
       # 设置批量消费
       type: batch
-      idle-event-interval: 30000
+      idleEventInterval: 30000
       concurrency: 5
     consumer:
-      enable-auto-commit: true
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      auto-offset-reset: latest
+      enableAutoCommit: true
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      autoOffsetReset: latest
       #批量消费每次最多消费多少个
       max-poll-records: 100
 
