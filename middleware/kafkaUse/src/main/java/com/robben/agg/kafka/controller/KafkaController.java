@@ -1,9 +1,6 @@
 package com.robben.agg.kafka.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.*;
@@ -13,7 +10,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -48,7 +44,7 @@ public class KafkaController {
 
     @Operation(summary = "简单发送")
     @GetMapping("/send")
-    public String send(@RequestParam(name = "topicName") String topicName, @RequestParam(name = "msg") String msg) {
+    public String send(String topicName, String msg) {
         CompletableFuture send = kafkaTemplate.send(topicName, msg);
         return "success";
     }
@@ -56,20 +52,17 @@ public class KafkaController {
 
     @Operation(summary = "简单发送2")
     @GetMapping("/send2")
-    public String send2(@RequestParam(name = "topicName") String topicName,
-                        @RequestParam(name = "msg") String msg) {
-
+    public String send2(String topicName, String msg) {
         //kafka允许为每条消息设置一个key，一旦消息被定义了 Key，那么就可以保证同一个 Key 的所有消息都进入到相同的分区，
         // 这种策略属于自定义策略的一种，被称作"按消息key保存策略"，或Key-ordering 策略。
-        kafkaTemplate.send(topicName,"key11", msg);
+        kafkaTemplate.send(topicName, "key11", msg);
         return "success";
     }
 
 
     @Operation(summary = "发送有回执")
     @GetMapping("/sendAck")
-    public String sendAck(@RequestParam(name = "topicName") String topicName,
-                          @RequestParam(name = "msg") String msg) {
+    public String sendAck(String topicName, String msg) {
         CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topicName, msg);
 
         //成功的处理
@@ -79,7 +72,7 @@ public class KafkaController {
 
         //发送失败的处理
         future.exceptionally(throwable -> {
-            log.error("Kafka发送消息失败：Topic={},errMsg={}",topicName , throwable.getMessage());
+            log.error("Kafka发送消息失败：Topic={},errMsg={}", topicName, throwable.getMessage());
             return null;
         });
 
@@ -90,6 +83,7 @@ public class KafkaController {
     /**
      * 参考：https://developer.aliyun.com/article/897204
      * 开启配置项需要增加：前缀transaction-id-prefix: tx_ 、retries大于0、acks: all才行
+     * 执行过程中所有的发送操作要么全部成功，要么全部失败
      * @param topicName
      * @param msg
      * @return
@@ -97,10 +91,12 @@ public class KafkaController {
     @Operation(summary = "事务正常发送")
     @GetMapping("/transactionSend")
     @Transactional
-    public String transactionSend(@RequestParam(name = "topicName") String topicName,
-                                  @RequestParam(name = "msg") String msg) {
+    public String transactionSend(String topicName, String msg) {
         kafkaTemplate.executeInTransaction(operations -> {
-            operations.send(topicName,msg);
+            operations.send(topicName, msg);
+            operations.send(topicName, msg);
+            operations.send(topicName, msg);
+            operations.send(topicName, msg);
             return "lalalal";
         });
 
@@ -109,10 +105,9 @@ public class KafkaController {
 
     @Operation(summary = "事务异常发送-模板方法")
     @GetMapping("/transactionSend2")
-    public void transactionSend2(@RequestParam(name = "topicName") String topicName,
-                                 @RequestParam(name = "msg") String msg){
+    public void transactionSend2(String topicName, String msg) {
         kafkaTemplate.executeInTransaction(operations -> {
-            operations.send(topicName,msg);
+            operations.send(topicName, msg);
             throw new RuntimeException("fail");
         });
     }
@@ -121,7 +116,7 @@ public class KafkaController {
     @Operation(summary = "事务异常发送-注解")
     @GetMapping("/transactionSend3")
     @Transactional
-    public void transactionSend3(@RequestParam(name = "topicName") String topicName, @RequestParam(name = "msg") String msg){
+    public void transactionSend3(String topicName, String msg) {
         kafkaTemplate.send(topicName, msg);
         throw new RuntimeException("fail");
     }

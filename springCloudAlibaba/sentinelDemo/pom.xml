@@ -67,13 +67,6 @@
             <artifactId>sentinel-apache-dubbo3-adapter</artifactId>
         </dependency>
 
-        <!-- sleuth依赖-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-sleuth</artifactId>-->
-<!--        </dependency>-->
-
-
         <dependency>
             <groupId>hjz-dubbo.groupId</groupId>
             <artifactId>dubbo-api</artifactId>
