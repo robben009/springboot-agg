@@ -12,5 +12,5 @@ message User{
     //年龄
     int32 age = 3;
     //状态
-    int32 state = 4;
+    int32 orderStatusEnum = 4;
 }

@@ -3,13 +3,16 @@ package com.robben.agg.cola.extension.impl;
 import com.alibaba.cola.extension.Extension;
 import com.robben.agg.cola.extension.PayExtPt;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 @Slf4j
-@Extension(bizId = PayExtPt.DefaultBizId, useCase = "ZFB")
-public class ZfbPay implements PayExtPt {
+@Component
+@Extension(bizId = PayExtPt.DefaultBizId)
+public class DefaultPay implements PayExtPt {
 
     @Override
     public String payOrder(String orderId) {
-        return "支付宝支付了" + orderId;
+        return "默认支付了" + orderId;
     }
+
 }

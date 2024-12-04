@@ -38,7 +38,7 @@ public class BiFunController {
 
     @Operation(summary = "路由api")
     @GetMapping(value = "/api")
-    public BbResponse api(@RequestParam(value = "apiName") String apiName,@RequestParam(value = "param") String param) {
+    public BbResponse api(@RequestParam String apiName,@RequestParam String param) {
         if (!apiRouterHandleMap.containsKey(apiName)) {
             throw new BizPlusException(BbResultEnum.PARAMS_ERROR);
         }

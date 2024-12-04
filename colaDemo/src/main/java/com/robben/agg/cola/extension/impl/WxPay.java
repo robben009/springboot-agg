@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@Extension(bizId = "WX")
+@Extension(bizId = PayExtPt.DefaultBizId, useCase = "WX")
 public class WxPay implements PayExtPt {
 
     @Override

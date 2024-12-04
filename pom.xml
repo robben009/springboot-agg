@@ -384,6 +384,7 @@
                     <target>${maven.compiler.target}</target>
                     <encoding>UTF-8</encoding>
                     <annotationProcessorPaths>
+                        <!-- lombok一定要配置在mapstruct上才行 -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
