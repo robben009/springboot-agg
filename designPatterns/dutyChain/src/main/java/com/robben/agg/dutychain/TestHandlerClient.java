@@ -1,5 +1,9 @@
 package com.robben.agg.dutychain;
 
+import com.robben.agg.dutychain.method1.FirstPassHandler;
+import com.robben.agg.dutychain.method1.SecondPassHandler;
+import com.robben.agg.dutychain.method1.ThirdPassHandler;
+
 public class TestHandlerClient {
 
     public static void main(String[] args) {
