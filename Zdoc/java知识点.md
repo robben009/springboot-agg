@@ -4,20 +4,20 @@
 
 Java 源文件—->编译器—->字节码文件—->JVM—->机器码
 
-![image.png](/Users/hjz/openSourceProject/springboot-agg/Zdoc/pictureList/image.png?t=1733385561971)
-
-
+![image.png](pictureList/image.png)
 
 ### 线程
 
 这里所说的线程指程序执行过程中的一个线程实体。JVM 允许一个应用并发执行多个线程。Hotspot JVM 中的 Java 线程与原生操作系统线程有直接的映射关系。当线程本地存储、缓冲区分配、同步对象、栈、程序计数器等准备好以后，就会创建一个操作系统原生线程。Java 线程结束，原生线程随之被回收。操作系统负责调度所有线程，并把它们分配到任何可用的 CPU 上。当原生线程初始化完毕，就会调用 Java 线程的 run() 方法。当线程结束时，会释放原生线程和 Java 线程的所有资源。
 
 Hotspot JVM 后台运行的系统线程主要有下面几个：
-![](media/16443277590292/16506422091139.jpg)
+
+![image.png](pictureList/image2.png)
+
 
 ### JVM内存区域
 
-![](media/16443277590292/16506422274384.jpg)
+![image.png](pictureList/image4.png)
 
 线程私有数据区域生命周期与线程相同, 依赖用户线程的启动/结束 而 创建/销毁(在 Hotspot VM 内, 每个线程都与操作系统的本地线程直接映射, 因此这部分内存区域的存/否跟随本地线程的生/死对应)。
 
@@ -25,7 +25,9 @@ Hotspot JVM 后台运行的系统线程主要有下面几个：
 
 直接内存并不是 JVM 运行时数据区的一部分, 但也会被频繁的使用: 在 JDK 1.4 引入的 NIO 提供了基于 Channel 与 Buffer 的 IO 方式, 它可以使用 Native 函数库直接分配堆外内存, 然后使用DirectByteBuffer 对象作为这块内存的引用进行操作(详见: Java I/O 扩展), 这样就避免了在 Java 堆和Native 堆中来回复制数据, 因此在一些场景中可以显著提高性能。
 
-![](media/16443277590292/16506423363488.jpg)
+![image.png](pictureList/image5.png)
+
+
 
 ### jvm为什么要划分新生代、老年代?
 
@@ -42,7 +44,9 @@ JVM将堆内存划分为新生代和老年代的主要目的是为了优化垃�
 综上所述，通过将堆内存划分为新生代和老年代，可以根据不同对象的生命周期、垃圾回收算法和频率进行优化，提高垃圾回收的效率和内存的利用率。
 
 新生代一般暂用1/3空间
-![](media/16443277590292/16932141648216.jpg)
+
+![image.png](pictureList/image6.png)
+
 
 ### MinorGC
 
@@ -118,7 +122,7 @@ java -Xmn256m -XX:NewRatio=2 -XX:SurvivorRatio=8 -jar YourApp.jar
 
 ### 垃圾回收
 
-![](media/16443277590292/16932146730587.jpg)
+![image.png](pictureList/image7.png)
 
 __如果确定是垃圾？__
 1：引用计数法
@@ -464,7 +468,7 @@ public class Test {
             public int fly() {
                 return 10000;
             }
-      
+  
             public String getName() {
                 return "大雁";
             }
@@ -693,12 +697,13 @@ __参数__
 * * 异常结束 线程抛出一个未捕获的 Exception 或 Error。
 * * 调用 stop 直接调用该线程的 stop()方法来结束该线程—该方法通常容易导致死锁，不推荐使用。
 
-![](media/16443277590292/16934671096363.jpg)
+![image.png](pictureList/image8.png)
 
 ### 线程基本方法
 
 线程相关的基本方法有 wait，notify，notifyAll，sleep，join，yield 等
-![](media/16443277590292/16934708650624.jpg)
+
+
 
 * 线程等待（wait）
   调用该方法的线程进入 WAITING 状态，只有等待另外线程的通知或被中断才会返回，需要注意的是调用wait()方法后，会释放对象的锁。因此，wait 方法一般用在同步方法或同步代码块中。
@@ -906,7 +911,10 @@ two 进行了一些操作变成了 B，然后 two 又将 V 位置的数据变成
 
 AbstractQueuedSynchronizer 类如其名，抽象的队列式的同步器，AQS 定义了一套多线程访问
 共享资源的同步器框架，许多同步类实现都依赖于它，如常用的:ReentrantLock/Semaphore/CountDownLatch。
-![](media/16443277590292/16937985627877.jpg)
+
+![image.png](pictureList/image10.png)
+
+
 它维护了一个 volatile int state（代表共享资源）和一个 FIFO 线程等待队列（多线程争用资源被
 阻塞时会进入此队列）。这里 volatile 是核心关键词，具体 volatile 的语义，在此不述。state 的
 访问方式有三种:
@@ -1018,7 +1026,9 @@ __Synchronized 核心组件__
 * Owner：当前已经获取到所资源的线程被称为 Owner；
 * !Owner：当前释放锁的线程
 
-![](media/16443277590292/16934690792187.jpg)
+![image.png](pictureList/image11.png)
+
+
 
 1. JVM 每次从队列的尾部取出一个数据用于锁竞争候选者（OnDeck），但是并发情况下，
    ContentionList 会被大量的并发线程进行 CAS 访问，为了降低对尾部元素的竞争，JVM 会将
@@ -1303,7 +1313,8 @@ ArrayBlockingQueue fairQueue = new ArrayBlockingQueue(1000,true);
    “工作窃取”模式中
 
 __方法__
-![](media/16443277590292/16934724880636.jpg)
+
+![image.png](pictureList/image12.png)
 
 * add
   将指定元素插入此队列中（如果立即可行且不会违反容量限制），成功时返回 true，如果当前没有可用的空间，则抛出 IllegalStateException。如果该元素是 NULL，则会抛出NullPointerException 异常。
@@ -1467,7 +1478,7 @@ __调度算法__
 
 ## 异常
 
-![](media/16443277590292/16938073346225.jpg)
+![image.png](pictureList/image13.png)
 
 Throwable 是 Java 语言中所有错误或异常的超类,下一层分为 Error 和 Exception
 
