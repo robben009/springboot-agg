@@ -26,6 +26,3 @@ shutdownNow() 方法会尝试停止所有正在执行的任务，停止队列中
 所以spring.lifecycle.timeout-per-shutdown-phase=20s 这个配置项就是设定在每个阶段Spring Boot最多等待的时间。超过设定的时间后，如果还有未完成的工作，那么Spring Boot将会强制关闭应用。
 
 默认情况下，这个配置项的值为30秒。
-
-
-
