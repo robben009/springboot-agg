@@ -17,6 +17,7 @@
     <modules>
         <module>dutyChain</module>
         <module>stateMachine</module>
+        <module>strategyPattern</module>
     </modules>
 
 
