@@ -32,3 +32,4 @@ EXISTS 用于测试子查询是否返回至少一行数据。它不关心返回�
 
 关联条件：子查询 SELECT 1 FROM orders WHERE orders.customer_id = customers.customer_id 将 orders 表中的每一行与 customers 表当前行上的 customer_id 进行匹配。
 返回控制：如果 orders 中存在一行与外层查询中的 customer_id 匹配，则 EXISTS 子查询返回 TRUE，外层的 WHERE 子句返回符合条件的 customer_id。
+
