@@ -1,10 +1,12 @@
 # spring知识点
 
 ## 优雅关闭
+
 ```
 server.shutdown=graceful
 spring.lifecycle.timeout-per-shutdown-phase=20s
 ```
+
 Spring Boot的优雅关机过程分为两个阶段：first和second。
 
 在first阶段，所有声明了@PreDestroy注解的bean将被调用，并且这个阶段将会等待所有当前执行的请求完成。
@@ -26,3 +28,18 @@ shutdownNow() 方法会尝试停止所有正在执行的任务，停止队列中
 所以spring.lifecycle.timeout-per-shutdown-phase=20s 这个配置项就是设定在每个阶段Spring Boot最多等待的时间。超过设定的时间后，如果还有未完成的工作，那么Spring Boot将会强制关闭应用。
 
 默认情况下，这个配置项的值为30秒。
+
+
+# 版本问题
+
+JDK1.8 所能支持的最高版本
+
+springboot  2.7.18
+
+springCloud 2021.0.1
+
+springCloud alibaba  2021.0.5.0
+
+dubbo 3.2.9-beta.4
+
+es 7.*
