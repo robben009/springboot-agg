@@ -17,9 +17,9 @@ public class k8sDemo2Application {
     @RestController
     public class GreetingController {
 
-        @GetMapping("/greeting2")
-        public String greeting() {
-            return "Hello, World!";
+        @GetMapping("/k8sdemoApi2")
+        public String k8sdemoApi2() {
+            return "i am k8sdemoApi 2222";
         }
     }
 

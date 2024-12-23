@@ -17,5 +17,6 @@
     <modules>
         <module>k8sDemo</module>
         <module>k8sDemo2</module>
+        <module>k8sDemo2</module>
     </modules>
 </project>
