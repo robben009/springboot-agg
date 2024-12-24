@@ -1,6 +1,6 @@
 FROM openjdk:17-jdk-slim
 VOLUME /tmp
-ADD target/k8sDemo2-0.0.1-SNAPSHOT.jar k8sDemo2.jar
-ENTRYPOINT ["java","-jar","/k8sDemo2.jar"]
+ADD target/k8sdemo2.jar k8sdemo2.jar
+ENTRYPOINT ["java","-jar","/k8sdemo2.jar"]
 
-# 之后执行docker build -t k8sdemo2 .
+# 之后执行docker build -t k8sdemo2:1.0 .

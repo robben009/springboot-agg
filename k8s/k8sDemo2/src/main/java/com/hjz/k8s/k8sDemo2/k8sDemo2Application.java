@@ -19,7 +19,7 @@ public class k8sDemo2Application {
 
         @GetMapping("/k8sdemoApi2")
         public String k8sdemoApi2() {
-            return "i am k8sdemoApi 2222";
+            return "i am k8sdemoApi2";
         }
     }
 
