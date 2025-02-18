@@ -42,7 +42,7 @@ public class CaffeineCacheConfig {
 
     @Bean(name = "caffeineCacheManager2")
     public CaffeineCacheManager navicatcaffeineCacheManager() {
-        CaffeineCacheManager cacheManager = new CaffeineCacheManager();
+        CaffeineCacheManager cacheManager = new CaffeineCacheManager("kkkk");
         //Caffeine配置
         Caffeine<Object, Object> caffeine = Caffeine.newBuilder()
                 //最后一次写入后经过固定时间过期
