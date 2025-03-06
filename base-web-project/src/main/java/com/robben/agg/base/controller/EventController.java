@@ -1,6 +1,6 @@
 package com.robben.agg.base.controller;
 
-import com.robben.agg.base.dao.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfo;
 import com.robben.agg.base.event.ContentAnnoEvent;
 import com.robben.agg.base.event.ContentEvent;
 import com.robben.agg.base.event.ContentSmartEvent;
@@ -40,7 +40,7 @@ public class EventController {
     public String sendSmartEvent(String context){
         log.info("sendSmartEvent_request:{}",context);
 
-        UserInfoEntity vo = new UserInfoEntity();
+        UserInfo vo = new UserInfo();
         vo.setId(1l);
         vo.setName("aaa");
 
@@ -55,7 +55,7 @@ public class EventController {
     public String sendAnnoEvent(String context){
         log.info("sendAnnoEvent_request:{}",context);
 
-        UserInfoEntity vo = new UserInfoEntity();
+        UserInfo vo = new UserInfo();
         vo.setId(2L);
         vo.setName("bbb");
 

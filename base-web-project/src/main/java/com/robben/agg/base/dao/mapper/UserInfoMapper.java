@@ -1,12 +1,9 @@
 package com.robben.agg.base.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.robben.agg.base.dao.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
-import java.util.Map;
+import org.springframework.stereotype.Repository;
 
 /**
 * @author hjz
@@ -14,12 +11,12 @@ import java.util.Map;
 * @createDate 2023-01-31 16:39:50
 * @Entity generator.domain.UserInfo
 */
-//@Repository
+@Repository
 @Mapper
-public interface UserInfoMapper extends BaseMapper<UserInfoEntity> {
+public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
-    @Select("${sql}")
-    void handleSql(String sql);
+//    @Select("${sql}")
+//    void handleSql(String sql);
 
 }
 

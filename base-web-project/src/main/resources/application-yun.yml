@@ -25,7 +25,7 @@ spring:
   jackson:
     time-zone: GMT+8
   datasource:
-    url: jdbc:mysql://${extraEnvHost}:3306/springBootDemo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&rewriteBatchedStatements=true
+    url: jdbc:mysql://${extraEnvHost}:53306/springBootDemo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&rewriteBatchedStatements=true
     username: ${jdbc.username}
     password: ${jdbc.pwd}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -40,7 +40,7 @@ spring:
   data:
     redis:
       host: ${extraEnvHost}
-      port: 6379
+      port: 56379
       password: ${redis.pwd}
 
 

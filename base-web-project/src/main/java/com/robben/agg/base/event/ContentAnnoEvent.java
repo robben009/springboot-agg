@@ -1,22 +1,22 @@
 package com.robben.agg.base.event;
 
-import com.robben.agg.base.dao.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfo;
 import org.springframework.context.ApplicationEvent;
 
 public class ContentAnnoEvent extends ApplicationEvent {
 
-    private UserInfoEntity u;
+    private UserInfo u;
 
-    public ContentAnnoEvent(Object source, UserInfoEntity u) {
+    public ContentAnnoEvent(Object source, UserInfo u) {
         super(source);
         this.u = u;
     }
 
-    public UserInfoEntity getUserVo() {
+    public UserInfo getUserVo() {
         return u;
     }
 
-    public void setUserVo(UserInfoEntity UserInfoEntity) {
-        this.u = UserInfoEntity;
+    public void setUserVo(UserInfo UserInfo) {
+        this.u = UserInfo;
     }
 }

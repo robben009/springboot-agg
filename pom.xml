@@ -31,9 +31,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
 
         <!-- 框架类的依赖  -->
@@ -48,7 +48,7 @@
 
         <!-- 中间件的依赖  -->
         <mysql-connect-j.version>8.3.0</mysql-connect-j.version>
-        <mybatis-plus-boot-starter.version>3.5.5</mybatis-plus-boot-starter.version>
+        <mybatis-plus-boot-starter.version>3.5.10.1</mybatis-plus-boot-starter.version>
         <shardingsphere-jdbc-core.version>5.4.1</shardingsphere-jdbc-core.version>
 
         <redisson-spring-boot-starter.version>3.16.1</redisson-spring-boot-starter.version>
@@ -77,18 +77,18 @@
         <knife4j.version>4.4.0</knife4j.version>
         <jruby-complete-v>9.4.3.0</jruby-complete-v>
 
-        <lombok.version>1.18.34</lombok.version>
-        <fastjson2.version>2.0.52</fastjson2.version>
-        <guava.version>32.1.2-jre</guava.version>
-        <commons-lang3.version>3.13.0</commons-lang3.version>
-        <hutool.version>5.8.21</hutool.version>
-        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+        <lombok.version>1.18.36</lombok.version>
+        <fastjson2.version>2.0.56</fastjson2.version>
+        <guava.version>33.4.0-jre</guava.version>
+        <commons-lang3.version>3.17.0</commons-lang3.version>
+        <hutool.version>5.8.36</hutool.version>
+        <org.mapstruct.version>1.6.3</org.mapstruct.version>
         <easyexcel.version>3.3.2</easyexcel.version>
         <json-path.version>2.8.0</json-path.version>
 
         <java-sizeof.version>0.0.5</java-sizeof.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
-        <snakeyaml.version>2.3</snakeyaml.version>
+        <snakeyaml.version>2.4</snakeyaml.version>
     </properties>
 
 
@@ -99,7 +99,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
-                <version>3.3.3</version>
+                <version>3.4.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -107,7 +107,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2023.0.3</version>
+                <version>2024.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -115,7 +115,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2023.0.1.2</version>
+                <version>2023.0.3.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -124,7 +124,7 @@
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-bom</artifactId>
-                <version>3.3.0</version>
+                <version>3.3.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -133,6 +133,14 @@
                 <groupId>io.micrometer</groupId>
                 <artifactId>micrometer-bom</artifactId>
                 <version>1.13.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-bom</artifactId>
+                <version>3.5.10.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -149,6 +157,7 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot-starter.version}</version>
             </dependency>
+
 
             <dependency>
                 <groupId>org.apache.shardingsphere</groupId>

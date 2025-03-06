@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.robben.agg.base.dao.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfo;
 import com.robben.agg.base.dao.service.UserInfoService;
 import com.robben.agg.base.resp.BbResponse;
 import com.robben.agg.base.service.MpUseService;
@@ -38,9 +38,9 @@ public class MybatisPlusController {
         userInfoService.remove(Wrappers.emptyWrapper());
 
         int count = 100;
-        List<UserInfoEntity> list = new ArrayList<>();
+        List<UserInfo> list = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            UserInfoEntity userByCount = mpUseService.createUserByCount(i);
+            UserInfo userByCount = mpUseService.createUserByCount(i);
             list.add(userByCount);
         }
         userInfoService.saveBatch(list);
@@ -51,17 +51,17 @@ public class MybatisPlusController {
     @Operation(summary = "分页使用")
     @GetMapping("/page")
     public BbResponse page(Long page, Long pageSize) {
-        IPage<UserInfoEntity> result = userInfoService.page(new Page<>(page, pageSize), new LambdaQueryWrapper<UserInfoEntity>()
-                .gt(UserInfoEntity::getAge, 50));
+        IPage<UserInfo> result = userInfoService.page(new Page<>(page, pageSize), new LambdaQueryWrapper<UserInfo>()
+                .gt(UserInfo::getAge, 50));
         return BbResponse.of(result);
     }
 
     @Operation(summary = "更新使用", description = "更新用户信息,增加了时间字段的转换、JSON格式数据的使用")
     @PostMapping("/updateUser")
-    public BbResponse updateUser(@RequestBody UserInfoEntity vo) {
+    public BbResponse updateUser(@RequestBody UserInfo vo) {
         boolean result = userInfoService.updateById(vo);
-        userInfoService.update(vo, new LambdaQueryWrapper<UserInfoEntity>()
-                .eq(UserInfoEntity::getId, 1));
+        userInfoService.update(vo, new LambdaQueryWrapper<UserInfo>()
+                .eq(UserInfo::getId, 1));
         return BbResponse.of(result);
     }
 
@@ -69,15 +69,14 @@ public class MybatisPlusController {
     @Operation(summary = "apply使用", description = "增加最后sql语句的拼接")
     @GetMapping("/getUserByName")
     public BbResponse getUserByName(String name) {
-        return BbResponse.of(userInfoService.getOne(new LambdaQueryWrapper<UserInfoEntity>()
-                .eq(UserInfoEntity::getName, name).apply(" limt 1")));
+        return BbResponse.of(userInfoService.getOne(new LambdaQueryWrapper<UserInfo>()
+                .eq(UserInfo::getName, name).apply(" limt 1")));
     }
 
 
     @Operation(summary = "执行任何sql")
     @PostMapping("/handleSql")
     public BbResponse handleSql(@RequestParam String sqlStr) {
-        userInfoService.handleSql(sqlStr);
         return BbResponse.buildSuccess();
     }
 

@@ -3,7 +3,7 @@ package com.robben.agg.base.controller;
 import cn.hutool.core.thread.ThreadUtil;
 import com.robben.agg.base.contants.Contants;
 import com.robben.agg.base.config.RedisConfig.RedisMQChannels;
-import com.robben.agg.base.dao.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfo;
 import com.robben.agg.base.resp.BbResponse;
 import com.robben.agg.base.service.CacheService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -44,12 +44,12 @@ public class RedisController {
 
     @Operation(summary = "redis注解缓存", description = "可自定义缓存失效时间和key生成器")
     @GetMapping(value = "/getUser")
-    public BbResponse<UserInfoEntity> getUser(@RequestParam Integer id) {
+    public BbResponse<UserInfo> getUser(@RequestParam Integer id) {
         cacheService.getUserByRedis(id);
         cacheService.getUserByRedisValue(id);
         cacheService.getUserByRedisTime(id);
 
-        UserInfoEntity vo = new UserInfoEntity();
+        UserInfo vo = new UserInfo();
         vo.setAge(id);
         vo.setId(Long.valueOf(id));
         vo.setName("kkkkk");

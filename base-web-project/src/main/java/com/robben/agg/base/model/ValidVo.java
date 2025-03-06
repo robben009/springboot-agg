@@ -1,7 +1,7 @@
 package com.robben.agg.base.model;
 
 import com.robben.agg.base.aspect.validParam.anno.ValidGroup;
-import com.robben.agg.base.dao.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfo;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -68,7 +68,7 @@ public class ValidVo {
     //若需要校验嵌套的对象中的属性,则需要加上@Valid
     @Valid
     @NotEmpty(message = "list不能为空")
-    private UserInfoEntity userInfoEntity;
+    private UserInfo userInfo;
 
 
 }

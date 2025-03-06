@@ -2,7 +2,7 @@ package com.robben.agg.base.service;
 
 import com.robben.agg.base.dao.entity.DescInfoListVo;
 import com.robben.agg.base.dao.entity.DescInfoVo;
-import com.robben.agg.base.dao.entity.UserInfoEntity;
+import com.robben.agg.base.dao.entity.UserInfo;
 import com.robben.agg.base.resp.BbResponse;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 public class MpUseService {
 
-    public UserInfoEntity createUserByCount(int count) {
-        UserInfoEntity vo = new UserInfoEntity();
+    public UserInfo createUserByCount(int count) {
+        UserInfo vo = new UserInfo();
 
         vo.setName("name-" + count);
         vo.setSex(count%2 == 0 ? false : true);
@@ -47,13 +47,13 @@ public class MpUseService {
     }
 
     public BbResponse getUserInfo(String userId) {
-        UserInfoEntity vo = new UserInfoEntity();
+        UserInfo vo = new UserInfo();
         vo.setName("name-" + userId);
         return BbResponse.of(vo);
     }
 
     public BbResponse getUserInfo2(String userId) {
-        UserInfoEntity vo = new UserInfoEntity();
+        UserInfo vo = new UserInfo();
         vo.setName("name2-" + userId);
         return BbResponse.of(vo);
     }
