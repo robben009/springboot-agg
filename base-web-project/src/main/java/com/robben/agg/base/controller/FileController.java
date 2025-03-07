@@ -3,7 +3,7 @@ package com.robben.agg.base.controller;
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.excel.EasyExcel;
 import com.robben.agg.base.model.DownloadData;
-import com.robben.agg.base.resp.BbResponse;
+import com.robben.agg.base.resp.BwpResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,16 +30,16 @@ public class FileController {
 
     @Operation(summary = "上传文件到nginx", description = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping("/uploadFileToNginx")
-    public BbResponse uploadFileToNginx(@RequestPart MultipartFile file) throws IOException {
+    public BwpResponse uploadFileToNginx(@RequestPart MultipartFile file) throws IOException {
         log.info("上传文件名字:{}", file.getOriginalFilename());
         file.transferTo(new File("/root/downFile/" + file.getOriginalFilename()));
-        return BbResponse.buildSuccess();
+        return BwpResponse.buildSuccess();
     }
 
 
     @Operation(summary = "上传文件", description = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping("/uploadFile")
-    public BbResponse uploadFile(@RequestParam String fileName, @RequestParam String fileDesc, @RequestPart MultipartFile file) throws IOException {
+    public BwpResponse uploadFile(@RequestParam String fileName, @RequestParam String fileDesc, @RequestPart MultipartFile file) throws IOException {
         // 处理上传逻辑
         log.info("文件大小为:{}", file.getSize());
 
@@ -48,7 +48,7 @@ public class FileController {
                 .collect(Collectors.joining(System.lineSeparator())).replaceAll("\n", ",");
 
         log.info("文件内容:{}", fileContent);
-        return BbResponse.buildSuccess();
+        return BwpResponse.buildSuccess();
     }
 
 
@@ -112,7 +112,7 @@ public class FileController {
 
     @Operation(summary = "自定义目录文件上传保存", description = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping("uploadSelf")
-    public BbResponse uploadSelf(@RequestPart MultipartFile file, @RequestParam String filePath) {
+    public BwpResponse uploadSelf(@RequestPart MultipartFile file, @RequestParam String filePath) {
         if (!FileUtil.isDirectory(filePath)) {
             FileUtil.mkdir(filePath);
         }
@@ -122,17 +122,17 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return BbResponse.buildSuccess();
+        return BwpResponse.buildSuccess();
     }
 
 
     @Operation(summary = "获取自定义路径下文件列表")
     @GetMapping("/catalogFiles")
-    public BbResponse catalogFiles(@RequestParam String filePath) {
+    public BwpResponse catalogFiles(@RequestParam String filePath) {
         // 获取压缩包中所有模块的信息
         List<String> moduleNames = Arrays.stream(FileUtil.ls(filePath))
                 .filter(File::isFile).map(File::getName).collect(Collectors.toList());
-        return BbResponse.of(moduleNames);
+        return BwpResponse.of(moduleNames);
     }
 
 

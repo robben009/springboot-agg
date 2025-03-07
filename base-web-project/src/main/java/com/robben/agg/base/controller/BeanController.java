@@ -2,7 +2,7 @@ package com.robben.agg.base.controller;
 
 import com.robben.agg.base.contants.BbResultEnum;
 import com.robben.agg.base.exception.BizPlusException;
-import com.robben.agg.base.resp.BbResponse;
+import com.robben.agg.base.resp.BwpResponse;
 import com.robben.agg.base.utils.OtherUtils;
 import com.robben.agg.customstarter.HelloService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -40,7 +40,7 @@ public class BeanController {
 
     @Operation(summary = "测试修改注入bean的字段值")
     @PostMapping("updateBeanField")
-    public BbResponse updateBeanField(String benaName, String beanField, String beanFieldValue) {
+    public BwpResponse updateBeanField(String benaName, String beanField, String beanFieldValue) {
         log.info("测试修改注入bean的字段值_benaName:{},beanField:{},beanFieldValue:{}",benaName,beanField,beanFieldValue);
 
         if(StringUtils.isBlank(benaName) || StringUtils.isBlank(beanField) || StringUtils.isBlank(beanFieldValue)){
@@ -64,7 +64,7 @@ public class BeanController {
                 }
             }
         }
-        return BbResponse.buildSuccess();
+        return BwpResponse.buildSuccess();
     }
 
 }

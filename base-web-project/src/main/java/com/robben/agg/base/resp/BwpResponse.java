@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public final class BbResponse<T> extends Response implements Serializable {
+public final class BwpResponse<T> extends Response implements Serializable {
 
     /**
      * 返回数据
@@ -26,15 +26,15 @@ public final class BbResponse<T> extends Response implements Serializable {
     protected String traceId;
 
 
-    public static <T> BbResponse<T> of(T data) {
-        BbResponse<T> response = new BbResponse<>();
+    public static <T> BwpResponse<T> of(T data) {
+        BwpResponse<T> response = new BwpResponse<>();
         response.setSuccess(true);
         response.setData(data);
         return response;
     }
 
-    public static <T> BbResponse<T> build(Boolean result, String errCode, String errMsg, T data) {
-        BbResponse<T> response = new BbResponse<>();
+    public static <T> BwpResponse<T> build(Boolean result, String errCode, String errMsg, T data) {
+        BwpResponse<T> response = new BwpResponse<>();
         response.setSuccess(result);
         response.setErrCode(errCode);
         response.setErrMessage(errMsg);
@@ -43,15 +43,15 @@ public final class BbResponse<T> extends Response implements Serializable {
     }
 
 
-    public static BbResponse buildSuccess() {
-        BbResponse<?> response = new BbResponse<>();
+    public static BwpResponse buildSuccess() {
+        BwpResponse<?> response = new BwpResponse<>();
         response.setSuccess(true);
         return response;
     }
 
 
-    public static BbResponse buildFailure(String errCode, String errMessage) {
-        BbResponse response = new BbResponse();
+    public static BwpResponse buildFailure(String errCode, String errMessage) {
+        BwpResponse response = new BwpResponse();
         response.setSuccess(false);
         response.setErrCode(errCode);
         response.setErrMessage(errMessage);

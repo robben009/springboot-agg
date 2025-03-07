@@ -26,7 +26,6 @@ public class UserInfo implements Serializable {
     //对应bit(1)
     private Boolean sex;
     private Integer age;
-    private String workInfo;
 
     //对应bit(5)
     private Integer groupInfo;

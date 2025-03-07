@@ -2,9 +2,7 @@ package com.robben.agg.base.controller;
 
 import com.robben.agg.base.contants.BbResultEnum;
 import com.robben.agg.base.exception.BizPlusException;
-import com.robben.agg.base.req.BenefitDetailReq;
-import com.robben.agg.base.resp.BbResponse;
-import com.robben.agg.base.service.CacheService;
+import com.robben.agg.base.resp.BwpResponse;
 import com.robben.agg.base.service.MpUseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,7 +23,7 @@ import java.util.function.BiFunction;
 @RequiredArgsConstructor
 public class BiFunController {
     private final MpUseService mpUseService;
-    private final Map<String, BiFunction<String, String, BbResponse<T>>> apiRouterHandleMap = new HashMap<>();
+    private final Map<String, BiFunction<String, String, BwpResponse<T>>> apiRouterHandleMap = new HashMap<>();
 
     //如果需要一个入参和一个返回的,可以使用Function
     @PostConstruct
@@ -38,12 +36,12 @@ public class BiFunController {
 
     @Operation(summary = "路由api")
     @GetMapping(value = "/api")
-    public BbResponse api(@RequestParam String apiName,@RequestParam String param) {
+    public BwpResponse api(@RequestParam String apiName, @RequestParam String param) {
         if (!apiRouterHandleMap.containsKey(apiName)) {
             throw new BizPlusException(BbResultEnum.PARAMS_ERROR);
         }
 
-        BbResponse<T> result = apiRouterHandleMap.get(apiName).apply(param, null);
+        BwpResponse<T> result = apiRouterHandleMap.get(apiName).apply(param, null);
         return result;
     }
 

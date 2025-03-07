@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.robben.agg.base.dao.entity.UserInfo;
 import com.robben.agg.base.dao.service.UserInfoService;
-import com.robben.agg.base.resp.BbResponse;
+import com.robben.agg.base.resp.BwpResponse;
 import com.robben.agg.base.service.MpUseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,7 +34,7 @@ public class MybatisPlusController {
 
     @Operation(summary = "批量插入")
     @GetMapping("/batchInsertUser")
-    public BbResponse batchInsertUser() {
+    public BwpResponse batchInsertUser() {
         userInfoService.remove(Wrappers.emptyWrapper());
 
         int count = 100;
@@ -44,40 +44,40 @@ public class MybatisPlusController {
             list.add(userByCount);
         }
         userInfoService.saveBatch(list);
-        return BbResponse.buildSuccess();
+        return BwpResponse.buildSuccess();
     }
 
 
     @Operation(summary = "分页使用")
     @GetMapping("/page")
-    public BbResponse page(Long page, Long pageSize) {
+    public BwpResponse page(@RequestParam Long page, @RequestParam Long pageSize) {
         IPage<UserInfo> result = userInfoService.page(new Page<>(page, pageSize), new LambdaQueryWrapper<UserInfo>()
                 .gt(UserInfo::getAge, 50));
-        return BbResponse.of(result);
+        return BwpResponse.of(result);
     }
 
     @Operation(summary = "更新使用", description = "更新用户信息,增加了时间字段的转换、JSON格式数据的使用")
     @PostMapping("/updateUser")
-    public BbResponse updateUser(@RequestBody UserInfo vo) {
+    public BwpResponse updateUser(@RequestBody UserInfo vo) {
         boolean result = userInfoService.updateById(vo);
         userInfoService.update(vo, new LambdaQueryWrapper<UserInfo>()
                 .eq(UserInfo::getId, 1));
-        return BbResponse.of(result);
+        return BwpResponse.of(result);
     }
 
 
     @Operation(summary = "apply使用", description = "增加最后sql语句的拼接")
     @GetMapping("/getUserByName")
-    public BbResponse getUserByName(String name) {
-        return BbResponse.of(userInfoService.getOne(new LambdaQueryWrapper<UserInfo>()
-                .eq(UserInfo::getName, name).apply(" limt 1")));
+    public BwpResponse getUserByName(@RequestParam String name) {
+        return BwpResponse.of(userInfoService.getOne(new LambdaQueryWrapper<UserInfo>()
+                .eq(UserInfo::getName, name)));
     }
 
 
     @Operation(summary = "执行任何sql")
     @PostMapping("/handleSql")
-    public BbResponse handleSql(@RequestParam String sqlStr) {
-        return BbResponse.buildSuccess();
+    public BwpResponse handleSql(@RequestParam String sqlStr) {
+        return BwpResponse.buildSuccess();
     }
 
 

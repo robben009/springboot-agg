@@ -2,7 +2,7 @@ package com.robben.agg.base.controller;
 
 import cn.hutool.core.thread.ThreadUtil;
 import com.alibaba.fastjson2.JSON;
-import com.robben.agg.base.resp.BbResponse;
+import com.robben.agg.base.resp.BwpResponse;
 import com.robben.agg.base.service.LocalCacheService;
 import com.robben.agg.base.utils.guava.GuavaCacheUtils;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,7 +37,7 @@ public class LocalCacheController {
 
     @Operation(summary = "guava本地缓存使用")
     @GetMapping(value = "/guavaCacheUse")
-    public BbResponse guavaCacheUse() {
+    public BwpResponse guavaCacheUse() {
         GuavaCacheUtils.setKey("aaa", "bbb");
 
         String one = GuavaCacheUtils.getKey("aaa");
@@ -51,20 +51,20 @@ public class LocalCacheController {
         }
         log.info(two + "11");
 
-        return BbResponse.buildSuccess();
+        return BwpResponse.buildSuccess();
     }
 
 
     @Operation(summary = "caffeine本地缓存使用")
     @GetMapping(value = "/caffeineCacheUse")
-    public BbResponse caffeineCacheUse(@RequestParam String s) {
-        return BbResponse.of(localCacheService.getCacheValue(s));
+    public BwpResponse caffeineCacheUse(@RequestParam String s) {
+        return BwpResponse.of(localCacheService.getCacheValue(s));
     }
 
 
     @Operation(summary = "caffeine本地缓存使用2")
     @GetMapping(value = "/caffeineCacheUse2")
-    public BbResponse caffeineCacheUse2(@RequestParam String s) {
+    public BwpResponse caffeineCacheUse2(@RequestParam String s) {
         localCacheService.getCacheValue(s);
         localCacheService.getCacheValue(s);
 
@@ -77,7 +77,7 @@ public class LocalCacheController {
         Map<String, Object> stringObjectMap = cacheToMap(cache);
         log.info("stringObjectMap={}", JSON.toJSONString(stringObjectMap));
 
-        return BbResponse.buildSuccess();
+        return BwpResponse.buildSuccess();
     }
 
 

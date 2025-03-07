@@ -1,6 +1,6 @@
 package com.robben.agg.base.config;
 
-import com.robben.agg.base.resp.BbResponse;
+import com.robben.agg.base.resp.BwpResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     //设置响应码
     @ResponseStatus(HttpStatus.EXPECTATION_FAILED)
     @ExceptionHandler(value = {BindException.class, ValidationException.class, MethodArgumentNotValidException.class})
-    public BbResponse handleValidatedException(Exception e) {
+    public BwpResponse handleValidatedException(Exception e) {
         String errorMsg = null;
         if (e instanceof MethodArgumentNotValidException) {
             // BeanValidation exception
@@ -36,11 +36,11 @@ public class GlobalExceptionHandler {
             errorMsg = ex.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining("; "));
         }
 
-        BbResponse bbResponse = new BbResponse();
-        bbResponse.setErrMessage(errorMsg);
-        bbResponse.setErrCode("-1");
-        bbResponse.setSuccess(false);
-        return bbResponse;
+        BwpResponse bwpResponse = new BwpResponse();
+        bwpResponse.setErrMessage(errorMsg);
+        bwpResponse.setErrCode("-1");
+        bwpResponse.setSuccess(false);
+        return bwpResponse;
     }
 
 

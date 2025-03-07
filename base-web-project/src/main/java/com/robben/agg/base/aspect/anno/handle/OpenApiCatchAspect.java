@@ -4,7 +4,7 @@ import cn.hutool.core.date.SystemClock;
 import com.alibaba.cola.exception.BizException;
 import com.alibaba.cola.exception.SysException;
 import com.alibaba.fastjson2.JSON;
-import com.robben.agg.base.resp.BbResponse;
+import com.robben.agg.base.resp.BwpResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -62,8 +62,8 @@ public class OpenApiCatchAspect {
 
     //特定返回类型,返回增加traceId
     private Object addTraceId(Object response) {
-        if (response instanceof BbResponse) {
-            BbResponse r = (BbResponse) response;
+        if (response instanceof BwpResponse) {
+            BwpResponse r = (BwpResponse) response;
 //            r.setTraceId(MDC.get(TraceIdFilter.TraceId));
             return r;
         }
@@ -89,7 +89,7 @@ public class OpenApiCatchAspect {
         }
 
         log.error("开放接口拦截器异常 errCode={},errMessage={}", errCode, errMessage, e);
-        return BbResponse.buildFailure(errCode, errMessage);
+        return BwpResponse.buildFailure(errCode, errMessage);
     }
 
 

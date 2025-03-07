@@ -3,7 +3,7 @@ package com.robben.agg.base.service;
 import com.robben.agg.base.dao.entity.DescInfoListVo;
 import com.robben.agg.base.dao.entity.DescInfoVo;
 import com.robben.agg.base.dao.entity.UserInfo;
-import com.robben.agg.base.resp.BbResponse;
+import com.robben.agg.base.resp.BwpResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,7 +21,6 @@ public class MpUseService {
         vo.setSex(count%2 == 0 ? false : true);
         vo.setAge(count);
 
-        vo.setWorkInfo("workinfo" + count);
         vo.setGroupInfo(1);
 
         //赋值一个json对象,这个对象中还有数组集合
@@ -46,16 +45,16 @@ public class MpUseService {
         return vo;
     }
 
-    public BbResponse getUserInfo(String userId) {
+    public BwpResponse getUserInfo(String userId) {
         UserInfo vo = new UserInfo();
         vo.setName("name-" + userId);
-        return BbResponse.of(vo);
+        return BwpResponse.of(vo);
     }
 
-    public BbResponse getUserInfo2(String userId) {
+    public BwpResponse getUserInfo2(String userId) {
         UserInfo vo = new UserInfo();
         vo.setName("name2-" + userId);
-        return BbResponse.of(vo);
+        return BwpResponse.of(vo);
     }
 
 

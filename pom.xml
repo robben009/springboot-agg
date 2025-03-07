@@ -74,7 +74,7 @@
         <grpc-stub.version>1.66.0</grpc-stub.version>
 
         <!-- 工具类的依赖  -->
-        <knife4j.version>4.4.0</knife4j.version>
+        <knife4j.version>4.5.0</knife4j.version>
         <jruby-complete-v>9.4.3.0</jruby-complete-v>
 
         <lombok.version>1.18.36</lombok.version>
@@ -393,6 +393,12 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                     <encoding>UTF-8</encoding>
+
+                    <!-- Java默认情况下不会保留方法参数的名称信息，除非在编译时使用了-parameters标志。-->
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+
                     <annotationProcessorPaths>
                         <!-- lombok一定要配置在mapstruct上才行 -->
                         <path>
