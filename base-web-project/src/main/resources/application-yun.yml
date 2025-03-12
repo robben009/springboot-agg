@@ -6,6 +6,11 @@ knife4j:
   enable: true
   # 开启生产环境屏蔽
   production: false
+    
+#https://arthas.aliyun.com/doc/tunnel.html
+arthas:
+  agent-id: base-web-project1
+  tunnel-server: ws://127.0.0.1:7777/ws
 
 
 #设置项目名

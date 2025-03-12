@@ -24,6 +24,13 @@
             <version>4.6.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.taobao.arthas</groupId>
+            <artifactId>arthas-spring-boot-starter</artifactId>
+            <version>${arthas.version}</version>
+        </dependency>
+
+
 
         <!-- 自定义的jar的一些依赖 -->
         <dependency>
