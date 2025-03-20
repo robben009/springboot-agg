@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdvice;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
-
+//请求到达服务器 → 2. Filter → 3. Interceptor → 4. RequestBodyAdvice → 5. Controller 方法的执行
 @ControllerAdvice
 @Configuration
 @Slf4j
@@ -44,7 +44,8 @@ public class ARequestBodyAdvice implements RequestBodyAdvice {
         String trackId = request.getHeader("X-TrackingId");
 
         log.info("获取到了requestUrl={}", requestUrl);
-        return inputMessage;
+//        return inputMessage;
+        return new AHttpInputMessage(inputMessage, charset);
     }
 
     @Override
