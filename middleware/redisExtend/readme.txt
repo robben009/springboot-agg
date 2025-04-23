@@ -1,8 +1,6 @@
+1：示例一些redis的扩展功能
 
-1:集成了jedis,排除springboot自带默认的lettuce
-
-2:示例一些redis的扩展功能
-
-3:RedisJSON目前只能使用db0保证不出错
+2：展示redis过期key的监听和触发
+此方法需要做设置 notify-keyspace-events Ex,这个可以在redis的配置文件中去查看
 
 
