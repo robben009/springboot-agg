@@ -23,6 +23,7 @@
         <module>baseJava</module>
         <module>commonDto</module>
         <module>k8s</module>
+        <module>lokiLogDemo</module>
     </modules>
 
     <name>springboot-agg</name>

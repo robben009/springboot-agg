@@ -47,7 +47,7 @@ public class HeapSort {
         int[] array = { 9, 7, 5, 11, 12, 2, 14, 3, 10, 6 };
         System.out.println("原数组: " + Arrays.toString(array));
 
-        // 调用快速排序
+        // 排序
         heapSort(array);
 
         System.out.println("排序后的数组: " + Arrays.toString(array));

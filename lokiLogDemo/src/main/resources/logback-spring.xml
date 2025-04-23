@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 彩色控制台控制 -->
+    <substitutionProperty name="log.pattern" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) ${PID:-} %clr(---){faint} %clr(%-80.80logger{79}){cyan} %clr(:){faint} %m%n%wEx"/>
+    <substitutionProperty name="log.pattern.no" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) ${PID:-} %clr(---){faint} %clr(%-80.80logger{79}){cyan} %clr(:){faint} %m%n%wEx"/>
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+
+    <springProperty scope="context" name="LOG_FILE_DIR" source="logback.log-file-dir" defaultValue="log"/>
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <springProperty scope="context" name="url" source="loki.url" defaultValue="http://localhost:3100/loki/api/v1/push"/>
+    <springProperty scope="context" name="env" source="loki.label.env" defaultValue="dev"/>
+    <springProperty scope="context" name="jobName" source="loki.label.job-name" defaultValue="my-app"/>
+    <springProperty scope="context" name="hostIp" source="loki.label.host-ip" defaultValue="localhost"/>
+    <springProperty scope="context" name="orgId" source="loki.org-id" defaultValue="default-org"/>
+
+    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+        <http class="com.github.loki4j.logback.ApacheHttpSender">
+            <url>${url}</url>
+            <tenantId>${orgId}</tenantId>
+        </http>
+        <format>
+            <label>
+                <pattern>application=${jobName},env=${env},host=${hostIp},level=%level</pattern>
+            </label>
+            <message>
+                <pattern>
+                    {"timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}", "level": "%level", "logger": "%logger{36}", "thread": "%thread", "message": "%msg%n"}
+                </pattern>
+            </message>
+            <sortByTime>true</sortByTime>
+        </format>
+    </appender>
+
+    <!-- 使用异步方式将日志推送至Loki -->
+    <appender name="ASYNC_LOKI" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 队列大小设置，根据实际需要调整 -->
+        <queueSize>512</queueSize>
+        <!-- 丢弃策略，当队列满时采取的操作 -->
+        <discardingThreshold>0</discardingThreshold>
+        <neverBlock>true</neverBlock>
+        <!-- 实际的Loki Appender -->
+        <appender-ref ref="LOKI" />
+    </appender>
+
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${log.pattern.no}</pattern>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--路径-->
+            <fileNamePattern>${LOG_FILE_DIR}/info.%d.log</fileNamePattern>
+            <!--保留30天日志-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${log.pattern.no}</pattern>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--路径-->
+            <fileNamePattern>${LOG_FILE_DIR}/error.%d.log</fileNamePattern>
+            <!--保留30天日志-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="fileInfoLog" />
+        <appender-ref ref="fileErrorLog" />
+        <appender-ref ref="ASYNC_LOKI" />
+    </root>
+
+</configuration>
+

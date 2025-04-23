@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: Grafana-Project
+
+# Loki 日志配置
+loki:
+  # Loki 服务的 URL，用于推送日志数据
+  url: http://localhost:3100/loki/api/v1/push
+
+  # 标签配置，用于标识日志来源的额外信息
+  label:
+    # 环境标签，标识当前运行的环境，例如开发环境
+    env: dev
+    # 服务名称标签，标识日志来源的服务名称
+    job-name: my-service
+    # 主机 IP 标签，标识日志来源的主机 IP 地址
+    host-ip: localhost
+
+  # 组织 ID，用于多租户环境中标识日志所属的组织
+  org-id: user1
+
+
