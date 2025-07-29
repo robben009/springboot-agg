@@ -21,6 +21,7 @@ public class ChatServer {
 
             ChannelFuture future = serverBootstrap.bind(8000).sync();
             System.out.println("Chat com.chat.server started at port 8000");
+
             future.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();

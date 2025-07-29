@@ -21,15 +21,23 @@ public class PacketDecoder extends ByteToMessageDecoder {
             ctx.close();
             return;
         }
-        in.readByte(); // version
+
+        // version
+        byte version = in.readByte();
+
+        // command
         byte command = in.readByte();
+
+        //dataLength
         int length = in.readInt();
         if (in.readableBytes() < length) {
             in.resetReaderIndex();
             return;
         }
+
         byte[] bytes = new byte[length];
         in.readBytes(bytes);
+
         Packet packet = PacketCodec.INSTANCE.decode(command, bytes);
         if (packet != null) {
             out.add(packet);
