@@ -63,7 +63,7 @@ public class NettyServer {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }
-        log.info("server stopped!");
+        log.info("com.chat.server stopped!");
     }
 
 }

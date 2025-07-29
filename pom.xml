@@ -57,7 +57,7 @@
 
         <xxl-job-core.version>2.4.0</xxl-job-core.version>
 
-        <nacos-client.version>2.2.4</nacos-client.version>
+        <nacos-com.chat.client.version>2.2.4</nacos-com.chat.client.version>
         <nacos-config-spring-boot-starter.version>0.3.0-RC</nacos-config-spring-boot-starter.version>
         <nacos-discovery-spring-boot-starter.version>0.3.0-RC</nacos-discovery-spring-boot-starter.version>
 

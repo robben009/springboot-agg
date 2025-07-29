@@ -31,8 +31,8 @@
         </dependency>
         <dependency>
             <groupId>com.alibaba.nacos</groupId>
-            <artifactId>nacos-client</artifactId>
-            <version>${nacos-client.version}</version>
+            <artifactId>nacos-com.chat.client</artifactId>
+            <version>${nacos-com.chat.client.version}</version>
         </dependency>
 
         <dependency>

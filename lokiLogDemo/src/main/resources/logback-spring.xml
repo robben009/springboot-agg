@@ -32,11 +32,11 @@
             <label>
                 <pattern>application=${jobName},env=${env},host=${hostIp},level=%level</pattern>
             </label>
-            <message>
+            <com.chat.message>
                 <pattern>
-                    {"timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}", "level": "%level", "logger": "%logger{36}", "thread": "%thread", "message": "%msg%n"}
+                    {"timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}", "level": "%level", "logger": "%logger{36}", "thread": "%thread", "com.chat.message": "%msg%n"}
                 </pattern>
-            </message>
+            </com.chat.message>
             <sortByTime>true</sortByTime>
         </format>
     </appender>

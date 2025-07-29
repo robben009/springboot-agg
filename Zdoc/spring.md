@@ -3,7 +3,7 @@
 ## 优雅关闭
 
 ```
-server.shutdown=graceful
+com.chat.server.shutdown=graceful
 spring.lifecycle.timeout-per-shutdown-phase=20s
 ```
 

@@ -660,7 +660,7 @@ __参数__
 4. unit：keepAliveTime 的单位。
 5. workQueue：任务队列，被提交但尚未被执行的任务。
 6. threadFactory：线程工厂，用于创建线程，一般用默认的即可。
-7. handler：拒绝策略，当任务太多来不及处理，如何拒绝任务。
+7. com.chat.handler：拒绝策略，当任务太多来不及处理，如何拒绝任务。
 
 * AbortPolicy ： 直接抛出异常，阻止系统正常运行。
 * CallerRunsPolicy ： 只要线程池未关闭，该策略直接在调用者线程中，运行当前被丢弃的

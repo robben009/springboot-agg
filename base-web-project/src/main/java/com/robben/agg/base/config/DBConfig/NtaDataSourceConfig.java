@@ -23,7 +23,7 @@ package com.robben.agg.base.config.DBConfig;//package com.robben.agg.base.config
 // */
 //
 //@Configuration
-//@MapperScan(basePackages = "com.***.auth.server.dao.nta", sqlSessionTemplateRef  = "ntaSqlSessionTemplate")
+//@MapperScan(basePackages = "com.***.auth.com.chat.server.dao.nta", sqlSessionTemplateRef  = "ntaSqlSessionTemplate")
 //public class NtaDataSourceConfig {
 //
 //    @Bean
@@ -46,7 +46,7 @@ package com.robben.agg.base.config.DBConfig;//package com.robben.agg.base.config
 //    public MapperScannerConfigurer ntaMapperScannerConfigurer(){
 //        MapperScannerConfigurer configurer = new MapperScannerConfigurer();
 //        configurer.setSqlSessionFactoryBeanName("ntaSqlSessionFactory");
-//        configurer.setBasePackage("com.***.auth.server");
+//        configurer.setBasePackage("com.***.auth.com.chat.server");
 //        configurer.setAnnotationClass(NtaDao.class);
 //        return configurer;
 //    }

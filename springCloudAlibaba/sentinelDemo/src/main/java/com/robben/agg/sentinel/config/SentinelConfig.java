@@ -17,7 +17,7 @@
 //
 //@Configuration
 //public class SentinelConfig {
-//    @Value("${spring.cloud.nacos.config.server-addr}")
+//    @Value("${spring.cloud.nacos.config.com.chat.server-addr}")
 //    private String nacosServerHost;
 //
 //    @Bean

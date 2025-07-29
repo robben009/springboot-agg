@@ -21,7 +21,7 @@ spring:
 #      datasource:
 #        ds1:
 #          nacos:
-#            server-addr: 150.158.121.165:8848
+#            com.chat.server-addr: 150.158.121.165:8848
 #            namespace: springBootAgg
 #            group-id: DEFAULT_GROUP
 #            dataId: dubbo-provider-flowRules

@@ -13,7 +13,7 @@ nacosIp: 150.158.121.165
 #      discovery:
 #        serverAddr: ${nacosIp}:8848
 #      config:
-#        server-addr: ${nacosIp}:8848
+#        com.chat.server-addr: ${nacosIp}:8848
 #        #这种写法查看日志发现实际还默认多监听了两个配置文件
 #        namespace: springBootAgg
 #        group: nacosDemo

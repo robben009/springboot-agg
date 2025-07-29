@@ -17,6 +17,7 @@
         <module>nettyClient</module>
         <module>nettyServer</module>
         <module>nettyCommon</module>
+        <module>chat</module>
     </modules>
 
 

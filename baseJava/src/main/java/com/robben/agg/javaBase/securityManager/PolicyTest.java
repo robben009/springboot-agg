@@ -28,7 +28,7 @@ public class PolicyTest {
 
         try {
             ServerSocket s = new ServerSocket(8889);
-            System.out.println("create socket server ok");
+            System.out.println("create socket com.chat.server ok");
         } catch (Throwable e) {
             System.out.println(e.getMessage());
         }
@@ -36,7 +36,7 @@ public class PolicyTest {
         try {
             Socket s2 = new Socket("localhost", 8889);
             s2.close();
-            System.out.println("create socket client ok");
+            System.out.println("create socket com.chat.client ok");
         } catch (Throwable e) {
             System.out.println(e.getMessage());
         }

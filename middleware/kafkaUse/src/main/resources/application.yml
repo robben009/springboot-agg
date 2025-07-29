@@ -57,9 +57,9 @@ spring:
 #    producer:
 #      compression-type: gzip
 #    ssl:
-#      trust-store-location: file:///etc/prs/certs/kafka/kafka.client.truststore.jks
+#      trust-store-location: file:///etc/prs/certs/kafka/kafka.com.chat.client.truststore.jks
 #      trust-store-password: "***"
-#      key-store-location: file:///etc/prs/certs/kafka/kafka.client.keystore.jks
+#      key-store-location: file:///etc/prs/certs/kafka/kafka.com.chat.client.keystore.jks
 #      key-store-password: "***"
 #      key-password: "***"
 #    bootstrap-servers: ${serverHost}:9092

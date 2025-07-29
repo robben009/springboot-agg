@@ -23,7 +23,7 @@ package com.robben.agg.base.config.DBConfig;//package com.robben.agg.base.config
 // */
 //
 //@Configuration
-//@MapperScan(basePackages = "com.***.auth.server.dao.auth", sqlSessionTemplateRef  = "authSqlSessionTemplate")
+//@MapperScan(basePackages = "com.***.auth.com.chat.server.dao.auth", sqlSessionTemplateRef  = "authSqlSessionTemplate")
 //public class AuthDataSourceConfig {
 //
 //    @Bean
@@ -46,7 +46,7 @@ package com.robben.agg.base.config.DBConfig;//package com.robben.agg.base.config
 //    public MapperScannerConfigurer authMapperScannerConfigurer(){
 //        MapperScannerConfigurer configurer = new MapperScannerConfigurer();
 //        configurer.setSqlSessionFactoryBeanName("authSqlSessionFactory");
-//        configurer.setBasePackage("com.***.auth.server");
+//        configurer.setBasePackage("com.***.auth.com.chat.server");
 //        configurer.setAnnotationClass(AuthDao.class);
 //        return configurer;
 //    }

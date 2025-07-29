@@ -52,8 +52,8 @@ public class ESConfig {
 //
 //        RestClientTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
 //
-//        ElasticsearchClient client = new ElasticsearchClient(transport);
-//        return client;
+//        ElasticsearchClient com.chat.client = new ElasticsearchClient(transport);
+//        return com.chat.client;
 //    }
 
 }
