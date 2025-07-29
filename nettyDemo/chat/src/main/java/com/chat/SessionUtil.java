@@ -11,6 +11,7 @@ public class SessionUtil {
 
     public static void bindSession(Channel channel, String username) {
         channels.put(channel, username);
+        System.out.println(1);
     }
 
     public static String getBindData(Channel channel) {
