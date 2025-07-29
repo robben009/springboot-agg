@@ -1,7 +1,7 @@
 package com.chat.client;
 
-import com.chat.message.ChatMessagePacket;
-import com.chat.message.LoginRequestPacket;
+import com.chat.message.ChatMsgPacket;
+import com.chat.message.LoginReqPacket;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -22,8 +22,8 @@ public class ChatClientA {
             Channel channel = bootstrap.connect("localhost", 8000).sync().channel();
 
             // 登录消息
-            LoginRequestPacket loginPacket = new LoginRequestPacket();
-            loginPacket.setUsername("gawyn");
+            LoginReqPacket loginPacket = new LoginReqPacket();
+            loginPacket.setUsername("clientA");
             loginPacket.setPassword("123456");
             channel.writeAndFlush(loginPacket);
 
@@ -31,7 +31,7 @@ public class ChatClientA {
             Scanner scanner = new Scanner(System.in);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                channel.writeAndFlush(new ChatMessagePacket(line));
+                channel.writeAndFlush(new ChatMsgPacket("clientA", line));
             }
         } finally {
             workerGroup.shutdownGracefully();

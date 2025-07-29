@@ -5,8 +5,9 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 public class ChatServer {
 
     public static void main(String[] args) throws InterruptedException {
@@ -20,7 +21,7 @@ public class ChatServer {
                     .childHandler(new ChatServerInitializer());
 
             ChannelFuture future = serverBootstrap.bind(8000).sync();
-            System.out.println("Chat com.chat.server started at port 8000");
+            log.info("Chat com.chat.server started at port 8000");
 
             future.channel().closeFuture().sync();
         } finally {

@@ -9,9 +9,14 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SessionUtil {
     private static final Map<Channel, String> channels = new ConcurrentHashMap<>();
 
-    public static void bindSession(Channel channel) {
-        channels.put(channel, "login-in");
+    public static void bindSession(Channel channel, String username) {
+        channels.put(channel, username);
     }
+
+    public static String getBindData(Channel channel) {
+        return channels.get(channel);
+    }
+
 
     public static void unbindSession(Channel channel) {
         channels.remove(channel);

@@ -1,16 +1,15 @@
-package com.chat.handler;
+package com.chat.server.handler;
 
 import com.chat.SessionUtil;
-import com.chat.message.ChatMessagePacket;
+import com.chat.message.ChatMsgPacket;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-public class ChatMessageHandler extends SimpleChannelInboundHandler<ChatMessagePacket> {
+public class ChatMsgHandler extends SimpleChannelInboundHandler<ChatMsgPacket> {
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ChatMessagePacket msg) {
-        msg.setFromUser(ctx.channel().remoteAddress().toString());
+    protected void channelRead0(ChannelHandlerContext ctx, ChatMsgPacket msg) {
         for (Channel channel : SessionUtil.getAllChannels()) {
             if (channel != ctx.channel()) {
                 channel.writeAndFlush(msg);
