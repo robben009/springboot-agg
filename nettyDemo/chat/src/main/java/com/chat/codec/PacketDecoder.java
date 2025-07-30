@@ -2,6 +2,7 @@ package com.chat.codec;
 
 import com.chat.message.Packet;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 
@@ -51,4 +52,19 @@ public class PacketDecoder extends ByteToMessageDecoder {
             out.add(packet);
         }
     }
+
+
+    public static void main(String[] args) {
+        ByteBuf buf = Unpooled.buffer(128); // 创建一个初始容量为128的 ByteBuf
+
+        buf.writeBytes("Hello".getBytes()); // 写入5字节
+        System.out.println("写入后 writerIndex: " + buf.writerIndex());
+
+        byte[] dst = new byte[5];
+        buf.readBytes(dst); // 读取这5个字节
+        System.out.println("读取到: " + new String(dst));
+        System.out.println("读取后 readerIndex: " + buf.readerIndex());
+    }
+
+
 }

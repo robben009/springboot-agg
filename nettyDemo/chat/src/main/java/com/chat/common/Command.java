@@ -1,4 +1,4 @@
-package com.chat;
+package com.chat.common;
 
 public interface Command {
     Byte LOGIN_REQUEST = 1;

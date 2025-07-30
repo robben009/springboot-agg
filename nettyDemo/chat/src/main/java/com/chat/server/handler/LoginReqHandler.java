@@ -1,9 +1,13 @@
 package com.chat.server.handler;
 
-import com.chat.SessionUtil;
+import com.chat.common.ChannelAttrKeys;
+import com.chat.common.ChannelManager;
+import com.chat.common.SessionUtil;
 import com.chat.message.LoginReqPacket;
 import com.chat.message.LoginRespPacket;
 import com.chat.message.StatusMsgPacket;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -13,9 +17,10 @@ import lombok.extern.slf4j.Slf4j;
 public class LoginReqHandler extends SimpleChannelInboundHandler<LoginReqPacket> {
 
     @Override
-    public void handlerAdded(ChannelHandlerContext ctx) {
-
+    public void channelInactive(ChannelHandlerContext ctx) {
+        ChannelManager.unregister(ctx.channel());
     }
+
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) {
@@ -38,11 +43,16 @@ public class LoginReqHandler extends SimpleChannelInboundHandler<LoginReqPacket>
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginReqPacket msg) {
+        ByteBuf buf = Unpooled.buffer(128);
+
         log.info(String.format("LoginRequestHandler => Client request Login,Info: username=%s, password=%s",
                 msg.getUsername(), msg.getPassword()));
 
         //绑定用户channel
         SessionUtil.bindSession(ctx.channel(), msg.getUsername());
+        //还可以通过channel.attr来绑定用户信息(先设置属性,再去注册到连接池中)  两个选一个就行了,一般中下面这个
+        ctx.channel().attr(ChannelAttrKeys.USER_ID).set(msg.getUsername());
+        ChannelManager.register(msg.getUsername(), ctx.channel());
 
         //回复登录成功包
         LoginRespPacket responsePacket = new LoginRespPacket(true, "Login success");
@@ -56,4 +66,8 @@ public class LoginReqHandler extends SimpleChannelInboundHandler<LoginReqPacket>
             }
         }
     }
+
+
+
+
 }

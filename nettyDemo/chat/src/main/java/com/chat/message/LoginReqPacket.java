@@ -1,6 +1,6 @@
 package com.chat.message;
 
-import com.chat.Command;
+import com.chat.common.Command;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

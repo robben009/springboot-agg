@@ -9,11 +9,12 @@ import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.util.AttributeKey;
 
 import java.util.concurrent.TimeUnit;
 
 public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
-
+    public static final AttributeKey<String> USER_ID = AttributeKey.valueOf("userId");
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline ph = ch.pipeline();

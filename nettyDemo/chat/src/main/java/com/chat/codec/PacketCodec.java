@@ -1,7 +1,7 @@
 package com.chat.codec;
 
 import com.alibaba.fastjson2.JSON;
-import com.chat.Command;
+import com.chat.common.Command;
 import com.chat.message.*;
 
 public class PacketCodec {

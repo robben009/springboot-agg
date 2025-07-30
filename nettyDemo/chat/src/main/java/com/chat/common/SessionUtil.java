@@ -1,4 +1,4 @@
-package com.chat;
+package com.chat.common;
 
 import io.netty.channel.Channel;
 

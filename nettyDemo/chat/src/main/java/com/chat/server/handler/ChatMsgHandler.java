@@ -1,6 +1,6 @@
 package com.chat.server.handler;
 
-import com.chat.SessionUtil;
+import com.chat.common.SessionUtil;
 import com.chat.message.ChatMsgPacket;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
