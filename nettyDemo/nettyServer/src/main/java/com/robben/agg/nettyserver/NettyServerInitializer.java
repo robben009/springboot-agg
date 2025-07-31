@@ -23,10 +23,10 @@ public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
         ph.addLast(new IdleStateHandler(5, 0, 0, TimeUnit.SECONDS));
         // 解码和编码，应和客户端一致
         //传输的协议 Protobuf
-        ph.addLast(new ProtobufVarint32FrameDecoder());
-        ph.addLast(new ProtobufDecoder(UserMsg.User.getDefaultInstance()));
-        ph.addLast(new ProtobufVarint32LengthFieldPrepender());
-        ph.addLast(new ProtobufEncoder());
+        ph.addLast(new ProtobufVarint32FrameDecoder()); // 处理半包
+        ph.addLast(new ProtobufDecoder(UserMsg.User.getDefaultInstance())); // 解码器
+        ph.addLast(new ProtobufVarint32LengthFieldPrepender()); // 加长度
+        ph.addLast(new ProtobufEncoder()); // 编码器
 
         //业务逻辑实现类
         ph.addLast("serverBizHandler", new ServerBizHandler());

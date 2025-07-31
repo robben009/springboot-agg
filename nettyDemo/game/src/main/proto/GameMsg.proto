@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package com.netty.game.model;
+option java_outer_classname = "GameMsgDto";
+
+message GameMsg {
+
+  int32 userId = 1;
+
+  int32 apiId = 2;
+
+  string msg = 3;
+
+}

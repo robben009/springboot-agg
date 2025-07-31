@@ -18,6 +18,7 @@
         <module>nettyServer</module>
         <module>nettyCommon</module>
         <module>chat</module>
+        <module>game</module>
     </modules>
 
 
