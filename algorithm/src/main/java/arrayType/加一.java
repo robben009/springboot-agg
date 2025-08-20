@@ -45,30 +45,12 @@ public class 加一 {
     }
 
     public static void main(String[] args) {
-
-        // 测试用例 1：普通情况
-        int[] digits1 = {1, 2, 3};
-        int[] result1 = plusOne(digits1);
-        System.out.println("结果: "); // 应输出 [1, 2, 4]
-        printArray(result1);
-
-        // 测试用例 2：全是 9 的情况
-        int[] digits2 = {9, 9, 9};
-        int[] result2 = plusOne(digits2);
-        System.out.println("结果: "); // 应输出 [1, 0, 0, 0]
-        printArray(result2);
-
         // 测试用例 3：最后一位达到进位
         int[] digits3 = {4, 9, 9};
         int[] result3 = plusOne(digits3);
         System.out.println("结果: "); // 应输出 [5, 0, 0]
         printArray(result3);
 
-        // 测试用例 4：只有一位数组
-        int[] digits4 = {0};
-        int[] result4 = plusOne(digits4);
-        System.out.println("结果: "); // 应输出 [1]
-        printArray(result4);
     }
 
     // 打印数组方法
