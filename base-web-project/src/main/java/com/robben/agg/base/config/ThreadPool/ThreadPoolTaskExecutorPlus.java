@@ -3,7 +3,6 @@ package com.robben.agg.base.config.ThreadPool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
-import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
@@ -13,9 +12,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Component
 public class ThreadPoolTaskExecutorPlus extends ThreadPoolTaskExecutor {
 
-    private void showThreadPoolInfo(String prefix){
+    private void showThreadPoolInfo(String prefix) {
         ThreadPoolExecutor threadPoolExecutor = getThreadPoolExecutor();
-        if(null == threadPoolExecutor){
+        if (null == threadPoolExecutor) {
             return;
         }
 
@@ -35,9 +34,9 @@ public class ThreadPoolTaskExecutorPlus extends ThreadPoolTaskExecutor {
     }
 
     @Override
-    public void execute(Runnable task,long startTimeout){
+    public void execute(Runnable task, long startTimeout) {
         showThreadPoolInfo("execute_task_startTimeout");
-        super.execute(task,startTimeout);
+        super.execute(task, startTimeout);
     }
 
     @Override
@@ -52,16 +51,5 @@ public class ThreadPoolTaskExecutorPlus extends ThreadPoolTaskExecutor {
         return super.submit(task);
     }
 
-    @Override
-    public ListenableFuture<?> submitListenable(Runnable task) {
-        showThreadPoolInfo("submitListenable_Runable");
-        return super.submitListenable(task);
-    }
-
-    @Override
-    public <T> ListenableFuture<T> submitListenable(Callable<T> task) {
-        showThreadPoolInfo("submitListenable_Callable");
-        return super.submitListenable(task);
-    }
 
 }
