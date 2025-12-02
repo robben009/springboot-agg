@@ -1,6 +1,7 @@
 package com.robben.agg.base.config.RedisConfig;
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.support.spring6.data.redis.GenericFastJsonRedisSerializer;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +25,6 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.connection.lettuce.LettucePoolingClientConfiguration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -55,7 +55,7 @@ public class BwpRedisConfig extends CachingConfigurerSupport {
 
 
     @PostConstruct
-    public void initHanle(){
+    public void initHanle() {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
         configuration.setHostName(redisHost);
         configuration.setPort(redisPort);
@@ -100,21 +100,47 @@ public class BwpRedisConfig extends CachingConfigurerSupport {
     }
 
 
-
     @Bean
     @Primary
-    public RedisCacheManager cacheManager(){
+    public RedisCacheManager cacheManager() {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 //设置默认过期时间为1h,Duration.ZERO为永久
                 .entryTtl(Duration.ZERO)
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(keySerializer()))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(valueSerializer()));
-                //如果需要设置缓存不能为空,则可以还加上disableCachingNullValues
-                //.disableCachingNullValues();
+        //如果需要设置缓存不能为空,则可以还加上disableCachingNullValues
+        //.disableCachingNullValues();
 
         return new MyRedisCacheManager(RedisCacheWriter.nonLockingRedisCacheWriter(connectionFactory), config);
     }
 
+    private RedisSerializer<String> keySerializer() {
+        return new StringRedisSerializer();
+    }
+
+    private RedisSerializer<Object> valueSerializer() {
+        return new GenericFastJsonRedisSerializer();
+    }
+
+    @Bean
+    @Primary
+    public KeyGenerator keyGenerator() {
+        return (target, method, params) -> {
+            StringBuilder sb = new StringBuilder();
+            sb.append(target.getClass().getName());
+            sb.append(".");
+            sb.append(method.getName());
+
+            if (params.length > 0) {
+                sb.append(":");
+                for (Object obj : params) {
+                    sb.append(JSON.toJSONString(obj));
+                }
+            }
+
+            return sb.toString();
+        };
+    }
 
     class MyRedisCacheManager extends RedisCacheManager {
 
@@ -124,7 +150,7 @@ public class BwpRedisConfig extends CachingConfigurerSupport {
 
         @Override
         protected RedisCache createRedisCache(String name, RedisCacheConfiguration cacheConfig) {
-            if(StringUtils.isEmpty(name)){
+            if (StringUtils.isEmpty(name)) {
                 name = "defaultCacheName";
             }
             String[] splitArr = name.split("#");
@@ -155,34 +181,6 @@ public class BwpRedisConfig extends CachingConfigurerSupport {
             }
             return super.createRedisCache(name, cacheConfig);
         }
-    }
-
-    private RedisSerializer<String> keySerializer(){
-        return new StringRedisSerializer();
-    }
-
-    private RedisSerializer<Object> valueSerializer(){
-        return new GenericJackson2JsonRedisSerializer();
-    }
-
-    @Bean
-    @Primary
-    public KeyGenerator keyGenerator() {
-        return (target, method, params) -> {
-            StringBuilder sb = new StringBuilder();
-            sb.append(target.getClass().getName());
-            sb.append(".");
-            sb.append(method.getName());
-
-            if(params.length > 0){
-                sb.append(":");
-                for (Object obj : params) {
-                    sb.append(JSON.toJSONString(obj));
-                }
-            }
-
-            return sb.toString();
-        };
     }
 
 }

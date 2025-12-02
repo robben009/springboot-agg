@@ -1,5 +1,5 @@
 #外部环境地址(云服务器地址)
-extraEnvHost: 150.158.121.165
+extraEnvHost: 119.29.194.246
 
 knife4j:
   # 开启增强配置
@@ -15,6 +15,8 @@ arthas:
 
 #设置项目名
 server:
+  tomcat:
+    max-http-header-size: 65536000
   servlet:
     context-path: /base-project
   port: 28081

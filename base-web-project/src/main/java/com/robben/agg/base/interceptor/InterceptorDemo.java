@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Nullable;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
@@ -20,14 +19,12 @@ public class InterceptorDemo implements HandlerInterceptor {
     }
 
     //当preHandle返回true且在方法执行完成之后执行，DispatcherServlet进行试图的渲染之前
-    public void postHandle(HttpServletRequest req, HttpServletResponse resp, Object handler,
-                      @Nullable ModelAndView mav) throws Exception{
+    public void postHandle(HttpServletRequest req, HttpServletResponse resp, Object handler, ModelAndView mav) throws Exception{
 
     }
 
     //当preHandle返回true且在方法执行完成之后执行，DispatcherServlet进行试图的渲染之前
-    public void afterCompletion(HttpServletRequest req, HttpServletResponse resp, Object handler,
-                                @Nullable Exception ex) throws Exception{
+    public void afterCompletion(HttpServletRequest req, HttpServletResponse resp, Object handler,Exception ex) throws Exception{
 
     }
 

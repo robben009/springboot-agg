@@ -17,3 +17,5 @@ CREATE TABLE `user_info`
   COLLATE = utf8mb4_0900_ai_ci
 ```
 
+
+独立的基础工程项目，不依赖于根目录的版本

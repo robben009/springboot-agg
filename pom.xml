@@ -12,7 +12,7 @@
 
     <modules>
         <module>algorithm</module>
-        <module>base-web-project</module>
+<!--        <module>base-web-project</module>-->
         <module>middleware</module>
         <module>springCloudAlibaba</module>
         <module>designPatterns</module>

@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  * 请求包装器（ContentCachingRequestWrapper）
- *  缓存请求体字节数据，允许多次读取。典型场景：记录请求日志后，控制器仍能正常解析请求体。
+ * 缓存请求体字节数据，允许多次读取。典型场景：记录请求日志后，控制器仍能正常解析请求体。
  */
 @Slf4j
 @Component
@@ -22,7 +22,7 @@ public class RequestLogFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         // 包装请求，缓存输入流
-        ContentCachingRequestWrapper wrappedRequest = new ContentCachingRequestWrapper(request);
+        ContentCachingRequestWrapper wrappedRequest = new ContentCachingRequestWrapper(request, 1024 * 1024);
         byte[] requestBody = wrappedRequest.getContentAsByteArray();
 
         // 记录请求日志（可在此处添加自定义逻辑）
