@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 @Slf4j
@@ -35,6 +37,8 @@ public class MybatisPlusController {
     @Operation(summary = "批量插入")
     @GetMapping("/batchInsertUser")
     public BwpResponse batchInsertUser() {
+        ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+
         userInfoService.remove(Wrappers.emptyWrapper());
 
         int count = 100;

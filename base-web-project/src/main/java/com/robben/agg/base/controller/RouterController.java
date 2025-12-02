@@ -21,7 +21,7 @@ import java.util.function.BiFunction;
 @RestController
 @RequestMapping("/routerApi")
 @RequiredArgsConstructor
-public class BiFunController {
+public class RouterController {
     private final MpUseService mpUseService;
     private final Map<String, BiFunction<String, String, BwpResponse<T>>> apiRouterHandleMap = new HashMap<>();
 

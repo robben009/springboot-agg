@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "注解使用", description = "提供统一的拦截器做处理,对异常处理和增加返回traceId")
 @RestController
 @RequestMapping("/anno")
-@RequiredArgsConstructor
 @OpenApiCatch
 public class AnnoController {
 
