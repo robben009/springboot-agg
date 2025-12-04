@@ -265,7 +265,7 @@ Java NIO还引入了非阻塞的I/O操作方式，通过选择器（Selector）�
 类加载器（Class Loader）： 类加载器负责加载字节码文件，并创建类的Class对象。Java中有三个内置的类加载器层次结构：
 启动类加载器（Bootstrap Class Loader）、
 扩展类加载器（Extension Class Loader）、
-应用程序类加载器（Application Class Loader）、
+应用程序类加载器（com.robben.agg.cola.ColaApplication Class Loader）、
 自定义类加载器： Java允许开发者自定义类加载器，从而实现更灵活的类加载策略。自定义类加载器可以用于加载特定位置的类文件，实现热部署、类的加密等需求。
 
 双亲委派模型（Delegation Model）： Java的类加载机制采用了双亲委派模型，即类加载器在加载类时会优先委派给父类加载器加载。这种模型可以防止类的重复加载，保证类的隔离性和安全性。

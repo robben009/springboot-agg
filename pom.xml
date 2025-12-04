@@ -12,13 +12,11 @@
 
     <modules>
         <module>algorithm</module>
-<!--        <module>base-web-project</module>-->
         <module>middleware</module>
         <module>springCloudAlibaba</module>
         <module>designPatterns</module>
         <module>bigdata</module>
         <module>LiteFlowDemo</module>
-        <module>colaDemo</module>
         <module>nettyDemo</module>
         <module>baseJava</module>
         <module>commonDto</module>
@@ -83,7 +81,7 @@
         <fastjson2.version>2.0.56</fastjson2.version>
         <guava.version>33.4.0-jre</guava.version>
         <commons-lang3.version>3.17.0</commons-lang3.version>
-        <hutool.version>5.8.36</hutool.version>
+        <hutool.version>5.8.42</hutool.version>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
         <easyexcel.version>3.3.2</easyexcel.version>
         <json-path.version>2.8.0</json-path.version>
@@ -271,6 +269,11 @@
             <dependency>
                 <groupId>com.alibaba.cola</groupId>
                 <artifactId>cola-component-statemachine</artifactId>
+                <version>${cola.components.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cola</groupId>
+                <artifactId>cola-component-ruleengine</artifactId>
                 <version>${cola.components.version}</version>
             </dependency>
 
