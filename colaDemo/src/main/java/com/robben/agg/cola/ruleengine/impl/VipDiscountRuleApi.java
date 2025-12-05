@@ -1,8 +1,11 @@
-package com.robben.agg.cola.ruleengine;
+package com.robben.agg.cola.ruleengine.impl;
+
+import com.robben.agg.cola.ruleengine.dto.DiscountContext;
+import com.robben.agg.cola.ruleengine.RuleApi;
 
 import java.math.BigDecimal;
 
-public class VipDiscountRule implements Rule{
+public class VipDiscountRuleApi implements RuleApi {
     @Override
     public boolean evaluate(DiscountContext context) {
         return "VIP".equals(context.getUserLevel())

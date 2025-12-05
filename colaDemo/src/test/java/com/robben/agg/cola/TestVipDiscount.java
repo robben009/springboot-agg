@@ -15,7 +15,6 @@ public class TestVipDiscount {
 
     @Test
     public void testVipDiscount() {
-        OrderAppService service = new OrderAppService();
         BigDecimal finalPrice = orderAppService.calculateFinalPrice("VIP", BigDecimal.valueOf(120));
         System.out.println(finalPrice); // 输出 108.0 (120 * 0.9)
     }

@@ -1,6 +1,9 @@
 package com.robben.agg.cola.ruleengine;
 
 
+import com.robben.agg.cola.ruleengine.dto.DiscountContext;
+import com.robben.agg.cola.ruleengine.impl.NormalUserDiscountRuleApi;
+import com.robben.agg.cola.ruleengine.impl.VipDiscountRuleApi;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,8 +18,8 @@ public class OrderAppService {
 
         // 构建规则引擎（实际中可通过 Spring 注入规则列表）
         RuleEngine engine = new RuleEngine()
-                .addRule(new VipDiscountRule())
-                .addRule(new NormalUserDiscountRule());
+                .addRule(new VipDiscountRuleApi())
+                .addRule(new NormalUserDiscountRuleApi());
 
         engine.fire(context);
 

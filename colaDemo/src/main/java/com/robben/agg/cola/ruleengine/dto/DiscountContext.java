@@ -1,4 +1,4 @@
-package com.robben.agg.cola.ruleengine;
+package com.robben.agg.cola.ruleengine.dto;
 
 import lombok.Data;
 

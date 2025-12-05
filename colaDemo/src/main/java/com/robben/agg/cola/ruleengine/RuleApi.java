@@ -1,6 +1,8 @@
 package com.robben.agg.cola.ruleengine;
 
-public interface Rule {
+import com.robben.agg.cola.ruleengine.dto.DiscountContext;
+
+public interface RuleApi {
 
     boolean evaluate(DiscountContext context);
 
