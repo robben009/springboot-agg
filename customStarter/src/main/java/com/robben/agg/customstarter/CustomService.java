@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HelloService {
+public class CustomService {
     private String msg;
     private String name;
 

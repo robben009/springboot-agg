@@ -4,7 +4,7 @@ import com.robben.agg.base.contants.BbResultEnum;
 import com.robben.agg.base.exception.BizPlusException;
 import com.robben.agg.base.resp.BwpResponse;
 import com.robben.agg.base.utils.OtherUtils;
-import com.robben.agg.customstarter.HelloService;
+import com.robben.agg.customstarter.CustomService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -27,13 +27,13 @@ public class BeanController {
     @Autowired
     private OtherUtils otherUtils;
     @Autowired
-    private HelloService helloService;
+    private CustomService customService;
 
 
     @Operation(summary = "测试自定义的start")
     @PostMapping("startTest")
     public String startTest(String msg) {
-        helloService.say();
+        customService.say();
         return "success";
     }
 

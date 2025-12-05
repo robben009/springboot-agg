@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = "link")
 @Data
-public class HelloProperties {
+public class CustomProperties {
 
     private String name;
 
