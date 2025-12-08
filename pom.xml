@@ -18,7 +18,6 @@
         <module>bigdata</module>
         <module>LiteFlowDemo</module>
         <module>nettyDemo</module>
-        <module>baseJava</module>
         <module>commonDto</module>
         <module>k8s</module>
         <module>lokiLogDemo</module>
