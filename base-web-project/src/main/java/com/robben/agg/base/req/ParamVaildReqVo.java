@@ -2,9 +2,8 @@ package com.robben.agg.base.req;
 
 import com.robben.agg.base.model.valid.ParamValidAdd;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * 常用的标签有

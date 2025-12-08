@@ -1,9 +1,9 @@
 package com.robben.agg.base.aspect.validParam.anno;
 
 import com.robben.agg.base.aspect.validParam.anno.method.EnumValidatorClass;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**

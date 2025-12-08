@@ -2,15 +2,11 @@ package com.robben.agg.base.model;
 
 import com.robben.agg.base.aspect.validParam.anno.ValidGroup;
 import com.robben.agg.base.dao.entity.UserInfo;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import java.util.List;
 
 
