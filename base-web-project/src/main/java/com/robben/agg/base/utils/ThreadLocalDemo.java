@@ -38,7 +38,7 @@ public class ThreadLocalDemo {
     private static void demo2() throws InterruptedException {
 //        TransmittableThreadLocal<LocalBean> ttl = new TransmittableThreadLocal();
 
-        //这种是深度拷贝,确保每次子线程修改不影响主线程
+        //这种是深度拷贝,确保每次子线程修改不影响主线程，特别注意要是存放的是对象，一定要深度拷贝！！！！
         TransmittableThreadLocal<LocalBean> ttl = new TransmittableThreadLocal<LocalBean>() {
             @Override
             public LocalBean copy(LocalBean parentValue) {
