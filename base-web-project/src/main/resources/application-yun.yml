@@ -6,11 +6,37 @@ knife4j:
   enable: true
   # 开启生产环境屏蔽
   production: false
-    
+
 #https://arthas.aliyun.com/doc/tunnel.html
 arthas:
   agent-id: base-web-project1
   tunnel-server: ws://127.0.0.1:7777/ws
+
+management:
+  # 可选：暴露健康/指标端点（方便手动调试）
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
+  # 开启指标导出
+  metrics:
+    tags:
+      application: base-web-project  # 核心：项目唯一标识 用于给otel-collector收集器传给prometheus,在grafana中显示
+      env: prod  # 可选:添加环境标签（prod/test/dev）
+    export:
+      enabled: true
+      # 指标推送间隔（建议和Prometheus抓取间隔一致，15s）
+      interval: 5s
+  # OTLP 配置（核心：指向Docker中的Collector地址）
+  otlp:
+    metrics:
+      export:
+        # 替换为你的宿主机IP（容器内无法用localhost访问宿主机）
+        url: http://119.29.194.246:4318/v1/metrics
+        # 可选：超时时间
+        timeout: 10s
+        # 开启压缩（减少网络传输）
+        compression: gzip
 
 
 #设置项目名
@@ -18,7 +44,7 @@ server:
   tomcat:
     max-http-header-size: 65536000
   servlet:
-    context-path: /base-project
+    context-path: /base-web-project
   port: 28081
 
 #spring的相关配置
@@ -40,10 +66,10 @@ spring:
   cache:
     type: caffeine
     #该配置项在com.robben.config.CaffeineCacheConfig 也可以实现配置
-#    cache-names:
-#      - userCache
-#    caffeine:
-#      spec: maximumSize=1024,refreshAfterWrite=60s
+  #    cache-names:
+  #      - userCache
+  #    caffeine:
+  #      spec: maximumSize=1024,refreshAfterWrite=60s
   data:
     redis:
       host: ${extraEnvHost}
