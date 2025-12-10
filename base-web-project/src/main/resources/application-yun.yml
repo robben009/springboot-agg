@@ -13,11 +13,21 @@ arthas:
   tunnel-server: ws://127.0.0.1:7777/ws
 
 management:
+  opentelemetry:
+    tracing:
+      enabled: true
+      sampling:
+        probability: 1.0  # 采样率 100%（测试用，生产可降为 0.1）
+      export:
+        otlp:
+          endpoint: http://119.29.194.246:4318/v1/traces  # 指向 Collector 的 OTLP HTTP 端口
+          # 关键：Spring Boot 4.0 需指定协议为 HTTP（默认 gRPC，和 Collector 端口匹配）
+          protocol: http/protobuf
   # 可选：暴露健康/指标端点（方便手动调试）
   endpoints:
     web:
       exposure:
-        include: health,metrics,prometheus
+        include: health,info,metrics,prometheus
   # 开启指标导出
   metrics:
     tags:
