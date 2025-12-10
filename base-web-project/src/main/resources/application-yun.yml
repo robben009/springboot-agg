@@ -23,6 +23,17 @@ management:
           endpoint: http://119.29.194.246:4318/v1/traces  # 指向 Collector 的 OTLP HTTP 端口
           # 关键：Spring Boot 4.0 需指定协议为 HTTP（默认 gRPC，和 Collector 端口匹配）
           protocol: http/protobuf
+    # 新增：opentelemetry logs 配置（导出 OTLP 日志）
+    logs:
+      enabled: true  # 开启 OTLP 日志导出
+      export:
+        otlp:
+          endpoint: http://119.29.194.246:4318/v1/logs  # 指向 Collector 的 OTLP HTTP 端口
+          protocol: http/protobuf  # 协议匹配 Collector 的 otlp.http
+          batch:
+            max_queue_size: 1024  # 批量发送队列大小
+            schedule_delay: 5000ms  # 5秒批量发送
+            export_timeout: 30000ms  # 超时时间
   # 可选：暴露健康/指标端点（方便手动调试）
   endpoints:
     web:
@@ -87,10 +98,15 @@ spring:
       password: ${redis.pwd}
 
 
-#日志的配置
+##日志的配置
+#logging:
+#  level:
+#    com.robben: info
+
+
 logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"  # 日志中包含应用名、traceID、spanID
   level:
-    com.robben: info
-
-
-
+    root: INFO  # 日志级别，生产环境可调整为 WARN
+    org.springframework.web: DEBUG  # 可选：开启 web 日志调试

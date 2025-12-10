@@ -1,51 +1,51 @@
-<?xml version="1.0"?>
-<configuration debug="false" scan="true" scanPeriod="30 seconds">
-    <!--    <property name="LOG_HOME" value="/home/chery-charge/logs"/>-->
-    <!--    <property name="LOG_FILENAME" value="service_stdout"/>-->
+<!--<?xml version="1.0"?>-->
+<!--<configuration debug="false" scan="true" scanPeriod="30 seconds">-->
+<!--    &lt;!&ndash;    <property name="LOG_HOME" value="/home/chery-charge/logs"/>&ndash;&gt;-->
+<!--    &lt;!&ndash;    <property name="LOG_FILENAME" value="service_stdout"/>&ndash;&gt;-->
 
-    <springProfile name="test,prod">
-        <!--        <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
-        <!--            <file>${LOG_HOME}/${LOG_FILENAME}.log</file> &lt;!&ndash; 日志文件存放的路径 &ndash;&gt;-->
-        <!--            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
-        <!--                <FileNamePattern>${LOG_HOME}/${LOG_FILENAME}.log.%d{yyyy-MM-dd}.%i.log</FileNamePattern>-->
-        <!--                <maxHistory>30</maxHistory> &lt;!&ndash; 日志文件保留天数 &ndash;&gt;-->
-        <!--                <maxFileSize>1GB</maxFileSize> &lt;!&ndash; 单个日志文件的最大大小 &ndash;&gt;-->
-        <!--                <totalSizeCap>10GB</totalSizeCap> &lt;!&ndash; 日志文件总大小上限 &ndash;&gt;-->
-        <!--                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
-        <!--                    <maxFileSize>1GB</maxFileSize> &lt;!&ndash; 单个日志文件的最大大小 &ndash;&gt;-->
-        <!--                </timeBasedFileNamingAndTriggeringPolicy>-->
-        <!--            </rollingPolicy>-->
+<!--    <springProfile name="test,prod">-->
+<!--        &lt;!&ndash;        <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <file>${LOG_HOME}/${LOG_FILENAME}.log</file> &lt;!&ndash; 日志文件存放的路径 &ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">&ndash;&gt;-->
+<!--        &lt;!&ndash;                <FileNamePattern>${LOG_HOME}/${LOG_FILENAME}.log.%d{yyyy-MM-dd}.%i.log</FileNamePattern>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <maxHistory>30</maxHistory> &lt;!&ndash; 日志文件保留天数 &ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;                <maxFileSize>1GB</maxFileSize> &lt;!&ndash; 单个日志文件的最大大小 &ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;                <totalSizeCap>10GB</totalSizeCap> &lt;!&ndash; 日志文件总大小上限 &ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <maxFileSize>1GB</maxFileSize> &lt;!&ndash; 单个日志文件的最大大小 &ndash;&gt;&ndash;&gt;-->
+<!--        &lt;!&ndash;                </timeBasedFileNamingAndTriggeringPolicy>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </rollingPolicy>&ndash;&gt;-->
 
-        <!--            <encoder charset="UTF-8">-->
-        <!--                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}[%line] [traceIds:%X{traceId:-},spanIds:%X{spanId:-}] - %msg%n</Pattern>-->
-        <!--            </encoder>-->
-        <!--        </appender>-->
+<!--        &lt;!&ndash;            <encoder charset="UTF-8">&ndash;&gt;-->
+<!--        &lt;!&ndash;                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}[%line] [traceIds:%X{traceId:-},spanIds:%X{spanId:-}] - %msg%n</Pattern>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </encoder>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </appender>&ndash;&gt;-->
 
-        <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-            <encoder charset="UTF-8">
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}[%line] [traceId:%X{traceId:-},spanId:%X{spanId:-}] - %msg%n</Pattern>
-            </encoder>
-        </appender>
+<!--        <appender name="console" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--            <encoder charset="UTF-8">-->
+<!--                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}[%line] [traceId:%X{traceId:-},spanId:%X{spanId:-}] - %msg%n</Pattern>-->
+<!--            </encoder>-->
+<!--        </appender>-->
 
-        <root level="INFO">
-            <!--            <appender-ref ref="RollingFile" />-->
-            <appender-ref ref="console" />
-        </root>
-    </springProfile>
+<!--        <root level="INFO">-->
+<!--            &lt;!&ndash;            <appender-ref ref="RollingFile" />&ndash;&gt;-->
+<!--            <appender-ref ref="console" />-->
+<!--        </root>-->
+<!--    </springProfile>-->
 
 
-    <springProfile name="yun">
-        <!--输出到控制台 色彩控制 https://logback.qos.ch/manual/layouts.html#coloring -->
-        <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-            <encoder charset="UTF-8">
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %green([%thread]) %-5level %cyan(%logger{50})[%line] [traceId2:%yellow(%X{traceId:-}),spanId2:%X{spanId:-}] - %msg%n</Pattern>
-            </encoder>
-        </appender>
+<!--    <springProfile name="yun">-->
+<!--        &lt;!&ndash;输出到控制台 色彩控制 https://logback.qos.ch/manual/layouts.html#coloring &ndash;&gt;-->
+<!--        <appender name="console" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--            <encoder charset="UTF-8">-->
+<!--                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %green([%thread]) %-5level %cyan(%logger{50})[%line] [traceId2:%yellow(%X{traceId:-}),spanId2:%X{spanId:-}] - %msg%n</Pattern>-->
+<!--            </encoder>-->
+<!--        </appender>-->
 
-        <!-- 日志输出级别 -->
-        <root level="INFO">
-            <appender-ref ref="console"/>
-        </root>
-    </springProfile>
+<!--        &lt;!&ndash; 日志输出级别 &ndash;&gt;-->
+<!--        <root level="INFO">-->
+<!--            <appender-ref ref="console"/>-->
+<!--        </root>-->
+<!--    </springProfile>-->
 
-</configuration>
+<!--</configuration>-->
