@@ -7,6 +7,7 @@ knife4j:
   # 开启生产环境屏蔽
   production: false
 
+
 #https://arthas.aliyun.com/doc/tunnel.html
 arthas:
   agent-id: base-web-project1
