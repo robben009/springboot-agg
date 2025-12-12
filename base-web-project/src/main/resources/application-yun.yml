@@ -13,7 +13,22 @@ arthas:
   agent-id: base-web-project1
   tunnel-server: ws://127.0.0.1:7777/ws
 
+
 management:
+  # 开启所有监控端点
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  otlp:
+    metrics:
+      export:
+        # 替换为你的宿主机IP（容器内无法用localhost访问宿主机）
+        url: http://119.29.194.246:4318/v1/metrics
+        # 可选：超时时间
+        timeout: 10s
+        # 开启压缩（减少网络传输）
+        compression: gzip
   opentelemetry:
     tracing:
       enabled: true
@@ -25,7 +40,7 @@ management:
           # 关键：Spring Boot 4.0 需指定协议为 HTTP（默认 gRPC，和 Collector 端口匹配）
           protocol: http/protobuf
     # 新增：opentelemetry logs 配置（导出 OTLP 日志）
-    logs:
+    logging:
       enabled: true  # 开启 OTLP 日志导出
       export:
         otlp:
@@ -35,30 +50,9 @@ management:
             max_queue_size: 1024  # 批量发送队列大小
             schedule_delay: 5000ms  # 5秒批量发送
             export_timeout: 30000ms  # 超时时间
-  # 可选：暴露健康/指标端点（方便手动调试）
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics,prometheus
-  # 开启指标导出
-  metrics:
-    tags:
-      application: base-web-project  # 核心：项目唯一标识 用于给otel-collector收集器传给prometheus,在grafana中显示
-      env: prod  # 可选:添加环境标签（prod/test/dev）
-    export:
-      enabled: true
-      # 指标推送间隔（建议和Prometheus抓取间隔一致，15s）
-      interval: 5s
-  # OTLP 配置（核心：指向Docker中的Collector地址）
-  otlp:
-    metrics:
-      export:
-        # 替换为你的宿主机IP（容器内无法用localhost访问宿主机）
-        url: http://119.29.194.246:4318/v1/metrics
-        # 可选：超时时间
-        timeout: 10s
-        # 开启压缩（减少网络传输）
-        compression: gzip
+
+
+
 
 
 #设置项目名
@@ -105,9 +99,9 @@ spring:
 #    com.robben: info
 
 
-logging:
-  pattern:
-    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"  # 日志中包含应用名、traceID、spanID
-  level:
-    root: INFO  # 日志级别，生产环境可调整为 WARN
-    org.springframework.web: DEBUG  # 可选：开启 web 日志调试
+#logging:
+#  pattern:
+#    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"  # 日志中包含应用名、traceID、spanID
+#  level:
+#    root: INFO  # 日志级别，生产环境可调整为 WARN
+#    org.springframework.web: DEBUG  # 可选：开启 web 日志调试

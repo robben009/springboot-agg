@@ -35,7 +35,7 @@ public class StartRunFrist implements ApplicationRunner {
         log.info("~~~~~~~~~~~~~~~~~~~projectName:{}~~~~~~~~~~~~~~~~~~~", projectName);
         log.info("customService,msg={}", customService.getMsg());
 
-//        mockReq();
+        mockReq();
     }
 
     private void mockReq() {
