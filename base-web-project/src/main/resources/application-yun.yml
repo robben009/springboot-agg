@@ -13,46 +13,43 @@ arthas:
   agent-id: base-web-project1
   tunnel-server: ws://127.0.0.1:7777/ws
 
-
-management:
-  # 开启所有监控端点
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  otlp:
-    metrics:
-      export:
-        # 替换为你的宿主机IP（容器内无法用localhost访问宿主机）
-        url: http://119.29.194.246:4318/v1/metrics
-        # 可选：超时时间
-        timeout: 10s
-        # 开启压缩（减少网络传输）
-        compression: gzip
-  opentelemetry:
-    tracing:
-      enabled: true
-      sampling:
-        probability: 1.0  # 采样率 100%（测试用，生产可降为 0.1）
-      export:
-        otlp:
-          endpoint: http://119.29.194.246:4318/v1/traces  # 指向 Collector 的 OTLP HTTP 端口
-          # 关键：Spring Boot 4.0 需指定协议为 HTTP（默认 gRPC，和 Collector 端口匹配）
-          protocol: http/protobuf
-    # 新增：opentelemetry logs 配置（导出 OTLP 日志）
-    logging:
-      enabled: true  # 开启 OTLP 日志导出
-      export:
-        otlp:
-          endpoint: http://119.29.194.246:4318/v1/logs  # 指向 Collector 的 OTLP HTTP 端口
-          protocol: http/protobuf  # 协议匹配 Collector 的 otlp.http
-          batch:
-            max_queue_size: 1024  # 批量发送队列大小
-            schedule_delay: 5000ms  # 5秒批量发送
-            export_timeout: 30000ms  # 超时时间
-
-
-
+# 监控使用 需要开启容器
+#management:
+#  # 开启所有监控端点
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  otlp:
+#    metrics:
+#      export:
+#        # 替换为你的宿主机IP（容器内无法用localhost访问宿主机）
+#        url: http://119.29.194.246:4318/v1/metrics
+#        # 可选：超时时间
+#        timeout: 10s
+#        # 开启压缩（减少网络传输）
+#        compression: gzip
+#  opentelemetry:
+#    tracing:
+#      enabled: true
+#      sampling:
+#        probability: 1.0  # 采样率 100%（测试用，生产可降为 0.1）
+#      export:
+#        otlp:
+#          endpoint: http://119.29.194.246:4318/v1/traces  # 指向 Collector 的 OTLP HTTP 端口
+#          # 关键：Spring Boot 4.0 需指定协议为 HTTP（默认 gRPC，和 Collector 端口匹配）
+#          protocol: http/protobuf
+#    # 新增：opentelemetry logs 配置（导出 OTLP 日志）
+#    logging:
+#      enabled: true  # 开启 OTLP 日志导出
+#      export:
+#        otlp:
+#          endpoint: http://119.29.194.246:4318/v1/logs  # 指向 Collector 的 OTLP HTTP 端口
+#          protocol: http/protobuf  # 协议匹配 Collector 的 otlp.http
+#          batch:
+#            max_queue_size: 1024  # 批量发送队列大小
+#            schedule_delay: 5000ms  # 5秒批量发送
+#            export_timeout: 30000ms  # 超时时间
 
 
 #设置项目名
