@@ -1,7 +1,8 @@
 <configuration>
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+<!--            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}[%line] [traceId:%X{traceId:-},spanId:%X{spanId:-}] - %msg%n</Pattern>
         </encoder>
     </appender>
 
@@ -9,7 +10,7 @@
         <captureExperimentalAttributes>true</captureExperimentalAttributes>
     </appender>
 
-    <root level="INFO">
+    <root level="info">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="OTEL" />
     </root>
