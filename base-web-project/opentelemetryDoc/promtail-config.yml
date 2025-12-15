@@ -1,0 +1,23 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0  # 禁用gRPC，仅保留HTTP
+
+# OTLP 配置（2.8.0+ 正确格式）
+otlp:
+  http:
+    endpoint: 0.0.0.0:9080  # 仅启用HTTP协议接收OTLP日志
+  # 若不需要gRPC，直接省略grpc配置，而非设为false
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+    backoff_config:
+      min_period: 1s
+      max_period: 10s
+      max_retries: 10
+    timeout: 5s
+
+# 禁用文件采集，仅接收OTLP日志
+scrape_configs: []

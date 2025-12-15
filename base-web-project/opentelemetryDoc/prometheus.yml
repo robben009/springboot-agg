@@ -1,0 +1,15 @@
+global:
+  scrape_interval: 5s  # 抓取频率
+
+scrape_configs:
+  # 抓取 OTLP Collector 暴露的 Spring Boot 指标
+  - job_name: 'springboot-otel-metrics'
+    static_configs:
+      - targets: ['otel-collector:8889']  # 替换为 Collector 所在机器的 IP
+
+  # 可选：抓取 Prometheus 自身指标（用于监控）
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+

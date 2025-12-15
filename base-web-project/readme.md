@@ -19,3 +19,7 @@ CREATE TABLE `user_info`
 
 
 独立的基础工程项目，不依赖于根目录的版本
+
+
+opentelemetryDoc的使用
+https://www.yuque.com/robben-juesc/oy1lc6/nlv9296wefsqdagk

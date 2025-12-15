@@ -1,0 +1,56 @@
+# Loki 最终版配置（适配 latest 版本，无解析错误）
+auth_enabled: false  # 测试环境关闭认证
+
+server:
+  http_listen_port: 3100
+  http_listen_address: 0.0.0.0  # 绑定所有网卡，允许外部访问
+
+# 日志摄入器配置（核心：处理日志写入，仅保留必要字段）
+ingester:
+  lifecycler:
+    address: 0.0.0.0
+    ring:
+      kvstore:
+        store: inmemory  # 单机模式用内存存储
+      replication_factor: 1  # 单机模式复制因子为1
+  chunk_idle_period: 1h       # 日志块空闲超时时间
+  chunk_retain_period: 30s    # 日志块保留超时时间
+  max_chunk_age: 1h          # 单个日志块最大存活时间
+
+# 存储配置：本地文件（测试用，仅保留核心字段）
+schema_config:
+  configs:
+    - from: 2024-01-01
+      store: tsdb            # 新版 Loki 推荐的存储引擎
+      object_store: filesystem
+      schema: v13            # 最新 schema 版本
+      index:
+        prefix: loki_index_
+        period: 24h          # 索引周期 24 小时
+
+storage_config:
+  filesystem:
+    directory: /tmp/loki/chunks  # 日志块存储路径
+  # 缓存配置：新版 Loki 直接配置 embedded_cache（无嵌套）
+  index_queries_cache_config:
+    embedded_cache:
+      enabled: true
+      max_size_mb: 100  # 索引查询缓存大小
+
+# 日志保留策略（核心：保留7天）
+limits_config:
+  retention_period: 7d                # 日志保留7天
+  max_entries_limit_per_query: 5000   # 单次查询最大条目数
+  reject_old_samples: true
+  reject_old_samples_max_age: 168h    # 7天=168小时
+  ingestion_rate_mb: 10               # 每秒最大写入速率
+  ingestion_burst_size_mb: 20         # 突发写入峰值
+
+# 全局通用配置（仅保留必要字段）
+common:
+  path_prefix: /tmp/loki              # 所有数据的根路径
+  replication_factor: 1
+  ring:
+    instance_addr: 0.0.0.0
+    kvstore:
+      store: inmemory                 # 单机模式用内存存储

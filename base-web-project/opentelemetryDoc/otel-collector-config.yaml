@@ -1,0 +1,48 @@
+receivers:
+  # 接收 OTLP HTTP 协议的指标/追踪数据
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318  # 对应 Spring Boot 配置的 url 端口
+
+
+processors:
+  batch: {}   # Loki / Tempo 均需要 batch，否则 Collector 会报错
+
+
+exporters:
+  # 输出到 Prometheus（核心，让 Prometheus 能抓取指标）
+  prometheus:
+    endpoint: "0.0.0.0:8889"  # Collector 暴露给 Prometheus 的抓取地址
+    #namespace: springboot_app  # 指标前缀，方便区分不同应用
+    send_timestamps: true
+    metric_expiration: 180m
+
+  # 替换废弃的 logging exporter 为 debug exporter
+  debug:
+    verbosity: detailed  # 详细日志，方便调试
+
+  otlp/tempo:  # 命名：otlp 协议 → 指向 Tempo
+    endpoint: tempo:4317  # Tempo 容器名 + gRPC 端口（同网络可直接访问）
+    tls:
+      insecure: true  # 测试环境关闭 TLS，生产环境需配置证书
+
+  otlphttp/loki:
+    endpoint: "http://loki:3100/otlp"
+    tls:
+      insecure: true
+
+
+service:
+  pipelines:
+    # 指标处理管道：OTLP 接收 → Prometheus 输出 + debug 日志输出
+    metrics:
+      receivers: [otlp]
+      exporters: [prometheus, debug]  # 这里也要把 logging 改成 debug
+    traces:
+      receivers: [otlp]  # 接收 OTLP 协议的 Traces 数据
+      exporters: [otlp/tempo, debug]  # 推送到 Tempo + 打印 debug 日志
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlphttp/loki, debug]

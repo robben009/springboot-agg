@@ -1,0 +1,20 @@
+# Tempo 核心配置
+server:
+  http_listen_port: 3200  # Grafana 对接的 HTTP 端口
+
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc:  # 接收 OTel Collector 推送的 OTLP gRPC 协议 Traces
+          endpoint: 0.0.0.0:4317
+
+# 存储配置：本地文件（生产环境可换 S3/ES，测试用本地即可）
+storage:
+  trace:
+    backend: local
+    local:
+      path: /tmp/tempo/blocks
+    wal:
+      path: /tmp/tempo/wal
+
