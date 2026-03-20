@@ -40,3 +40,10 @@ https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4
     </dependency>
 </dependencies>
 ```
+
+# spring版本关系
+springboot支持的版本 https://spring.io/projects/spring-boot#support
+spring-cloud支持的版本  https://spring.io/projects/spring-cloud#support
+
+spring-cloud-alibaba 对应上述的两个版本 https://sca.aliyun.com/docs/2025.x/overview/version-explain/?spm=5176.29160081.0.0.74805c72tJXZAa
+
