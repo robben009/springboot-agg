@@ -38,15 +38,6 @@ public class TestController {
     protected static FlowCreator testCreator = FlowCreator.of("test001", "测试001");
 
     /**
-     * <a href="http://localhost:8000/process/deploy">流程部署</a>
-     */
-    @Operation(summary = "流程部署")
-    @GetMapping("/deploy")
-    public Long deployByResource() {
-        return flowLongEngine.processService().deployByResource("process.json", testCreator, false);
-    }
-
-    /**
      * <a href="http://localhost:8000/process/instance-start">启动流程实例</a>
      */
     @Operation(summary = "启动流程实例")
