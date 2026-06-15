@@ -1,0 +1,27 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: example
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://119.29.194.246:53306/flowlong?characterEncoding=utf8&useSSL=false
+    username: root
+    password: JZh2019@nodejsjava
+
+# FlowLong Config
+flowlong:
+  remind:
+    cron: "*/5 * * * * ?"
+  eventing:
+    task: true
+
+# Logger Config
+logging:
+  level:
+    mybatis.mate: debug
+
+
+knife4j:
+  enable: true
+  production: false
