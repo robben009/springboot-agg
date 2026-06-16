@@ -1,5 +1,6 @@
 package com.hjz.flowlong.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.aizuda.bpm.engine.FlowLongEngine;
 import com.aizuda.bpm.engine.TaskService;
 import com.aizuda.bpm.engine.core.FlowCreator;
@@ -31,22 +32,22 @@ import java.util.Optional;
 @AllArgsConstructor
 @Slf4j
 public class TestController {
-    protected FlowLongEngine flowLongEngine;
-    protected FlwInstanceMapper flwInstanceMapper;
-    protected FlwProcessMapper flwProcessMapper;
+    private FlowLongEngine flowLongEngine;
+    private FlwInstanceMapper flwInstanceMapper;
+    private FlwProcessMapper flwProcessMapper;
 
-    protected static FlowCreator testCreator = FlowCreator.of("test001", "测试001");
+    private static FlowCreator userCreator = FlowCreator.of("user001", "员工001");
+    private static FlowCreator manageCreator = FlowCreator.of("manage001", "主管001");
+    private static FlowCreator bossCreator = FlowCreator.of("boos001", "经理001");
 
-    /**
-     * <a href="http://localhost:8000/process/instance-start">启动流程实例</a>
-     */
+
     @Operation(summary = "启动流程实例")
     @GetMapping("/instance-start")
     public FlwInstance instanceStart() {
         Map<String, Object> args = new HashMap<>();
         args.put("day", 8);
         args.put("assignee", "test001");
-        return flowLongEngine.startInstanceByProcessKey("process", null, testCreator, args).get();
+        return flowLongEngine.startInstanceByProcessKey("process", null, userCreator, args).get();
     }
 
 
@@ -168,6 +169,8 @@ public class TestController {
     @Operation(summary = "查询正在运行的流程实例")
     @GetMapping("/running-instances")
     public Map<String, Object> getRunningInstances() {
+        StpUtil.login(10001);
+
         Map<String, Object> result = new HashMap<>();
         List<FlwInstance> instances = flwInstanceMapper.selectList(Wrappers.<FlwInstance>lambdaQuery());
         result.put("success", true);

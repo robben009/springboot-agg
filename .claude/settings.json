@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "mysql": {
+      "command": "npx",
+      "args": ["-y", "@benborla29/mcp-server-mysql"],
+      "env": {
+        "MYSQL_HOST": "119.29.194.246",
+        "MYSQL_PORT": "53306",
+        "MYSQL_USER": "root",
+        "MYSQL_PASSWORD": "JZh2019@nodejsjava",
+        "MYSQL_DATABASE": "banma_charge"
+      }
+    }
+  }
+}
