@@ -25,3 +25,11 @@ logging:
 knife4j:
   enable: true
   production: false
+
+# Sa-Token Config
+sa-token:
+  token-name: satoken
+  timeout: 86400
+  active-timeout: -1
+  is-concurrent: true
+  token-style: uuid
