@@ -4,11 +4,11 @@
 [一句话] 基于 Spring Boot + Java  + MySQL 项目。
 
 ## 技术栈基线（不允许擅自升级）
-- JDK: 21，不可使用 Java 9+ 语法（record/var/text blocks）
-- Spring Boot: 2.7.x，不可升 3.x（Spring 6 要求 JDK 17）
-- Maven: 3.6.3，由 enforcer 强制
-- 数据库: MySQL 5.7（utf8mb4），不可升 8.x（生产环境为 5.7）
-- 持久化: MyBatis-Plus 3.5.x（基于 MyBatis 3.5）+ Flyway（含 flyway-mysql 子模块），不引入 JPA / Hibernate
+- 要使用JDK1.8的语法
+- Spring Boot 不允许擅自升级
+- Maven 不允许擅自升级
+- 数据库: 不允许擅自升级
+- 持久化: MyBatis-Plus 不允许擅自升级
 
 ## 快速导航
 | 你想做什么       | 去哪里看 |
@@ -29,6 +29,7 @@
 5. 禁止裸 `RestTemplate` / `HttpURLConnection`，统一通过 `ApiClient` 抽象
 6. 禁止字段级 `@Autowired`，必须构造器注入（推荐 Lombok `@RequiredArgsConstructor`）
 7. 新增代码必须有对应 JUnit 5 测试，行覆盖率 ≥ 80%
+8. 如果有设计文档需要编写,只能在对应项目目录在的doc文件夹下编写，如果没有doc文件夹则需要自己创建一个
 
 ## 提交规范
 - feat: 新功能

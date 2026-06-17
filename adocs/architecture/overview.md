@@ -4,14 +4,14 @@
 
 ```
 src/main/java/com/example/taskapp/
-├── domain/         # 领域模型与 DTO（不依赖任何业务包）
-│   ├── model/      # MyBatis-Plus Entity（@TableName / @TableId / @TableField）/ Value Object
+├── model/         # 领域模型与 DTO（不依赖任何业务包）
+│   ├── req/        # controller类中接口的入参定义的对应对象存放处
+│   ├── resp/        # controller类中接口的出参定义的对应对象存放处
 │   └── dto/        # Request / Response（Lombok @Value 不可变 POJO）
 ├── config/         # Spring 配置类、@ConfigurationProperties、@MapperScan、MybatisPlusInterceptor
 ├── mapper/         # MyBatis-Plus Mapper 接口（extends BaseMapper<T>）
 ├── service/        # 业务逻辑（@RequiredArgsConstructor 构造器注入）
 ├── controller/     # REST Controller、@ControllerAdvice 全局异常处理
-└── infrastructure/ # 横切关注点：ApiClient、日志、指标、安全
 ```
 
 ## 依赖规则

@@ -1,5 +1,6 @@
 package com.hjz.flowlong.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.dev33.satoken.annotation.SaCheckRole;
 import com.hjz.flowlong.dao.service.impl.RoleResourceServiceImpl;
 import com.hjz.flowlong.model.RoleResourceResp;
@@ -26,7 +27,7 @@ public class RoleResourceController {
     private final RoleResourceServiceImpl roleResourceService;
 
     @Operation(summary = "查询角色拥有的资源列表")
-    @SaCheckRole("ROLE_ADMIN")
+    @SaCheckPermission("user:add")
     @GetMapping("/resources/{roleId}")
     public Map<String, Object> getRoleResources(@PathVariable Long roleId) {
         Map<String, Object> result = new HashMap<>();
